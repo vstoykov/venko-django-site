@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block extra_head %}
+    <script type="text/javascript" src="{{MEDIA_URL}}js/jquery.lightbox-0.5.min.js"></script>
+    <!--script type="text/javascript" src="{{MEDIA_URL}}js/gallery.js"></script-->
+    <script type="text/javascript">
+        $(function() {
+            $("#gallery_list a").lightBox();
+        });
+        function test_ajax() {
+            $.getJSON(location.href, function(data) {
+              console.log(data)
+            });
+        }
+    </script>
+{% endblock %}
+
+{% block main_content %}
+  <div id="gallery">
+    <div class="article">
+      <h2 class="header">Галерия {% if gallery %} &gt; {{gallery.title}}{% endif %}</h2>
+      <div class="content">
+          {% if gallery %}
+              <a href="{% url galleries %}">Виж всички галерии</a><hr/>
+                <dir id="gallery_list" class="gallery">
+                    {% for picture in gallery.pictures.all %}
+                        <li>
+                            <a href="{{picture.image.url}}">
+                                <div class="thumb-holder"><img src="{{picture.thumb.url}}" width="{{picture.thumb.width}}" height="{{picture.thumb.height}}" alt="{{picture.title}}" title="{{picture.title}}" onload="$(this).addClass('shadow');" /></div>
+                                <!--p>{{picture.title}}</p-->
+                            </a>
+                        </li>
+                    {% empty %}
+                        <li>Няма качени снимки<li>
+                    {% endfor %}
+                </dir>
+              <hr/><a href="{% url galleries %}">Виж всички галерии</a>
+          {% else %}
+            <dir class="gallery">
+                {% for gallery in galleries %}
+                    <li>
+                        <a href="{% url gallery gallery.slug %}" name="{{gallery.slug}}">
+                            <div class="thumb-holder"><img src="{{gallery.get_thumbnail}}" alt="gallery.title" class="shadow"></div>
+                            <p>{{gallery.title}}</p>
+                        </a>
+                    </li>
+                {% empty %}
+                    <li>Няма галерии</li>
+                {% endfor %}
+            </dir>
+          {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

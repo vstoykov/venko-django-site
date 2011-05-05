@@ -1,0 +1,12 @@
+{% extends 'flatpages/default.html' %}
+
+{% block main_content %}
+<div>
+    <div class="article">
+        <h2 class="header">{{flatpage.title}}</h2>
+        <div class="content">
+            {{ flatpage.content }}
+        </div>
+    </div>
+</div>
+{% endblock %}

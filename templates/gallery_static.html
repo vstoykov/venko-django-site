@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block extra_head %}
+    <script type="text/javascript" src="/static/js/jquery.lightbox-0.5.min.js"></script>
+    <script type="text/javascript" src="/static/js/gallery.js"></script>
+{% endblock %}
+
+{% block main_content %}
+  <div id="gallery">
+    <div class="article">
+      <h2 class="header">Gallery</h2>
+      <div class="content">
+          <a href="javascript:void(0)" onClick="listGalleries();" class="backToGalleries">Назад към галерията</a>
+
+            <dir id="galleries_list" class="gallery"></dir>
+            <dir id="gallery_list" class="gallery"></dir>
+
+          <a href="javascript:void(0)" onClick="listGalleries();" class="backToGalleries">Назад към галерията</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

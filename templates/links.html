@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block main_content %}
+ <div id="links">
+    <div class="article">
+      <h2 class="header">Полезни Връзки</h2>
+      <div class="content">
+        <p>На това място ще слагам връзки към интересни и полезни неща в мрежата.</p>
+        <dl class="links">
+          {% regroup links by category as links_list %}
+          {% for link_group in links_list %}
+            <dt {% if not forloop.first %}style="border-top: 1px solid #363;"{% endif %}>{{link_group.grouper}}</dt>
+            {% for link in link_group.list %}
+            <dd>
+                <a href="{{link.url}}">
+                    <span>{{link.title}}</span><br/>
+                    <small><i>{{link.url}}</i></small>
+                </a>
+            </dd>
+            {% endfor %}
+            
+          {% empty %}
+            <h4>Няма връзки!</h4>
+          {% endfor %}
+        </dl>
+      </div>
+    </div>
+  </div>
+{% endblock %}

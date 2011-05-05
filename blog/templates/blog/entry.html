@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+{% load disqus_tags %}
+
+{% block extra_head %}
+    {% disqus_dev %}
+    <script type="text/javascript">
+        var disqus_identifer = "{{entry.get_identifier}}";
+        var disqus_title = "{{entry.title|escape}}";
+        
+        var disqus_url = "{{request.build_absolute_uri}}";
+    </script>
+{% endblock %}
+
+{% block blog_content %}
+  <a href="{% url my_blog_by_cat entry.category.slug %}">Виж всички постове от {{entry.category.title}}</a><hr/>
+  <h2>{{entry.title}}</h2>
+  {{entry.content|safe}}
+  <br/>
+  <p><small><i>Публикувано на {{entry.created}}</i></small><p>
+  <hr/>
+  {% disqus_show_comments %}
+{% endblock %}

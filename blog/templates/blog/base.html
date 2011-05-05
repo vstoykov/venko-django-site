@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block left_column %}
+    <div class="article">
+      <h2 class="header">Категории в Блога</h2>
+      <ul>
+      {% for category in categories %}
+        <li><a href="{% url my_blog_by_cat category.slug %}">{{category.title}} ({{category.entry_set.count}})</a></li>
+      {% empty %}
+        <li>Няма категории</li>
+      {% endfor %}
+      </ul>
+    </div>
+    {{ block.super }}
+{% endblock %}
+
+
+{% block main_content %}
+  <div>
+      <div class="article">
+        <h2 class="header">Блог{% if category %} &gt; {{category.title}}{% endif %}</h2>
+        <div class="content">
+          {% block blog_content %}{% endblock %}
+        </div>
+      </div>
+  </div>
+{% endblock %}
