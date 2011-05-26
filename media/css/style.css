@@ -44,7 +44,7 @@ a img {border: none;}
     height: 85px;
     padding-top: 25px;
 }
-#header_logo h1 {line-height:60px; font-size: 40px; color: #AAA; text-shadow: #030 4px 4px 4px; margin:0px auto 20px; padding:0px;}
+#header_logo h1 {line-height:60px; font-size: 40px; color: #CCC; text-shadow: #030 4px 4px 4px; margin:0px auto 20px; padding:0px;}
 #main_menu {
     background-color: #555;
     background-image:url(../img/menu_main.gif);
@@ -64,27 +64,35 @@ a img {border: none;}
     display: block;
     float: left;
     height: 32px;
-    margin-top: 13px;
+    margin: 14px 1px;
     overflow: hidden;
     /*width: 180px;*/
 }
 /*#main_menu ul li:first-child{border-left:1px solid #777;}*/
 
-#main_menu li.ui-state-default{
+#main_menu li{
     background-color:#999;
     background-image:url(../img/menu_button.gif);
-    border-left: 1px solid #DDD;
-    border-right: 1px solid #222;
+    /*border-left: 1px solid #DDD;
+    border-right: 1px solid #222;*/
     /*border-top: 0px solid #DDD;
     border-bottom: 0px solid #222;*/
 }
 #main_menu li.ui-tabs-selected {
     background-color:#999;
     background-image:url(../img/menu_button_down.gif);
-    border-left: 1px solid #333;
-    border-right: 1px solid #AAA;
+    border: 1px inset #BBB;
+    margin-left: 0px;
+    margin-right: 0px;
+    /*border-left: 1px solid #333;
+    border-right: 1px solid #AAA;*/
     /*border-top: 0px solid #555;
     border-bottom: 0px solid #FFF;*/
+}
+#main_menu li:hover {
+    border: 1px outset #BBB;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 #main_menu li a {
@@ -104,8 +112,8 @@ a img {border: none;}
     /*font-weight: bold;*/
     color: #FFF;
     text-shadow: #333 1px 1px 1px;
-    outline: 2px solid #060;
-    outline-offset: -2px;
+    /*outline: 2px solid #060;
+    outline-offset: -2px;*/
 }
 #main_menu li.ui-tabs-selected a {color:#DDD; text-shadow: #545 1px 1px 1px;}
 #main_menu li.ui-tabs-selected a span {position: relative; top: 2px;}
@@ -226,5 +234,6 @@ dl.links dt {font-size: 1.2em; font-weight: bolder;}
 .gallery li p {text-align: center; margin-top: 10px;}
 .backToGalleries {float: right; margin-bottom: 15px;}
 
-dl.news {margin: 0px 5px;}
-dl.news dt {margin-top: 10px;}
+dl.blog {margin: 0px 5px;}
+dl.blog dt {padding-top: 15px; font-size: 1.5em;}
+dl.blog dt small {font-size: 0.6em;}
