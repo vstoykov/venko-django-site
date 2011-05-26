@@ -30,6 +30,9 @@ class Entry(models.Model):
     def get_identifier(self):
         return '%s-%s' % ( self.category.slug, self.slug, )
     
+    def get_absolute_url(self):
+        return self.get_url()
+    
     def get_url(self):
         return reverse('my_blog_entry', kwargs={'category': self.category.slug, 'entry': self.slug})
     

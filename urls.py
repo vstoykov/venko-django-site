@@ -34,6 +34,12 @@ urlpatterns = urlpatterns + patterns('django.views.generic.simple',
     url(r'^gallery_static/$', 'direct_to_template', {'template': 'gallery_static.html'}),
 )
 
+# Create sitemap
+from sitemap import sitemaps
+urlpatterns = urlpatterns + patterns('django.contrib.sitemaps.views',
+    (r'^sitemap\.xml$', 'sitemap', {'sitemaps': sitemaps}),
+)
+
 # Static URLS is served by server. Django serves they only in DEBUG mode
 if settings.DEBUG:
     urlpatterns = urlpatterns + patterns('django.views.static',
