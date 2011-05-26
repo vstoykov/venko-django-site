@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+
+{% block title %}Галерия | {{block.super}}{% endblock %}
+
 {% block extra_head %}
     <script type="text/javascript" src="{{MEDIA_URL}}js/jquery.lightbox-0.5.min.js"></script>
     <!--script type="text/javascript" src="{{MEDIA_URL}}js/gallery.js"></script-->
