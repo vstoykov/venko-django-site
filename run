@@ -1,24 +1,45 @@
 #!/bin/bash
+########################################################
 #
-# Django site        Startup script for Django fcgi server.
+#             Django site 
+#   Startup script for Django fcgi server.
+#
+########################################################
 
 # Tune needed settings.
 
 # If nesesery change the user that run the server
-export OWNER="venko" 
+OWNER="venko" 
 
+INTERPRETER="/usr/bin/python"
+
+MAXSPARE=3
+
+# =======================================================
+# Setting Project dir and Project name
+# from this scripts directory
+# =======================================================
 OLD_PWD=$PWD
 cd `dirname $0`
+PROJDIR=$PWD
+cd $OLD_PWD
 
-export PROJDIR=$PWD
-export PIDFILE="$PROJDIR/$PROJNAME.pid"
-export SOCKET="$PROJDIR/fcgi.sock"
+MANAGE="$PROJDIR/manage.py"
 
+PROJNAME=`basename $PROJDIR`
+PIDFILE="$PROJDIR/$PROJNAME.pid"
+SOCKET="$PROJDIR/fcgi.sock"
+
+
+# ===========================================
+#  End of configuration. Begin real script
+# ===========================================
 
 case $1 in
 
     stop)
-
+      echo "Stopping ${PROJNAME}..."
+      
       if [ -f $PIDFILE ]; then
           kill `cat -- $PIDFILE`
           rm -f -- $PIDFILE
@@ -33,25 +54,26 @@ case $1 in
 
 
 
-    start|restart)
-
-      $0 stop
-      sleep 1
+    start)
+      echo "Starting ${PROJNAME}..." 
       
-      echo "Starting server at home dir $PROJDIR" 
+      COMMAND="$INTERPRETER \"$MANAGE\" runfcgi socket=\"$SOCKET\" pidfile=\"$PIDFILE\" workdir=\"$PROJDIR\" maxspare=$MAXSPARE"
+      
       if [ $OWNER = $(whoami) ]; then
-        cd $PROJDIR
-        /usr/bin/python manage.py runfcgi socket=$SOCKET pidfile=$PIDFILE
+        sh -c "$COMMAND"
       else
-        su $OWNER -c '
-          cd $PROJDIR
-          /usr/bin/python manage.py runfcgi socket=$SOCKET pidfile=$PIDFILE
-        '
+        su $OWNER -c "$COMMAND"
       fi
 
       if [ -S $SOCKET ]; then
        chmod 666 $SOCKET
       fi
+    ;;
+    
+    restart)
+      $0 stop
+      sleep 2
+      $0 start
     ;;
 
     *)
