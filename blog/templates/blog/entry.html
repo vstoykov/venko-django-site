@@ -4,8 +4,8 @@
 {% block title %}{{entry.title}} | {{block.super}}{% endblock %}
 
 {% block extra_head %}
-    <meta http-equiv="keywords" content="Венелин, Стойков, блог"/>
-    <meta http-equiv="description" content="Страница от блога на Венелин Стойков - {{entry.title}}"/>
+    <meta name="keywords" content="Венелин, Стойков, блог"/>
+    <meta name="description" content="Страница от блога на Венелин Стойков - {{entry.title}}"/>
     {{block.super}}
     {% disqus_dev %}
     <script type="text/javascript">
