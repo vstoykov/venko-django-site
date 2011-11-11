@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<django-objects version="1.0">
+  <object pk="1" model="flatpages.flatpage">
+    <field type="CharField" name="url">/about/</field>
+    <field type="CharField" name="title">За мен</field>
+    <field type="TextField" name="content">&lt;div&gt;
+    &lt;div class="article"&gt;
+      &lt;h2 class="header"&gt;За мен &lt;/h2&gt;
+      &lt;div class="content"&gt;
+          
+           Не е довършено
+          
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;</field>
+    <field type="BooleanField" name="enable_comments">False</field>
+    <field type="CharField" name="template_name"></field>
+    <field type="BooleanField" name="registration_required">False</field>
+    <field to="sites.site" name="sites" rel="ManyToManyRel"><object pk="1"></object></field>
+  </object>
+  <object pk="2" model="flatpages.flatpage">
+    <field type="CharField" name="url">/contacts/</field>
+    <field type="CharField" name="title">Контакти</field>
+    <field type="TextField" name="content">&lt;div&gt;
+    &lt;div class="article"&gt;
+      &lt;h2 class="header"&gt;Контакти&lt;/h2&gt;
+      &lt;div class="content"&gt;
+          
+           Не е довършено
+          
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;</field>
+    <field type="BooleanField" name="enable_comments">False</field>
+    <field type="CharField" name="template_name"></field>
+    <field type="BooleanField" name="registration_required">False</field>
+    <field to="sites.site" name="sites" rel="ManyToManyRel"><object pk="1"></object></field>
+  </object>
+  <object pk="1" model="sites.site">
+    <field type="CharField" name="domain">localhost:8000</field>
+    <field type="CharField" name="name">Developer version</field>
+  </object>
+</django-objects>

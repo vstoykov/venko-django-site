@@ -119,5 +119,5 @@ INTERNAL_IPS = ('127.0.0.1',)
 
 try:
     from settings_local import *
-except:
+except ImportError:
     pass
