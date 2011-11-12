@@ -15,7 +15,10 @@ class EntryAdmin(admin.ModelAdmin):
     date_hierarchy = 'created'
     
     class Media:
-        js = ('/static/ckeditor/ckeditor.js', '/static/js/ckedit.js')
+        js = (
+            '/media/ckeditor/ckeditor.js',
+            '/media/js/ckedit.js',
+        )
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Entry, EntryAdmin)

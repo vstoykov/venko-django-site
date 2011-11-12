@@ -4,10 +4,11 @@ from django.contrib.flatpages.admin import FlatPageAdmin as OriginalFlatPageAdmi
 
 class FlatPageAdmin(OriginalFlatPageAdmin):
     class Media:
-        js = ('/static/ckeditor/ckeditor.js', '/static/js/ckedit.js')
+        js = (
+            '/media/ckeditor/ckeditor.js',
+            '/media/js/ckedit.js',
+        )
 
-try:
-    admin.site.unregister(FlatPage)
-except:
-    pass
+try: admin.site.unregister(FlatPage)
+except: pass
 admin.site.register(FlatPage, FlatPageAdmin)
