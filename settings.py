@@ -1,10 +1,9 @@
 # Django settings for doommaster project.
 import django.conf.global_settings as DEFAULT_SETTINGS
-import os
+from os import path
+here = lambda *x: path.join(path.abspath(path.dirname(__file__)), *x)
 
-here = lambda x='': os.path.join(os.path.abspath(os.path.dirname(__file__)), x)
-
-
+PROJECT_DIR = here()
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 

@@ -27,8 +27,6 @@ cd `dirname $0`
 PROJDIR=$PWD
 cd $OLD_PWD
 
-MANAGE="$PROJDIR/manage.py"
-
 PROJNAME=`basename $PROJDIR`
 PIDFILE="$PROJDIR/$PROJNAME.pid"
 SOCKET="$PROJDIR/fcgi.sock"

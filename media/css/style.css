@@ -228,6 +228,7 @@ dl.links dt {font-size: 1.2em; font-weight: bolder;}
 .links a dd {margin-left: 0px;}
 .links a:hover {text-decoration:none;}
 
+#gallery .content {width: 650px;}
 .gallery {overflow:hidden; clear: both; margin: 0px; padding: 15px;}
 .gallery li {list-style: none; float: left; margin: 10px; width: 130px; text-align: center;}
 .gallery .thumb-holder {width: 130px; height: 100px; display: block;}
