@@ -11,9 +11,12 @@
 # If nesesery change the user that run the server
 OWNER="venko" 
 
-INTERPRETER="/usr/bin/python"
+MAX_SPARE="1"   # Maximum spares for this project
+MAX_CHILDREN="1"
 
-MAXSPARE=3
+MANAGE="manage.py"   # Script that manage project
+INTERPRETER="python"   # MANAGE interpreter
+
 
 # =======================================================
 # Setting Project dir and Project name
@@ -56,8 +59,7 @@ case $1 in
 
     start)
       echo "Starting ${PROJNAME}..." 
-      
-      COMMAND="$INTERPRETER \"$MANAGE\" runfcgi socket=\"$SOCKET\" pidfile=\"$PIDFILE\" workdir=\"$PROJDIR\" maxspare=$MAXSPARE"
+      COMMAND="$INTERPRETER '$PROJDIR/$MANAGE' runfcgi socket='$SOCKET' pidfile='$PIDFILE' maxspare=$MAX_SPARE maxchildren=$MAX_CHILDREN "
       
       if [ $OWNER = $(whoami) ]; then
         sh -c "$COMMAND"
@@ -72,7 +74,7 @@ case $1 in
     
     restart)
       $0 stop
-      sleep 2
+      sleep 1
       $0 start
     ;;
 
@@ -82,6 +84,6 @@ case $1 in
 
 esac
 
-cd $OLD_PWD
+#cd $OLD_PWD
 
 exit
