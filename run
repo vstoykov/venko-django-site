@@ -11,8 +11,9 @@
 # If nesesery change the user that run the server
 OWNER="venko" 
 
-MAX_SPARE="1"   # Maximum spares for this project
-MAX_CHILDREN="1"
+MIN_SPARE=1
+MAX_SPARE=1   # Maximum spares for this project
+MAX_CHILDREN=1
 
 MANAGE="manage.py"   # Script that manage project
 INTERPRETER="python"   # MANAGE interpreter
@@ -57,7 +58,9 @@ case $1 in
 
     start)
       echo "Starting ${PROJNAME}..." 
-      COMMAND="$INTERPRETER '$PROJDIR/$MANAGE' runfcgi socket='$SOCKET' pidfile='$PIDFILE' maxspare=$MAX_SPARE maxchildren=$MAX_CHILDREN "
+      PARAMETERS="pidfile='$PIDFILE' minspare=$MIN_SPARE maxspare=$MAX_SPARE maxchildren=$MAX_CHILDREN"
+      COMMAND="$INTERPRETER '$PROJDIR/$MANAGE' runfcgi socket='$SOCKET' $PARAMETERS "
+      #echo $COMMAND
       
       if [ $OWNER = $(whoami) ]; then
         sh -c "$COMMAND"
