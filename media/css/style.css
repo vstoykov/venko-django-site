@@ -64,7 +64,7 @@ a img {border: none;}
     display: block;
     float: left;
     height: 32px;
-    margin: 14px 1px;
+    margin: 14px 1px 1px;
     overflow: hidden;
     /*width: 180px;*/
 }
