@@ -27,7 +27,7 @@ a img {border: none;}
     box-shadow: 3px 3px 4px #000;
 }
 .center { text-align: center; }
-.text {text-align: justify; text-indent: 20px;}
+.justify {text-align: justify;}
 .content {margin: 0px; padding: 10px;}
 .holder {position:relative;}
 
@@ -44,7 +44,14 @@ a img {border: none;}
     height: 85px;
     padding-top: 25px;
 }
-#header_logo h1 {line-height:60px; font-size: 40px; color: #CCC; text-shadow: #030 4px 4px 4px; margin:0px auto 20px; padding:0px;}
+#header_logo h1 {
+    line-height: 60px;
+    font-size: 40px;
+    color: #CCC;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.8);
+    margin: 0px auto 20px;
+    padding: 0px;
+}
 #main_menu {
     background-color: #555;
     background-image:url(../img/menu_main.gif);
@@ -177,6 +184,7 @@ h1 {
 .article .header {
     color: white;
     font-size: 15px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
     margin: 0px 0px 5px;
     padding: 4px 0px 2px 10px;
     background-color: #050;
@@ -194,9 +202,9 @@ h1 {
     border-bottom-right-radius: 0px;
 }
 
-.left_column .article p {padding:5px}
+.left_column .article p {padding:5px; text-indent: 20px;}
 
-.main_content .article p {margin: 5px 10px;}
+.main_content .article p {margin: 5px 10px; text-indent: 20px;}
  .main_content .article .img_holder {width: 200px; min-height: 280px; float: left; margin: 10px; padding: 2px;}
   .main_content .article .img_holder img {width: 200px; height: 275px;}
 
@@ -207,6 +215,7 @@ h1 {
     margin: 10px auto;
     padding: 0px 10px;
     text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
     background: #888;
     color: #DDD;
     display: table;
@@ -214,7 +223,8 @@ h1 {
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
-
+#footer p {float: right; margin: 10px; padding: 5px 0px;}
+#footer p.django-powered {padding: 0px;}
 
 .ui-tabs-hide {display: none}
 .ui-tabs-panel{padding:0px;}

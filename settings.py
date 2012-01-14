@@ -71,6 +71,8 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'middleware.StaticServeMiddleware',
+    'middleware.SQLPrintingMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -95,9 +97,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     #'django.contrib.staticfiles',
     'django.contrib.messages',
-    # Uncomment the next line to enable the admin:
     'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
     'django.contrib.flatpages',
     'django.contrib.sitemaps',  
@@ -119,4 +119,5 @@ INTERNAL_IPS = ('127.0.0.1',)
 try:
     from settings_local import *
 except ImportError:
-    pass
+    import sys
+    sys.exit("\033[1;31mCan not import settings_local\033[0m")
