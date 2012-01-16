@@ -1,2 +1,6 @@
 *.pyc
+*.pid
+*.sock
 settings_local.py
+media/admin
+media/gallery
