@@ -16,6 +16,11 @@ class Gallery(models.Model):
     class Meta:
         verbose_name_plural = 'galleries'
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('gallery', (self.slug,), {})
+
+
     def get_dir(self): return '%s%s/' % (self.GALLERIES_DIR, self.slug)
     def get_thumb_dir(self): return '%sthumbs/' % self.get_dir()
     
