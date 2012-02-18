@@ -1,3 +1,7 @@
 *.pyc
-settings_local.py
+*.pid
+*.sock
 site.db
+settings_local.py
+media/admin
+media/gallery
