@@ -13,7 +13,7 @@ OWNER="venko"
 
 MIN_SPARE=1
 MAX_SPARE=1   # Maximum spares for this project
-MAX_CHILDREN=1
+MAX_CHILDREN=4
 
 MANAGE="manage.py"   # Script that manage project
 INTERPRETER="python"   # MANAGE interpreter
