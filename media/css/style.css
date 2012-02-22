@@ -48,8 +48,8 @@ pre {background-color: #000; color: #EEE; padding: 10px; margin: 10px}
 #header_logo h1 {
     line-height: 60px;
     font-size: 40px;
-    color: #CCC;
-    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.8);
+    color: #EEE;
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.8);
     margin: 0px auto 20px;
     padding: 0px;
 }
