@@ -1,5 +1,14 @@
+from warning import warn
+
 from django.db import models
 from django.core.urlresolvers import reverse
+
+def truncate_smart(txt, size):
+    """
+    Truncate text to given size. If text is longer then add "..."
+    """
+    return u''.join([txt[:size],'...']) if len(txt) > size + 3 else txt
+
 
 class Category(models.Model):
     """
@@ -17,7 +26,11 @@ class Category(models.Model):
         return ('my_blog_by_cat', (), {'category': self.slug})
     
     def get_url(self):
-        return reverse('my_blog_by_cat', kwargs={'category': self.slug,})
+        """
+        Deprecated method
+        """
+        warn("Category.get_url is deprecated", DeprecationWarning, 2)
+        return self.get_absolute_url()
     
     class Meta:
         verbose_name_plural = 'categories'
@@ -37,16 +50,24 @@ class Entry(models.Model):
     modified = models.DateTimeField(auto_now=True)    
         
     def __unicode__(self):
-        return u'%s%s' % (self.title[:60], '...' if len(self.title) > 60 else '')
+        return truncate_smart(self.title, 60)
     
     def get_identifier(self):
+        """
+        Identifier used in disqus
+        """
         return '%s-%s' % ( self.category.slug, self.slug, )
     
+    @models.permalink
     def get_absolute_url(self):
-        return self.get_url()
+        return ('my_blog_entry', [], {'category': self.category.slug, 'entry': self.slug})
     
     def get_url(self):
-        return reverse('my_blog_entry', kwargs={'category': self.category.slug, 'entry': self.slug})
+        """
+        Deprecated method
+        """
+        warn("Entry.get_url is deprecated", DeprecationWarning, 2)
+        return self.get_absolute_url()
     
     class Meta:
         unique_together = (('category', 'slug',),)
