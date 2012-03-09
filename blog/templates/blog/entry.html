@@ -1,7 +1,7 @@
 {% extends 'blog/base.html' %}
 {% load disqus_tags %}
 
-{% block title %}{{entry.title}} | {{block.super}}{% endblock %}
+{% block title %}{{entry.title}} | {{entry.category}} | {{block.super}}{% endblock %}
 
 {% block extra_head %}
     <meta name="keywords" content="Венелин, Стойков, блог"/>

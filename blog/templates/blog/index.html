@@ -1,5 +1,7 @@
 {% extends 'blog/base.html' %}
 
+{% block title %}{% if category %}{{category}} | {% endif %}{{block.super}}{% endblock %}
+
 {% block blog_content %}
   {% if category %}<a href="{% url my_blog %}">Виж всички постове</a><hr/>{% endif %}
   <dl class="blog">
