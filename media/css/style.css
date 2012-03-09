@@ -21,7 +21,14 @@ a:visited{text-decoration:none; color:#151;}
 a:active{text-decoration:underline; color:#181;}
 a:hover{text-decoration:underline; color:#181;}
 a img {border: none;}
-pre {background-color: #F0F0F0; color: #EEE; padding: 10px; margin: 10px}
+
+pre {
+    border: 1px solid #DEDEDE;
+    background: #F8F8FF;
+    padding: 10px;
+    margin: 10px;
+}
+pre code {background: #F8F8FF !important;}
 
 .shadow, .article, #body, #footer {
     -moz-box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.7);
@@ -252,3 +259,4 @@ dl.blog dt small {font-size: 0.6em;}
 ul.blog-categories li {margin-left: 0px; list-style-type: None;}
 
 .gist {width: 650px;}
+
