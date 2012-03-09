@@ -21,7 +21,8 @@ a:visited{text-decoration:none; color:#151;}
 a:active{text-decoration:underline; color:#181;}
 a:hover{text-decoration:underline; color:#181;}
 a img {border: none;}
-pre {background-color: #000; color: #EEE; padding: 10px; margin: 10px}
+pre {background-color: #F0F0F0; color: #EEE; padding: 10px; margin: 10px}
+
 .shadow, .article, #body, #footer {
     -moz-box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.7);
     -webkit-box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.7);

@@ -3,21 +3,13 @@
 {% block title %}Блог | {{block.super}}{% endblock %}
 
 {% block extra_head %}
-{{block.super}}
-{% with "http://alexgorbatchev.com/pub/sh/current/" as HIGHLIGHTER_MEDIA %}
-    <link rel="stylesheet" type="text/css" href="{{HIGHLIGHTER_MEDIA}}styles/shCore.css" />
-    <link rel="stylesheet" type="text/css" href="{{HIGHLIGHTER_MEDIA}}styles/shThemeDefault.css" />
-    <script type="text/javascript" src="{{HIGHLIGHTER_MEDIA}}scripts/shCore.js"></script>
-    <script type="text/javascript" src="{{HIGHLIGHTER_MEDIA}}scripts/shAutoloader.js"></script>
-    <script type="text/javascript">
-      $(function() {
-        SyntaxHighlighter.autoloader(
-          [ 'py', 'python', '{{HIGHLIGHTER_MEDIA}}scripts/shBrushPython.js' ],
-        );
-        SyntaxHighlighter.all();
-      });
-    </script>
-{% endwith %}
+  {{block.super}}
+  <link rel="stylesheet" href="http://yandex.st/highlightjs/6.1/styles/default.min.css">
+  <script type="text/javascript" src="http://yandex.st/highlightjs/6.1/highlight.min.js"></script>
+  <script type="text/javascript">
+    hljs.tabReplace = '    ';
+    hljs.initHighlightingOnLoad();
+  </script>
 {% endblock %}
 
 {% block left_column %}
