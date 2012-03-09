@@ -5,7 +5,7 @@
 
 {% block extra_head %}
     <meta name="keywords" content="Венелин, Стойков, блог"/>
-    <meta name="description" content="Страница от блога на Венелин Стойков - {{entry.title}}"/>
+    <meta name="description" content="Страница от блога на Венелин Стойков - {{entry.title}} в категория {{entry.category}}"/>
     {{block.super}}
     {% disqus_dev %}
     <script type="text/javascript">
