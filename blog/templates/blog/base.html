@@ -3,37 +3,37 @@
 {% block title %}Блог | {{block.super}}{% endblock %}
 
 {% block extra_head %}
-  {{block.super}}
-  <link rel="stylesheet" href="http://yandex.st/highlightjs/6.1/styles/default.min.css">
-  <script type="text/javascript" src="http://yandex.st/highlightjs/6.1/highlight.min.js"></script>
-  <script type="text/javascript">
-    hljs.tabReplace = '    ';
-    hljs.initHighlightingOnLoad();
-  </script>
+	{{block.super}}
+	<link rel="stylesheet" href="http://yandex.st/highlightjs/6.1/styles/default.min.css">
+	<script type="text/javascript" src="http://yandex.st/highlightjs/6.1/highlight.min.js"></script>
+	<script type="text/javascript">
+		hljs.tabReplace = '    ';
+		hljs.initHighlightingOnLoad();
+	</script>
 {% endblock %}
 
 {% block left_column %}
-  <div class="article">
-    <h2 class="header">Категории в Блога</h2>
-    <ul class="blog-categories">
-    {% for category in categories %}
-      <li><a href="{% url my_blog_by_cat category.slug %}">{{category.title}} ({{category.entry_set.count}})</a></li>
-    {% empty %}
-      <li>Няма категории</li>
-    {% endfor %}
-    </ul>
-  </div>
-  {{ block.super }}
+	<div class="article">
+		<h2 class="header">Категории в Блога</h2>
+		<ul class="blog-categories">
+		{% for category in categories %}
+			<li><a href="{% url my_blog_by_cat category.slug %}">{{category.title}} ({{category.entry_set.count}})</a></li>
+		{% empty %}
+			<li>Няма категории</li>
+		{% endfor %}
+		</ul>
+	</div>
+	{{ block.super }}
 {% endblock %}
 
 
 {% block main_content %}
-  <div>
-      <div class="article">
-        <h2 class="header">Блог{% if category %} &gt; {{category.title}}{% endif %}</h2>
-        <div class="content">
-          {% block blog_content %}{% endblock %}
-        </div>
-      </div>
-  </div>
+	<div>
+			<div class="article">
+				<h2 class="header">Блог{% if category %} &gt; {{category.title}}{% endif %}</h2>
+				<div class="content">
+					{% block blog_content %}{% endblock %}
+				</div>
+			</div>
+	</div>
 {% endblock %}

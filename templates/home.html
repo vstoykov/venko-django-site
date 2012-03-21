@@ -1,33 +1,33 @@
 {% extends "base.html" %}
 
 {% block extra_head %}
-    <meta name="keywords" content="Венелин, Стойков"/>
-    <meta name="description" content="Личната интернет страница на Венелин Стойков"/>
-    {{block.super}}
+	<meta name="keywords" content="Венелин, Стойков"/>
+	<meta name="description" content="Личната интернет страница на Венелин Стойков"/>
+	{{block.super}}
 {% endblock %}
 
 {% block main_content %}
 <div id="home">
-      <div class="article">
-          <h2 class="header">Начало</h2>
-          <div class="content">
-              <h3>Добре дошли в новата ми страница</h3>
-              <p class="text">Тук ще намерите информация за мен, както и за моите интереси.
-              Може също да намерите и полезна информация в сферата на IT.</p>
-          </div>
-      </div>
-      <div class="article">
-          <h2 class="header">Последни статии от блога</h2>
-          <div class="content">
-              <dl class="blog">
-                {% for entry in latest %}
-                  <dt><a href="{% url my_blog_entry entry.category.slug entry.slug %}">{{entry.title}}</a></dt>
-                  <dd>{{entry.content|safe|truncatewords_html:50}}</dd>
-                {% empty %}
-                  <dt>Няма статии</dt><dd></dd>
-                {% endfor %}
-              </dl>
-          </div>
-      </div>
-  </div>
+	<div class="article">
+		<h2 class="header">Начало</h2>
+		<div class="content">
+			<h3>Добре дошли в новата ми страница</h3>
+			<p class="text">Тук ще намерите информация за мен, както и за моите интереси.
+			Може също да намерите и полезна информация в сферата на IT.</p>
+		</div>
+	</div>
+	<div class="article">
+		<h2 class="header">Последни статии от блога</h2>
+		<div class="content">
+			<dl class="blog">
+			{% for entry in latest %}
+				<dt><a href="{% url my_blog_entry entry.category.slug entry.slug %}">{{entry.title}}</a></dt>
+				<dd>{{entry.content|safe|truncatewords_html:50}}</dd>
+			{% empty %}
+				<dt>Няма статии</dt><dd></dd>
+			{% endfor %}
+			</dl>
+		</div>
+	</div>
+</div>
 {% endblock %}
