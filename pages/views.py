@@ -5,8 +5,9 @@ from blog.models import Entry
 
 
 def home(request):
-    latest = Entry.objects.order_by('-created')[:3]
-    #print 1/0   
+    latest = Entry.objects.order_by('-created')[:4]
+    show_more_link = len(latest) == 4
+    latest = latest[:3]
     return render_to_response('home.html', locals(), RequestContext(request))
 
 def gallery(request):

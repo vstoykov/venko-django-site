@@ -22,7 +22,7 @@
 			<ul>
 				{% with request.META.PATH_INFO as PATH_INFO %}
 					<li {% if "/home/" == PATH_INFO %}class="ui-tabs-selected"{% endif %}><a href="/home/"><span>Начало</span></a></li>
-					<li {% if "/blog/" in PATH_INFO %}class="ui-tabs-selected"{% endif %}><a href="/blog/"><span>Блог</span></a></li>
+					<li {% if "/blog/" in PATH_INFO %}class="ui-tabs-selected"{% endif %}><a href="/blog/"><span>Статии</span></a></li>
 					<li {% if "/gallery/" in PATH_INFO %}class="ui-tabs-selected"{% endif %}><a href="/gallery/"><span>Галерия</span></a></li>
 					<li {% if "/links/" == PATH_INFO %}class="ui-tabs-selected"{% endif %}><a href="/links/"><span>Връзки</span></a></li>
 					<li {% if "/about/" == PATH_INFO %}class="ui-tabs-selected"{% endif %}><a href="/about/"><span>За Мен</span></a></li>
