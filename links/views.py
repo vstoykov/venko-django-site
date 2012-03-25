@@ -1,8 +1,8 @@
-from django.template import RequestContext
-from django.shortcuts import render_to_response
+from django.views.generic.simple import direct_to_template
 
 from links.models import Link
 
-def links(request):
-    links = Link.objects.order_by('category')
-    return render_to_response('links.html', locals(), RequestContext(request))
+def links(request, template="links.html"):
+    return direct_to_template(request, template, {
+        'links': Link.objects.order_by('category')
+        })
