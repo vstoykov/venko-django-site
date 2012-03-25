@@ -24,8 +24,8 @@ urlpatterns = urlpatterns + patterns('gallery.views',
     url(r'^gallery/(?P<gallery>[\w\_\-]+)/$', 'view_galleries', name='gallery'),
 )
 
-urlpatterns = urlpatterns + patterns('pages.views',
-    url(r'^home/$', 'home', name='home'),
+urlpatterns = urlpatterns + patterns('django.views.generic.simple',
+    url(r'^home/$', 'direct_to_template', kwargs={'template': 'home.html'}, name='home'),
 )
 
 # Redirect empty url to home page
