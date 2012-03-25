@@ -10,7 +10,6 @@ def view_galleries(request, gallery=None):
     else:
         galleries = Gallery.objects.exclude(pictures=None)
     
-
     
     if request.is_ajax():
         import json
