@@ -260,3 +260,7 @@ ul.blog-categories li {margin-left: 0px; list-style-type: None;}
 
 .gist {width: 650px;}
 
+a.rss {display: block; height: 64px;}
+a.rss img {float: left;}
+a.rss span { display: block; padding-top: 10px;}
+

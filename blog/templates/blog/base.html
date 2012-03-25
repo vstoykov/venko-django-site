@@ -14,6 +14,13 @@
 
 {% block left_column %}
 	<div class="article">
+		<h2 class="header">RSS</h2>
+		<a href="{% url blog_feed %}" class="rss">
+			<img src="{{ MEDIA_URL }}img/RSS_Icon.png" alt="RSS" title="Абонирай се за последните статии от блога на Венелин Стойков">
+			<span>Абонирай се за последните статии</span>
+		</a>
+	</div>
+	<div class="article">
 		<h2 class="header">Категории в Блога</h2>
 		<ul class="blog-categories">
 		{% for category in categories %}
