@@ -10,6 +10,14 @@ def truncate_smart(txt, size):
     return u''.join([txt[:size],'...']) if len(txt) > size + 3 else txt
 
 
+class CategoryManager(models.Manager):
+    def with_entry_count(self):
+        return self.annotate(entries_count=models.Count('entries'))
+    
+    def active(self):
+        return self.with_entry_count().filter(entries_count__gt=0)
+
+
 class Category(models.Model):
     """
     Every blog entry is put in some category
@@ -17,6 +25,9 @@ class Category(models.Model):
     """
     title = models.CharField(max_length=255)
     slug  = models.SlugField(unique=True, max_length=255, db_index=True)
+    
+    objects = CategoryManager()
+    
     
     def __unicode__(self):
         return unicode(self.title)
@@ -36,19 +47,26 @@ class Category(models.Model):
         verbose_name_plural = 'categories'
 
 
+class EntryManager(models.Manager):
+    def get_query_set(self):
+        return super(EntryManager, self).get_query_set().select_related('category')
+
+
 class Entry(models.Model):
     """
     This models describe every blog entry with his
     category, title, slug and content
     """
-    category = models.ForeignKey(Category)
+    category = models.ForeignKey(Category, related_name='entries')
     title    = models.CharField(max_length=255)
     slug     = models.SlugField(max_length=255, db_index=True)
-    content  = models.TextField()    
+    content  = models.TextField()
 
     created  = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)    
-        
+    modified = models.DateTimeField(auto_now=True)
+    
+    objects = EntryManager()
+    
     def __unicode__(self):
         return truncate_smart(self.title, 60)
     
