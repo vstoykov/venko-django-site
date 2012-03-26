@@ -36,11 +36,11 @@
 
 {% block main_content %}
 	<div>
-			<div class="article">
-				<h2 class="header">Блог{% if category %} &gt; {{category.title}}{% endif %}</h2>
-				<div class="content">
-					{% block blog_content %}{% endblock %}
-				</div>
+		<div class="article">
+			<h2 class="header">Блог{% if category %} &gt; {{category.title}}{% endif %}</h2>
+			<div class="content">
+				{% block blog_content %}{% endblock %}
 			</div>
+		</div>
 	</div>
 {% endblock %}
