@@ -1,5 +1,6 @@
 Sitemap: http://venelin.sytes.net/sitemap.xml
 
 User-agent: *
-Disallow:
-
+Disallow: /static/
+Disallow: /media/
+Allow: /
