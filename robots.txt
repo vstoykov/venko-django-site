@@ -1,4 +1,4 @@
-Sitemap: http://venelin.no-ip.info/sitemap.xml
+Sitemap: http://venelin.sytes.net/sitemap.xml
 
 User-agent: *
 Disallow:
