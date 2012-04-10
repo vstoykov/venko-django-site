@@ -160,7 +160,7 @@ h1 {
     -moz-border-radius: 10px;
 }
 .left_column {
-    width: 200px;
+    width: 180px;
     float: left;
     margin-right: 10px;
 }
@@ -169,7 +169,7 @@ h1 {
     float: right;
     /*color:black;*/
     min-height: 300px;
-    width: 670px;
+    width: 700px;
 }
 
 .left_column .article {
