@@ -18,15 +18,25 @@
 			});
 		}
 	</script>
-{% endblock %}
+    <script type="text/javascript">
+      window.___gcfg = {lang: 'bg'};
 
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+{% endblock %}
 {% block main_content %}
   <div id="gallery">
 	<div class="article">
 	  <h2 class="header">Галерия {% if gallery %} &gt; {{gallery.title}}{% endif %}</h2>
 	  <div class="content">
 		  {% if gallery %}
-			  <a href="{% url galleries %}">Виж всички галерии</a><hr/>
+			  <a href="{% url galleries %}">Виж всички галерии</a>
+              <div class="g-plusone-holder"><div class="g-plusone"></div></div>
+              <hr class="clearfix"/>
 				<dir id="gallery_list" class="gallery">
 					{% for picture in gallery.pictures.all %}
 						<li>

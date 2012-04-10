@@ -35,10 +35,12 @@ pre code {background: #F8F8FF !important;}
     -webkit-box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.7);
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.7);
 }
-.center { text-align: center; text-indent: 0px !important;}
+.center {text-align: center; text-indent: 0px !important;}
 .justify {text-align: justify;}
 .content {margin: 0px; padding: 10px;}
 .holder {position:relative;}
+.flr {float: right;}
+.clearfix {clear: both;}
 
 #header {
     margin: 0px;
@@ -264,3 +266,4 @@ a.rss {display: block; height: 64px;}
 a.rss img {float: left;}
 a.rss span { display: block; padding-top: 10px;}
 
+.g-plusone-holder {float: right; position: relative; top: -8px;}
