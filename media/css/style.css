@@ -21,7 +21,7 @@ a:visited{text-decoration:none; color:#151;}
 a:active{text-decoration:underline; color:#181;}
 a:hover{text-decoration:underline; color:#181;}
 a img {border: none;}
-
+q {font-style: italic;}
 pre {
     border: 1px solid #DEDEDE;
     background: #F8F8FF;
