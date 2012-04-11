@@ -6,7 +6,7 @@
 	<meta name="google-site-verification" content="KTcSW3oU7d1VtYKnu-HcMQmx_l9b8-tUQjBI2D_vG3Y" />
 	<title>{% block title %}Венелин Стойков{% endblock %}</title>
 	<link rel="shortcut icon" href="{{MEDIA_URL}}favicon.png"/>
-	<link rel="alternate" type="application/rss+xml" title="Последни статии от блога на Венелин Стойков" href="{% url blog_feed %}">
+	<link rel="alternate" type="application/rss+xml" title="Последни статии от блога на Венелин Стойков" href="{% url blog_feed %}" />
 	<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}css/style.css?v=2" media="all"/>
 	<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}css/blue_style.css" media="all"/>
 	<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}css/jquery.lightbox-0.5.css" media="all" />
@@ -38,11 +38,12 @@
 			{% block left_column %}
 				<div class="article">
 					<h2 class="header">Любим цитат</h2>
-					<p>Поражение не съществува, докато човек не се признае за победен!</p>
+                    <p><q>Поражение не съществува, докато човек не се признае за победен!</q></p>
 				</div>
 				<div class="article">
-					<h2 class="header">Ubuntu User</h2>
-					<p class="center"><a href="http://ubuntucounter.geekosophical.net" title="The Ubuntu Counter Project - user number # 23784"><img src="http://ubuntucounter.geekosophical.net/img/ubuntu-user2.php?user=23784" alt="The Ubuntu Counter Project - user number # 23784" width="88" height="31" /></a></p>
+					<h2 class="header">Ubuntu</h2>
+					<p class="center"><a href="http://ubuntucounter.geekosophical.net" title="The Ubuntu Counter Project - user number # 23784"><img src="http://ubuntucounter.geekosophical.net/img/ubuntu-user2.php?user=23784" alt="The Ubuntu Counter Project - user number # 23784" width="120" /></a></p>
+                    <p class="center"><a href="http://www.ubuntu.com/" rel="nofollow"><img alt="The next version of Ubuntu is coming soon" border="0" height="120" src="http://www.ubuntu.com/countdown/banner.png" width="120" /></a></p>
 				</div>
 				<div class="article">
 					<h2 class="header">Facebook Badge</h2>
@@ -60,11 +61,12 @@
 	</div>
 	<div id="footer">
 		<p class="django-powered"><a href="http://www.djangoproject.com/"><img src="http://media.djangoproject.com/img/badges/djangomade124x25_grey.gif" border="0" alt="Made with Django." title="Made with Django." /></a></p>
+        <p><a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10-blue.png" alt="Valid XHTML 1.0 Transitional" height="25" width="80" /></a></p>
 		<p>Уеб дизайн и разработка Венелин Стойков</p>
 	</div>
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-29550531-1']);
+		_gaq.push(['_setAccount', 'UA-22285007-1']);
 		_gaq.push(['_trackPageview']);
 		(function() {
 			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;

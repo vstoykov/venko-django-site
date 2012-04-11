@@ -21,7 +21,7 @@ a:visited{text-decoration:none; color:#151;}
 a:active{text-decoration:underline; color:#181;}
 a:hover{text-decoration:underline; color:#181;}
 a img {border: none;}
-
+q {font-style: italic;}
 pre {
     border: 1px solid #DEDEDE;
     background: #F8F8FF;
@@ -35,10 +35,12 @@ pre code {background: #F8F8FF !important;}
     -webkit-box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.7);
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.7);
 }
-.center { text-align: center; text-indent: 0px !important;}
+.center {text-align: center; text-indent: 0px !important;}
 .justify {text-align: justify;}
 .content {margin: 0px; padding: 10px;}
 .holder {position:relative;}
+.flr {float: right;}
+.clearfix {clear: both;}
 
 #header {
     margin: 0px;
@@ -160,7 +162,7 @@ h1 {
     -moz-border-radius: 10px;
 }
 .left_column {
-    width: 200px;
+    width: 180px;
     float: left;
     margin-right: 10px;
 }
@@ -169,7 +171,7 @@ h1 {
     float: right;
     /*color:black;*/
     min-height: 300px;
-    width: 670px;
+    width: 700px;
 }
 
 .left_column .article {
@@ -264,3 +266,4 @@ a.rss {display: block; height: 64px;}
 a.rss img {float: left;}
 a.rss span { display: block; padding-top: 10px;}
 
+.g-plusone-holder {float: right; position: relative; top: -8px;}

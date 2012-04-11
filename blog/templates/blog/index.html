@@ -9,7 +9,7 @@
 			<dt {% if not forloop.first %}class="border_t"{% endif %}><a href="{{ entry.get_url }}">{{entry.title}}</a><br/><small><i>Публикувано на {{entry.created}}</i></small></dt>
 			<dd>
 				{{entry.content|safe|truncatewords_html:100}}
-				<p><a href="{{ entry.get_url }}#disqus_thread">Comments</a><p>
+				<a href="{{ entry.get_url }}#disqus_thread">Comments</a>
 			</dd>
 		{% empty %}
 			<dt>Няма статии в тази категория</dt><dd></dd>

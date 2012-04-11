@@ -11,6 +11,7 @@
 	<script type="text/javascript">
 		$(function() {
 			$("#gallery_list a").lightBox();
+            $(".gallery li img").addClass('shadow');
 		});
 		function test_ajax() {
 			$.getJSON(location.href, function(data) {
@@ -18,20 +19,30 @@
 			});
 		}
 	</script>
-{% endblock %}
+    <script type="text/javascript">
+      window.___gcfg = {lang: 'bg'};
 
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+{% endblock %}
 {% block main_content %}
   <div id="gallery">
 	<div class="article">
 	  <h2 class="header">Галерия {% if gallery %} &gt; {{gallery.title}}{% endif %}</h2>
 	  <div class="content">
 		  {% if gallery %}
-			  <a href="{% url galleries %}">Виж всички галерии</a><hr/>
+			  <a href="{% url galleries %}">Виж всички галерии</a>
+              <div class="g-plusone-holder"><div class="g-plusone"></div></div>
+              <hr class="clearfix"/>
 				<dir id="gallery_list" class="gallery">
 					{% for picture in gallery.pictures.all %}
 						<li>
 							<a href="{{picture.image.url}}">
-								<div class="thumb-holder"><img src="{{picture.thumb.url}}" width="{{picture.thumb.width}}" height="{{picture.thumb.height}}" alt="{{picture.title}}" title="{{picture.title}}" onload="$(this).addClass('shadow');" /></div>
+								<span class="thumb-holder"><img src="{{picture.thumb.url}}" width="{{picture.thumb.width}}" height="{{picture.thumb.height}}" alt="{{picture.title}}" title="{{picture.title}}" /></span>
 								<!--p>{{picture.title}}</p-->
 							</a>
 						</li>
@@ -45,8 +56,8 @@
 				{% for gallery in galleries %}
 					<li>
 						<a href="{% url gallery gallery.slug %}" name="{{gallery.slug}}">
-							<div class="thumb-holder"><img src="{{gallery.get_thumbnail}}" alt="{{gallery.title}}" class="shadow"></div>
-							<p>{{gallery.title}}</p>
+							<span class="thumb-holder"><img src="{{gallery.get_thumbnail}}" alt="{{gallery.title}}" /></span>
+							<span>{{gallery.title}}</span>
 						</a>
 					</li>
 				{% empty %}
