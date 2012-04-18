@@ -100,16 +100,17 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'django.contrib.flatpages',
-    'django.contrib.sitemaps',  
+    'django.contrib.sitemaps',
+    'django.contrib.redirects',
+    'django.contrib.webdesign',
+    'django_extensions',
+    'south',
+
     'pages',
     'links',
     'blog',
     'gallery',
     'disqus',
-    
-    'south',
-    'django.contrib.webdesign',
-    'django_extensions',
 )
 
 INTERNAL_IPS = ('127.0.0.1',)
