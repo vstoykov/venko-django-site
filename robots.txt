@@ -3,4 +3,6 @@ Sitemap: http://venelin.sytes.net/sitemap.xml
 User-agent: *
 Disallow: /static/
 Disallow: /media/
+Disallow: /system
+Disallow: /_/
 Allow: /
