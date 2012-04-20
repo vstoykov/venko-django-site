@@ -20,7 +20,7 @@
 					<dt {% if not forloop.first %}style="border-top: 1px solid #363;"{% endif %}>{{link_group.grouper}}</dt>
 					{% for link in link_group.list %}
 					<dd>
-						<a href="{{link.url}}">
+						<a href="{{link.url}}" rel="nofollow">
 							<span>{{link.title}}</span><br/>
 							<small><i>{{link.url}}</i></small>
 						</a>
