@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Галерия | {{block.super}}{% endblock %}
+{% block title %}{% if gallery %}{{gallery.title}} | {% endif %}Галерия | {{block.super}}{% endblock %}
 
 {% block extra_head %}
 	<meta name="keywords" content="Венелин, Стойков, Галерия, Снимки, венелин, стойков, галерия, снимки"/>
