@@ -134,8 +134,9 @@ pre code {background: #F8F8FF !important;}
     /*outline: 2px solid #060;
     outline-offset: -2px;*/
 }
+#main_menu li a:hover span {position: relative; top: -2px; left: -1px;}
 #main_menu li.ui-tabs-selected a {color:#DDD; text-shadow: #545 1px 1px 1px;}
-#main_menu li.ui-tabs-selected a span {position: relative; top: 2px;}
+#main_menu li.ui-tabs-selected a span {position: relative; top: 1px; left: 1px;}
 /*#main_menu ul li a span{ width:100px;height:24px;}*/
 
 #body {
