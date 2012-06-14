@@ -25,12 +25,9 @@ urlpatterns = urlpatterns + patterns('gallery.views',
 )
 
 urlpatterns = urlpatterns + patterns('django.views.generic.simple',
-    url(r'^home/$', 'direct_to_template', kwargs={'template': 'home.html'}, name='home'),
-)
+    url(r'^$', 'direct_to_template', kwargs={'template': 'home.html'}, name='home'),
 
-# Redirect empty url to home page
-urlpatterns = urlpatterns + patterns('django.views.generic.simple',
-    (r'^$', 'redirect_to', {'url': '/home/'}),
+    # Old Gallery URL
     url(r'^gallery_static/$', 'direct_to_template', {'template': 'gallery_static.html'}),
 )
 

@@ -1,90 +1,172 @@
 #!/bin/bash
-########################################################
+#################################################################
+# Startup script for Django server, that will be placed
+# in /usr/local/bin for example. It may be symlinked
+# in project dir with name "run" like:
+#    ln -s /usr/local/bin/django-site run.
+# 
+# Usage as global command:
+#   django-site [path/to/project] <start|stop|restart>
 #
-#             Django site 
-#   Startup script for Django fcgi server.
+# Usage as symlinked script placed in project root:
+#   ./run <start|stop|restart>
 #
-########################################################
+# Supports runfcgi and run_gunicorn django servers
+# Can load configuration file if exists named django-server.conf
+#
+# created by Venelin Stoykov vkstoykov@gmail.com
+#################################################################
 
-# Tune needed settings.
+# Default parameters that may be configured
+# in project direcotry with file django-site.conf
 
-# If nesesery change the user that run the server
-OWNER="venko" 
-
-MIN_SPARE=1
-MAX_SPARE=1   # Maximum spares for this project
+MIN_SPARE=1             # Minimum spares for the project
+MAX_SPARE=1             # Maximum spares for the project
 MAX_CHILDREN=4
 
-MANAGE="manage.py"   # Script that manage project
-INTERPRETER="python"   # MANAGE interpreter
+MANAGE="manage.py"      # Script that manage project
+INTERPRETER="python"    # MANAGE interpreter
+
+HOST="127.0.0.1"
+SERVER="runfcgi"         # Can be "runfcgi" or "run_gunicorn"
 
 
-# =======================================================
-# Setting Project dir and Project name
-# from this scripts directory
-# =======================================================
-OLD_PWD=$PWD
-cd `dirname $0`
-PROJDIR=$PWD
-cd $OLD_PWD
+# ============================================================
+# Setting Project dir and Project name from passed argument
+# or location of script or the current directory
+# ============================================================
+if [ -d "$1" ]; then
+    PROJDIR=`cd $1; pwd`
+    shift
+elif [ "`basename $0`" == "run" ]; then
+    reldir=`dirname $0`
+    PROJDIR=`cd $reldir; pwd`
+else
+    PROJDIR=$PWD
+fi
+
+
+OWNER=`ls -ld $PROJDIR | awk '{print $3}'`
 
 PROJNAME=`basename $PROJDIR`
 PIDFILE="$PROJDIR/$PROJNAME.pid"
 SOCKET="$PROJDIR/fcgi.sock"
+LOGFILE="$PROJDIR/$PROJNAME.log"
 
+[ -f "$PROJDIR/django-site.conf" ] && source "$PROJDIR/django-site.conf"
 
-# ===========================================
-#  End of configuration. Begin real script
-# ===========================================
+# =============================================
+#  End of configuration. Begin the real script
+# =============================================
 
-case $1 in
+function get_PID {
+    if [ -f $PIDFILE ]; then
+        local pid=$(ps ax | grep `cat -- $PIDFILE` | grep $PROJNAME | grep -v "grep" | awk '{print $1}')
+        [ ! -z "$pid" ] && echo $pid && return
+    fi
+    echo 0
+}
 
-    stop)
-      echo "Stopping ${PROJNAME}..."
-      
-      if [ -f $PIDFILE ]; then
-          kill `cat -- $PIDFILE`
-          rm -f -- $PIDFILE
-      fi
+function remove_files {
+    [ -f $PIDFILE ] &&  rm -f -- $PIDFILE
+    [ -S $SOCKET ] && rm -f -- $SOCKET
+}
 
-      sleep 1
+function stop_project {
+    echo "Stopping ${PROJNAME}..."
 
-      if [ -S $SOCKET ]; then
-          rm -f $SOCKET
-      fi
-    ;;
+    local pid=$(get_PID)
+    [ $pid -gt 0 ] && kill $pid
 
+    sleep 1
 
+    remove_files
+}
 
-    start)
-      echo "Starting ${PROJNAME}..." 
-      PARAMETERS="pidfile='$PIDFILE' minspare=$MIN_SPARE maxspare=$MAX_SPARE maxchildren=$MAX_CHILDREN"
-      COMMAND="$INTERPRETER '$PROJDIR/$MANAGE' runfcgi socket='$SOCKET' $PARAMETERS "
-      #echo $COMMAND
-      
-      if [ $OWNER = $(whoami) ]; then
-        sh -c "$COMMAND"
-      else
-        su $OWNER -c "$COMMAND"
-      fi
+function start_project {
+    if [ ! -f $PROJDIR/$MANAGE ]; then
+        echo "Selected path is not a django project"
+        exit 1
+    fi
 
-      if [ -S $SOCKET ]; then
-       chmod 666 $SOCKET
-      fi
-    ;;
+    if [ $(get_PID) -gt 0  ]; then
+        echo "The project ${PROJNAME} is started. Try restart instead."
+        exit 2
+    fi
+    echo "Starting ${PROJNAME}..." 
     
-    restart)
-      $0 stop
-      sleep 1
-      $0 start
-    ;;
+    case $SERVER in
+        runfcgi)
+            PARAMETERS="pidfile='$PIDFILE' minspare=$MIN_SPARE maxspare=$MAX_SPARE maxchildren=$MAX_CHILDREN"
+            if [ -z "$PORT" ]; then
+                SERVER_COMMAND="runfcgi socket='$SOCKET' $PARAMETERS"
+            else
+                SERVER_COMMAND="runfcgi host=$HOST port=$PORT $PARAMETERS"
+            fi
+        ;;
+        run_gunicorn)
+            PARAMETERS="--pid='$PIDFILE' -D --log-file='$LOGFILE'"
+            if [ -z "$PORT" ]; then
+                SERVER_COMMAND="run_gunicorn unix:$SOCKET $PARAMETERS"
+            else
+                SERVER_COMMAND="run_gunicorn $HOST:$PORT $PARAMETERS"
+            fi
+        ;;
+        *)
+            if [ -z "$SERVER_COMMAND" ]; then
+                echo "Unknown server!!! Pleace set SERVER_COMMAND in django-site.conf to run it!"
+                exit 3
+            fi
 
-    *)
-      echo Bad usage.
-    ;;
+        ;;
+    esac
+    COMMAND="$INTERPRETER '$PROJDIR/$MANAGE' $SERVER_COMMAND"
+    #echo $COMMAND
+      
+    sh -c "$COMMAND"
 
-esac
+    # If not using socket try several times to change socket permisions 
+    # to grant access for web server (nginx, apache)
+    if [ -z "$PORT" ]; then
+        for i in 1 2 3 4 5; do
+            if [ -S $SOCKET ]; then
+              chmod 777 $SOCKET
+              break
+            else
+              echo "The socket was not created! Retrying after 2 seconds..."
+              sleep 2
+            fi
+        done
+    fi
+}
 
-#cd $OLD_PWD
+# If user is not owner of the project then he must enter
+# owners password if he want to use this command
+if [ "$OWNER" != "$(whoami)" ]; then
+    su $OWNER -c "$0 '$PROJDIR' $@"
+else
+    case $1 in
 
-exit
+        stop)
+          stop_project
+        ;;
+
+        start)
+          start_project
+        ;;
+        
+        restart)
+          stop_project
+          sleep 1
+          start_project
+        ;;
+
+        *)
+          echo "Bad usage."
+          echo "Use: `basename $0` [project_path] <start|stop|restart>"
+        ;;
+
+    esac
+fi
+
+exit 0

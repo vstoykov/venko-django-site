@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 	<meta name="author" content="Venelin Stoykov"/>
-	<meta name="google-site-verification" content="KTcSW3oU7d1VtYKnu-HcMQmx_l9b8-tUQjBI2D_vG3Y" />
+    <meta name="google-site-verification" content="HEaaQ5lv83-FYJUz9g5WuIUjISZZSrCs6fcOkAa5__8" />
 	<title>{% block title %}Венелин Стойков{% endblock %}</title>
 	<link rel="shortcut icon" href="{{MEDIA_URL}}favicon.png"/>
 	<link rel="alternate" type="application/rss+xml" title="Последни статии от блога на Венелин Стойков" href="{% url blog_feed %}" />
@@ -22,7 +22,7 @@
 		<div id="main_menu">
 			<ul>
 				{% with request.META.PATH_INFO as PATH_INFO %}
-					<li {% if "/home/" == PATH_INFO %}class="ui-tabs-selected"{% endif %}><a href="/home/"><span>Начало</span></a></li>
+					<li {% if "/" == PATH_INFO %}class="ui-tabs-selected"{% endif %}><a href="/"><span>Начало</span></a></li>
 					<li {% if "/blog/" in PATH_INFO %}class="ui-tabs-selected"{% endif %}><a href="/blog/"><span>Статии</span></a></li>
 					<li {% if "/gallery/" in PATH_INFO %}class="ui-tabs-selected"{% endif %}><a href="/gallery/"><span>Галерия</span></a></li>
 					<li {% if "/links/" == PATH_INFO %}class="ui-tabs-selected"{% endif %}><a href="/links/"><span>Връзки</span></a></li>
