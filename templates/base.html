@@ -10,10 +10,13 @@
 	<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}css/style.css?v=2" media="all"/>
 	<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}css/blue_style.css" media="all"/>
 	<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}css/jquery.lightbox-0.5.css" media="all" />
-	<!--script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script-->
+	{% if debug %}
 	<script type="text/javascript" src="{{MEDIA_URL}}js/jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" src="{{MEDIA_URL}}js/jquery-ui-1.7.2.min.js"></script>
+	{% else %}
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
+	{% endif %}
 	{% block extra_head %}{% endblock %}
 </head>
 <body>
@@ -43,7 +46,7 @@
 				<div class="article">
 					<h2 class="header">Ubuntu</h2>
 					<p class="center"><a href="http://ubuntucounter.geekosophical.net" title="The Ubuntu Counter Project - user number # 23784"><img src="http://ubuntucounter.geekosophical.net/img/ubuntu-user2.php?user=23784" alt="The Ubuntu Counter Project - user number # 23784" width="120" /></a></p>
-                    <p class="center"><a href="http://www.ubuntu.com/" rel="nofollow"><img alt="The next version of Ubuntu is coming soon" border="0" height="120" src="http://www.ubuntu.com/countdown/banner.png" width="120" /></a></p>
+                    <p class="center"><a href="http://www.ubuntu.com/" rel="nofollow"><img alt="Ubuntu 12.04 is here" border="0" height="120" src="http://www.ubuntu.com/countdown/banner.png" width="120" /></a></p>
 				</div>
 				<div class="article">
 					<h2 class="header">Facebook Badge</h2>
