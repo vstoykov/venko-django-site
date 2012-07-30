@@ -260,9 +260,9 @@ dl.links dt {font-size: 1.2em; font-weight: bolder;}
 dl.blog {margin: 0px 5px;}
 dl.blog dt {padding-top: 15px; font-size: 1.5em;}
 dl.blog dt small {font-size: 0.6em;}
-ul.blog-categories {padding-left: 33px;}
+ul.blog-categories {padding-left: 20px;}
 ul.blog-categories li {margin-left: 0px; list-style-type: none;}
-ul.blog-categories li:before {content: ">>";} 
+ul.blog-categories li:before {content: ">> ";} 
 
 .gist {width: 650px;}
 
