@@ -1,10 +1,13 @@
 from django.contrib import admin
+from django.conf import settings
 
 from blog.models import Category, Entry
+
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug')
     prepopulated_fields = {'slug': ('title', )}
+
 
 class EntryAdmin(admin.ModelAdmin):
     readonly_fields = ('created', 'modified')
@@ -16,8 +19,8 @@ class EntryAdmin(admin.ModelAdmin):
     
     class Media:
         js = (
-            '/media/ckeditor/ckeditor.js',
-            '/media/js/ckedit.js',
+            '%sckeditor/ckeditor.js' % settings.STATIC_URL,
+            '%sjs/ckedit.js' % settings.STATIC_URL,
         )
 
     def slug_as_link(self, obj):

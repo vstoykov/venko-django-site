@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 
+
 class Gallery(models.Model):
     """
     Objects of this models groups pictures into galleries
@@ -33,7 +34,7 @@ class Gallery(models.Model):
         try:
             return self.pictures.all()[0].thumb.url
         except:
-            return '%simg/gallery-folder.png' % settings.MEDIA_URL
+            return '%simg/gallery-folder.png' % settings.STATIC_URL
 
 
 class Picture(models.Model):
