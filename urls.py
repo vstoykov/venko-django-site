@@ -1,6 +1,7 @@
 from django.conf.urls.defaults import *
 from django.conf import settings
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from sitemap import sitemaps
 
@@ -24,10 +25,11 @@ urlpatterns = urlpatterns + patterns('django.contrib.sitemaps.views',
 
 # Static URLS is served by server. Django serves they only in DEBUG mode
 if settings.DEBUG:
-    urlpatterns = urlpatterns + patterns('django.views.static',
-        url(r'^favicon.ico', 'serve',
-            {'document_root': settings.MEDIA_ROOT, 'path':'favicon.png'}),
-            
-        url(r'^media/(?P<path>.*)$', 'serve',
-            {'document_root': settings.MEDIA_ROOT, 'show_indexes':True}),
-    )
+    # urlpatterns += patterns('django.contrib.staticfiles.views',
+    #     url(r'^(?P<path>favicon.ico)', 'serve'),
+    #     url(r'^%s/(?P<path>.*)$' % settings.STATIC_URL.rstrip('/') , 'serve'),
+    # ) 
+    urlpatterns += patterns('django.views.static',
+        url(r'^%s\/(?P<path>.*)$' % settings.MEDIA_URL.strip('/'), 'serve',
+            {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
+    ) + staticfiles_urlpatterns()

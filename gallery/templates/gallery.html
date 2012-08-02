@@ -6,8 +6,8 @@
 	<meta name="keywords" content="Венелин, Стойков, Галерия, Снимки, венелин, стойков, галерия, снимки"/>
     <meta name="description" content="{% if gallery %}Галерия {{gallery.title}}{% else %}Списък с галерии{% endif %} на Венелин Стойков"/>
 	{{block.super}}
-	<script type="text/javascript" src="{{MEDIA_URL}}js/jquery.lightbox-0.5.min.js"></script>
-	<!--script type="text/javascript" src="{{MEDIA_URL}}js/gallery.js"></script-->
+	<script type="text/javascript" src="{{STATIC_URL}}js/jquery.lightbox-0.5.min.js"></script>
+	<!--script type="text/javascript" src="{{STATIC_URL}}js/gallery.js"></script-->
 	<script type="text/javascript">
 		$(function() {
 			$("#gallery_list a").lightBox();
