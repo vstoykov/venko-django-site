@@ -40,14 +40,16 @@ USE_L10N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = here('media/')
 STATIC_ROOT = here('static/')
+MEDIA_ROOT = here('static/media/')
+
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
+MEDIA_URL = '/static/media/'
+
 
 STATICFILES_DIRS = (
     here('pages/static/'),
@@ -80,7 +82,6 @@ TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
 
 
 MIDDLEWARE_CLASSES = (
-    #'middleware.StaticServeMiddleware',
     'middleware.SQLPrintingMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
