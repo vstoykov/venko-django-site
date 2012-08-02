@@ -1,38 +1,23 @@
 from django.conf.urls.defaults import *
 from django.conf import settings
-
 from django.contrib import admin
+
+from sitemap import sitemaps
+
 admin.autodiscover()
 
-from blog import urls as blog_urls
-
 urlpatterns = patterns('',
-    # Uncomment the admin/doc line below to enable admin documentation:
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
-    (r'^blog/',  include(blog_urls)),
-)
 
-urlpatterns = urlpatterns + patterns('links.views',
-    url(r'^links/$', 'links'),
-)
+    (r'^blog/', include('blog.urls')),
+    (r'^links/', include('links.urls')),
+    (r'^gallery/', include('gallery.urls')),
 
-urlpatterns = urlpatterns + patterns('gallery.views',
-    url(r'^gallery/$', 'view_galleries', name='galleries'),
-    url(r'^gallery/(?P<gallery>[\w\_\-]+)/$', 'view_galleries', name='gallery'),
-)
-
-urlpatterns = urlpatterns + patterns('django.views.generic.simple',
-    url(r'^$', 'direct_to_template', kwargs={'template': 'home.html'}, name='home'),
-
-    # Old Gallery URL
-    url(r'^gallery_static/$', 'direct_to_template', {'template': 'gallery_static.html'}),
+    (r'^', include('pages.urls')),
 )
 
 # Create sitemap
-from sitemap import sitemaps
 urlpatterns = urlpatterns + patterns('django.contrib.sitemaps.views',
     (r'^sitemap\.xml$', 'sitemap', {'sitemaps': sitemaps}),
 )
