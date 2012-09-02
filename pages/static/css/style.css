@@ -237,6 +237,7 @@ h1 {
     border-radius: 5px;
 }
 #footer p {float: right; line-height: 25px; margin: 10px; }
+#footer a, #footer a:hover {color: #DDD;}
 
 .ui-tabs-hide {display: none}
 .ui-tabs-panel{padding:0px;}
