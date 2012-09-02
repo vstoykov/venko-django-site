@@ -108,6 +108,7 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.redirects',
     'django.contrib.webdesign',
+    'uwsgi_admin',
     'django_extensions',
     'south',
 
