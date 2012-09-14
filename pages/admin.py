@@ -1,15 +1,13 @@
 from django.contrib import admin
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.flatpages.admin import FlatPageAdmin as OriginalFlatPageAdmin
-from django.conf import settings
+
+from .forms import FlatPageForm
 
 
 class FlatPageAdmin(OriginalFlatPageAdmin):
-    class Media:
-        js = (
-            '%sckeditor/ckeditor.js' % settings.STATIC_URL,
-            '%sjs/ckedit.js' % settings.STATIC_URL,
-        )
+    form = FlatPageForm
+
 
 try:
     admin.site.unregister(FlatPage)
