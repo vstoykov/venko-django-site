@@ -2,7 +2,7 @@
 from django.contrib.syndication.views import Feed
 from django.template.defaultfilters import truncatewords_html
 
-from blog.models import Category, Entry
+from blog.models import Entry
 
 
 class EntriesFeed(Feed):

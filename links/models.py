@@ -6,7 +6,7 @@ class Category(models.Model):
     Links Category
     """
     title = models.CharField(max_length=255)
-    
+
     class Meta:
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
@@ -21,7 +21,7 @@ class Link(models.Model):
     """
     category = models.ForeignKey(Category, related_name='links')
     title = models.CharField(max_length=255)
-    url   = models.CharField(max_length=255)
+    url = models.CharField(max_length=255)
 
     class Meta:
         verbose_name = 'Link'
@@ -30,5 +30,3 @@ class Link(models.Model):
 
     def __unicode__(self):
         return "%s (%s)" % (self.title, self.url)
-
-

@@ -1,5 +1,4 @@
 from django.conf.urls.defaults import *
-from django.conf import settings
 
 from blog.feeds import latest_entries_feed
 

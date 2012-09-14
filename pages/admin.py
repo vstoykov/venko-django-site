@@ -12,7 +12,7 @@ class FlatPageAdmin(OriginalFlatPageAdmin):
         )
 
 try:
-	admin.site.unregister(FlatPage)
+    admin.site.unregister(FlatPage)
 except:
-	pass
+    pass
 admin.site.register(FlatPage, FlatPageAdmin)

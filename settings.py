@@ -71,7 +71,7 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
-TEMPLATE_DIRS = ( 
+TEMPLATE_DIRS = (
     here('templates'),
 )
 
@@ -119,7 +119,6 @@ INSTALLED_APPS = (
 )
 
 INTERNAL_IPS = ('127.0.0.1',)
-
 
 
 try:

@@ -16,7 +16,7 @@ class EntryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title', )}
     search_fields = ('title', 'content',)
     date_hierarchy = 'created'
-    
+
     class Media:
         js = (
             '%sckeditor/ckeditor.js' % settings.STATIC_URL,
