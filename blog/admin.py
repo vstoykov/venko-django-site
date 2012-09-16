@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.conf import settings
 
 from blog.models import Category, Entry
 
@@ -16,12 +15,6 @@ class EntryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title', )}
     search_fields = ('title', 'content',)
     date_hierarchy = 'created'
-
-    class Media:
-        js = (
-            '%sckeditor/ckeditor.js' % settings.STATIC_URL,
-            '%sjs/ckedit.js' % settings.STATIC_URL,
-        )
 
     def slug_as_link(self, obj):
         return '<a href="%s">%s</a>' % (obj.get_absolute_url(), obj.slug)

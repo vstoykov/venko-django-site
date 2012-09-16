@@ -1,7 +1,7 @@
 from warnings import warn
 
 from django.db import models
-
+from tinymce.models import HTMLField
 
 def truncate_smart(txt, size):
     """
@@ -59,7 +59,7 @@ class Entry(models.Model):
     category = models.ForeignKey(Category, related_name='entries')
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, db_index=True)
-    content = models.TextField()
+    content = HTMLField()
 
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
