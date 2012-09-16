@@ -1,0 +1,26 @@
+{% extends "flatpages/default.html" %}
+{% load blog_tags %}
+
+
+{% block extra_head %}
+	<meta name="keywords" content="Венелин, Стойков, Linux, Pytohn, Django, IT, Ubuntu"/>
+	<meta name="description" content="Личната интернет страница на Венелин Стойков. Това е място където ще записвам различни интересни неща в сферата на IT областа и по-конкретно за Linux, Python и Django"/>
+	{{block.super}}
+{% endblock %}
+
+{% block main_content %}
+<div id="home">
+	<div class="article">
+		<h2 class="header">{{ flatpage.title }}</h2>
+		<div class="content">
+			{{ flatpage.content }}
+		</div>
+	</div>
+	<div class="article">
+		<h2 class="header">Последни статии</h2>
+		<div class="content">
+			{% latest_entries 3 %}
+		</div>
+	</div>
+</div>
+{% endblock %}
