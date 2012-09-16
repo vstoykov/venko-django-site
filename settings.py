@@ -144,7 +144,8 @@ TINYMCE_DEFAULT_CONFIG = {
     'theme_advanced_buttons4': "",
 
     #'content_css': "%scss/style.css" % STATIC_URL,
+    'preformatted': True,
 
 }
-TINYMCE_SPELLCHECKER = True
+TINYMCE_SPELLCHECKER = False
 TINYMCE_COMPRESSOR = True
