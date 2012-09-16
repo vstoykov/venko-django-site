@@ -8,7 +8,9 @@
 	<script type="text/javascript" src="http://yandex.st/highlightjs/7.2/highlight.min.js"></script>
 	<script type="text/javascript">
 		hljs.tabReplace = '    ';
-		hljs.initHighlightingOnLoad();
+		$(function() {
+		    $('pre').each(function(i, e) {hljs.highlightBlock(e)});
+		});
 	</script>
 {% endblock %}
 
