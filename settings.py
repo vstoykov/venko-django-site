@@ -130,7 +130,7 @@ except ImportError:
 
 
 TINYMCE_DEFAULT_CONFIG = {
-    'plugins': "autolink,lists,spellchecker,style,table,save,emotions,iespell,inlinepopups,preview,media,searchreplace,contextmenu,paste,directionality,fullscreen,noneditable,xhtmlxtras",
+    'plugins': "autolink,lists,style,table,save,emotions,iespell,inlinepopups,preview,media,searchreplace,contextmenu,paste,directionality,fullscreen,noneditable,xhtmlxtras",
 
     'theme': "advanced",
     'theme_advanced_toolbar_location': "top",
@@ -140,7 +140,7 @@ TINYMCE_DEFAULT_CONFIG = {
 
     'theme_advanced_buttons1': "save,newdocument,|,fullscreen,code,|,search,replace,|,styleselect,formatselect,fontselect,fontsizeselect,|,removeformat,cleanup,help,|,undo,redo,preview",
     'theme_advanced_buttons2': "cut,copy,paste,pastetext,pasteword,|,bold,italic,underline,strikethrough,|,sub,sup,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,|,outdent,indent,blockquote,link,unlink,anchor,|,forecolor,backcolor",
-    'theme_advanced_buttons3': "tablecontrols,|,hr,charmap,emotions,iespell,media,image,|,cite,abbr,acronym,attribs,|,styleprops,spellchecker",
+    'theme_advanced_buttons3': "tablecontrols,|,hr,charmap,emotions,iespell,media,image,|,cite,abbr,acronym,attribs,|,styleprops",
     'theme_advanced_buttons4': "",
 
     #'content_css': "%scss/style.css" % STATIC_URL,
