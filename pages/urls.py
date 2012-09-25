@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('django.contrib.flatpages.views',
-	url(r'^$', 'flatpage', kwargs={'url': '/'}, name='home'),
+    url(r'^$', 'flatpage', kwargs={'url': '/'}, name='home'),
 ) + patterns('django.views.generic.simple',
     #url(r'^$', 'direct_to_template', kwargs={'template': 'home.html'}, name='home'),
 
