@@ -9,21 +9,22 @@ class PictureAdmin(admin.ModelAdmin):
     list_filter = ('gallery',)
     date_hierarchy = 'uploaded'
 
+
 class PictureInline(admin.TabularInline):
     model = Picture
     readonly_fields = ('preview',)
-    
+
     extra = 0
 
+
 class GalleryAdmin(admin.ModelAdmin):
+    # This is needet when rise specific error an need the name of the model
+    __name__ = 'Gallery'
+
     prepopulated_fields = {'slug': ('title',)}
     readonly_fields = ('created', 'modified',)
     inlines = (PictureInline,)
     date_hierarchy = 'created'
-    
-    # This is needet when rise specific error an need the name of the model
-    __name__ = 'Gallery'
-
 
 
 admin.site.register(Picture, PictureAdmin)

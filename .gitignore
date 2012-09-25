@@ -2,6 +2,7 @@
 *.pid
 *.sock
 *.geany
+*.sublime*
 site.db
 settings_local.py
 /static/*

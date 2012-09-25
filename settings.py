@@ -71,7 +71,7 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
-TEMPLATE_DIRS = ( 
+TEMPLATE_DIRS = (
     here('templates'),
 )
 
@@ -88,8 +88,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -111,6 +111,7 @@ INSTALLED_APPS = (
     'uwsgi_admin',
     'django_extensions',
     'south',
+    'tinymce',
 
     'pages',
     'links',
@@ -122,9 +123,30 @@ INSTALLED_APPS = (
 INTERNAL_IPS = ('127.0.0.1',)
 
 
-
 try:
     from settings_local import *
 except ImportError:
     import sys
     sys.exit("\033[1;31mCan not import settings_local\033[0m")
+
+
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': "autolink,lists,style,table,save,emotions,iespell,inlinepopups,preview,media,searchreplace,contextmenu,paste,directionality,fullscreen,noneditable,xhtmlxtras",
+
+    'theme': "advanced",
+    'theme_advanced_toolbar_location': "top",
+    'theme_advanced_toolbar_align': "left",
+    'theme_advanced_statusbar_location': "bottom",
+    'theme_advanced_resizing': True,
+
+    'theme_advanced_buttons1': "save,newdocument,|,fullscreen,code,|,search,replace,|,styleselect,formatselect,fontselect,fontsizeselect,|,removeformat,cleanup,help,|,undo,redo,preview",
+    'theme_advanced_buttons2': "cut,copy,paste,pastetext,pasteword,|,bold,italic,underline,strikethrough,|,sub,sup,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,|,outdent,indent,blockquote,link,unlink,anchor,|,forecolor,backcolor",
+    'theme_advanced_buttons3': "tablecontrols,|,hr,charmap,emotions,iespell,media,image,|,cite,abbr,acronym,attribs,|,styleprops",
+    'theme_advanced_buttons4': "",
+
+    #'content_css': "%scss/style.css" % STATIC_URL,
+    'preformatted': True,
+
+}
+TINYMCE_SPELLCHECKER = False
+TINYMCE_COMPRESSOR = True
