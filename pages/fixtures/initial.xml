@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <django-objects version="1.0">
+  <object pk="1" model="sites.site">
+    <field type="CharField" name="domain">localhost:8000</field>
+    <field type="CharField" name="name">Developer version</field>
+  </object>
   <object pk="1" model="flatpages.flatpage">
     <field type="CharField" name="url">/about/</field>
     <field type="CharField" name="title">За мен</field>
@@ -22,8 +26,15 @@
     <field type="BooleanField" name="registration_required">False</field>
     <field to="sites.site" name="sites" rel="ManyToManyRel"><object pk="1"></object></field>
   </object>
-  <object pk="1" model="sites.site">
-    <field type="CharField" name="domain">localhost:8000</field>
-    <field type="CharField" name="name">Developer version</field>
+  <object pk="3" model="flatpages.flatpage">
+    <field type="CharField" name="url">/</field>
+    <field type="CharField" name="title">Начало</field>
+    <field type="TextField" name="content">&lt;p&gt;
+  Не е довършено&lt;/p&gt;
+</field>
+    <field type="BooleanField" name="enable_comments">False</field>
+    <field type="CharField" name="template_name">flatpages/home.html</field>
+    <field type="BooleanField" name="registration_required">False</field>
+    <field to="sites.site" name="sites" rel="ManyToManyRel"><object pk="1"></object></field>
   </object>
 </django-objects>
