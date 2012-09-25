@@ -108,7 +108,7 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.redirects',
     'django.contrib.webdesign',
-    'uwsgi_admin',
+
     'django_extensions',
     'south',
     'tinymce',
@@ -150,3 +150,10 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 TINYMCE_SPELLCHECKER = False
 TINYMCE_COMPRESSOR = True
+
+try:
+    import uwsgi_admin
+except ImportError:
+    pass
+else:
+    INSTALLED_APPS += ('uwsgi_admin',)

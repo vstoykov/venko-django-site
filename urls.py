@@ -9,7 +9,6 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    (r'^admin/uwsgi/', include('uwsgi_admin.urls')),
     (r'^admin/', include(admin.site.urls)),
     (r'^tinymce/', include('tinymce.urls')),
 
@@ -24,6 +23,11 @@ urlpatterns = patterns('',
 urlpatterns = urlpatterns + patterns('django.contrib.sitemaps.views',
     (r'^sitemap\.xml$', 'sitemap', {'sitemaps': sitemaps}),
 )
+
+if 'uwsgi_admin' in settings.INSTALLED_APPS:
+    urlpatterns += patterns('',
+        (r'^admin/uwsgi/', include('uwsgi_admin.urls')),
+    )
 
 # Static URLS is served by server. Django serves they only in DEBUG mode
 if settings.DEBUG:
