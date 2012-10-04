@@ -34,7 +34,10 @@ class SQLPrintingMiddleware(object):
     for each view that is processed. This is only useful for debugging.
     """
     def process_response(self, request, response):
-        if not settings.DEBUG or len(connection.queries) == 0 or request.path_info.startswith(settings.MEDIA_URL):
+        if not settings.DEBUG or len(connection.queries) == 0 \
+            or request.path_info.startswith('/favicon.ico') \
+            or request.path_info.startswith(settings.STATIC_URL) \
+            or request.path_info.startswith(settings.MEDIA_URL):
             return response
         
         indentation = 2
