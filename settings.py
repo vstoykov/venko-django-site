@@ -152,6 +152,7 @@ TINYMCE_SPELLCHECKER = False
 TINYMCE_COMPRESSOR = True
 
 try:
+    import uwsgi
     import uwsgi_admin
 except ImportError:
     pass
