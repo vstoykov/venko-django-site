@@ -28,6 +28,8 @@ pre {
     background: #F8F8FF;
     padding: 10px;
     margin: 10px;
+    max-width: 580px;
+    overflow-x: auto;
 }
 pre code {background: #F8F8FF !important;}
 
@@ -261,7 +263,6 @@ dl.links dt {font-size: 1.2em; font-weight: bolder;}
 dl.blog {margin: 0px 5px;}
 dl.blog dt {padding-top: 15px; font-size: 1.5em;}
 dl.blog dt small {font-size: 0.6em;}
-dl.blog dd pre {max-width: 580px; overflow-x: auto;}
 ul.blog-categories {padding-left: 20px;}
 ul.blog-categories li {margin-left: 0px; list-style-type: none;}
 ul.blog-categories li:before {content: ">> ";} 
