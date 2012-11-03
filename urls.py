@@ -34,5 +34,5 @@ if settings.DEBUG:
     urlpatterns += patterns('django.views.static',
         url(r'^%s/(?P<path>.*)$' % settings.MEDIA_URL.strip('/'), 'serve',
             {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
-        url(r'favicon\.ico', 'serve', {'document_root': settings.STATIC_ROOT, 'show_indexes': False}),
+        url(r'^(?P<path>favicon\.ico)$', 'serve', {'document_root': settings.STATIC_ROOT}),
     ) + staticfiles_urlpatterns()
