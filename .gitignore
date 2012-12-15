@@ -6,3 +6,4 @@
 site.db
 settings_local.py
 /static/*
+/media/*
