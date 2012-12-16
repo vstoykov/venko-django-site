@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from blog.models import Category, Entry
+from .forms import EntryAdminForm
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -15,6 +16,8 @@ class EntryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title', )}
     search_fields = ('title', 'content',)
     date_hierarchy = 'created'
+
+    form = EntryAdminForm
 
     def slug_as_link(self, obj):
         return '<a href="%s">%s</a>' % (obj.get_absolute_url(), obj.slug)

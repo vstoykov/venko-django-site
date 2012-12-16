@@ -1,4 +1,5 @@
 from warnings import warn
+from datetime import datetime
 
 from django.db import models
 from tinymce.models import HTMLField
@@ -60,6 +61,9 @@ class Entry(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, db_index=True)
     content = HTMLField()
+
+    seo_keywords = models.CharField(max_length=128, blank=True, default='')
+    seo_description = models.CharField(max_length=256, blank=True, default='')
 
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
