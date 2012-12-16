@@ -1,4 +1,4 @@
-from django.template import Node, Library
+from django.template import Node, Library, TemplateSyntaxError
 
 register = Library()
 
@@ -31,6 +31,5 @@ def get_flatpages(parser, token):
     """
     args = token.contents.split()
     if len(args) != 3 or args[1] != 'as':
-        raise TemplateSyntaxError, "'get_flatpages' requires 'as variable' (got %r)" % args
+        raise TemplateSyntaxError("'get_flatpages' requires 'as variable' (got %r)" % args)
     return GetFlatPagesNode(args[2])
-

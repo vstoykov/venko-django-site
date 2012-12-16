@@ -1,8 +1,8 @@
 from warnings import warn
-from datetime import datetime
 
 from django.db import models
 from tinymce.models import HTMLField
+
 
 def truncate_smart(txt, size):
     """

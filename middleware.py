@@ -1,7 +1,9 @@
+import os
+
 from django.views.static import serve, Http404
 from django.conf import settings
 from django.db import connection
-import os
+
 
 
 def terminal_width():
@@ -12,7 +14,9 @@ def terminal_width():
     """
     width = 0
     try:
-        import struct, fcntl, termios
+        import struct
+        import fcntl
+        import termios
         s = struct.pack('HHHH', 0, 0, 0, 0)
         x = fcntl.ioctl(1, termios.TIOCGWINSZ, s)
         width = struct.unpack('HHHH', x)[1]
@@ -37,7 +41,7 @@ class SQLPrintingMiddleware(object):
         if not settings.DEBUG or len(connection.queries) == 0 \
             or request.path_info.startswith('/favicon.ico') \
             or request.path_info.startswith(settings.STATIC_URL) \
-            or request.path_info.startswith(settings.MEDIA_URL):
+                or request.path_info.startswith(settings.MEDIA_URL):
             return response
 
         indentation = 2

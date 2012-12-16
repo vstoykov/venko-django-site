@@ -1,4 +1,5 @@
 from django.contrib.sitemaps import FlatPageSitemap, GenericSitemap
+
 from blog.models import Entry
 from gallery.models import Gallery
 
