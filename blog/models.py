@@ -1,5 +1,3 @@
-from warnings import warn
-
 from django.db import models
 from tinymce.models import HTMLField
 
@@ -38,13 +36,6 @@ class Category(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return ('my_blog_by_cat', (), {'category': self.slug})
-
-    def get_url(self):
-        """
-        Deprecated method
-        """
-        warn("Category.get_url is deprecated", DeprecationWarning, 2)
-        return self.get_absolute_url()
 
 
 class EntryManager(models.Manager):
@@ -87,10 +78,3 @@ class Entry(models.Model):
         Identifier used in disqus
         """
         return '%s-%s' % (self.category.slug, self.slug,)
-
-    def get_url(self):
-        """
-        Deprecated method
-        """
-        warn("Entry.get_url is deprecated", DeprecationWarning, 2)
-        return self.get_absolute_url()
