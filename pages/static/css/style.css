@@ -32,7 +32,7 @@ pre {
     overflow-x: auto;
 }
 pre code {background: #F8F8FF !important;}
-
+.gist pre {max-width: none;}
 .shadow, .article, #body, #footer {
     -moz-box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.7);
     -webkit-box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.7);
