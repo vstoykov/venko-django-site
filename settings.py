@@ -123,13 +123,6 @@ INSTALLED_APPS = (
 INTERNAL_IPS = ('127.0.0.1',)
 
 
-try:
-    from settings_local import *
-except ImportError:
-    import sys
-    sys.exit("\033[1;31mCan not import settings_local\033[0m")
-
-
 TINYMCE_DEFAULT_CONFIG = {
     'plugins': "autolink,lists,style,table,save,emotions,iespell,inlinepopups,preview,media,searchreplace,contextmenu,paste,directionality,fullscreen,noneditable,xhtmlxtras",
 
@@ -151,9 +144,17 @@ TINYMCE_DEFAULT_CONFIG = {
 TINYMCE_SPELLCHECKER = False
 TINYMCE_COMPRESSOR = True
 
+
 try:
-    import uwsgi
-    import uwsgi_admin
+    from settings_local import *
+except ImportError:
+    import sys
+    sys.exit("\033[1;31mCan not import settings_local\033[0m")
+
+
+try:
+    __import__('uwsgi')
+    __import__('uwsgi_admin')
 except ImportError:
     pass
 else:
