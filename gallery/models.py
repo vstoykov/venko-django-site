@@ -100,7 +100,7 @@ class Picture(models.Model):
 
         if not committed:
             # Start Real resizing
-            import Image
+            from PIL import Image
             image = Image.open(self.image.path)
 
             # Reduse size of main large image.
