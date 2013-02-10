@@ -11,7 +11,13 @@
 	<!--script type="text/javascript" src="{{STATIC_URL}}js/gallery.js"></script-->
 	<script type="text/javascript">
 		$(function() {
-			$("#gallery_list a").lightBox();
+			$("#gallery_list a").lightBox({
+				imageLoading: '/static/img/lightbox/loading.gif',
+				imageBtnClose: '/static/img/lightbox/close.gif',
+				imageBtnPrev: '/static/img/lightbox/prev.gif',
+				imageBtnNext: '/static/img/lightbox/next.gif',
+				imageBlank: '/static/img/lightbox/blank.gif',
+			});
             $(".gallery li img").addClass('shadow');
 		});
 		function test_ajax() {
@@ -42,8 +48,8 @@
 				<dir id="gallery_list" class="gallery">
 					{% for picture in gallery.pictures.all %}
 						<li>
-							<a href="{{picture.image.url}}">
-								<span class="thumb-holder"><img src="{{picture.thumb.url}}" width="{{picture.thumb.width}}" height="{{picture.thumb.height}}" alt="{{picture.title}}" title="{{picture.title}}" /></span>
+							<a href="{{picture.image.url}}" title="{{picture.title}}">
+								<span class="thumb-holder"><img src="{{picture.thumb.url}}" width="{{picture.thumb.width}}" height="{{picture.thumb.height}}" alt="{{picture.title}}" /></span>
 								<!--p>{{picture.title}}</p-->
 							</a>
 						</li>
