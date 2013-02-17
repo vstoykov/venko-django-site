@@ -4,3 +4,4 @@ south
 django-tinymce
 django-disqus
 Pillow
+django-imagekit==2.0.2

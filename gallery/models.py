@@ -1,6 +1,9 @@
 from django.db import models
 from django.conf import settings
 
+from imagekit.models import ProcessedImageField, ImageSpecField
+from imagekit.processors import ResizeToFit
+
 
 class Gallery(models.Model):
     """
@@ -46,8 +49,8 @@ class Picture(models.Model):
 
     gallery = models.ForeignKey(Gallery, related_name='pictures')
     title = models.CharField(max_length=255, blank=True, default='', help_text="Title of the picture")
-    image = models.ImageField(max_length=255, upload_to=lambda s, name: s.upload_to(name))
-    thumb = models.ImageField(max_length=255, upload_to=lambda s, name: s.upload_thumb_to(name), blank=True, null=True, editable=False)
+    image = ProcessedImageField(max_length=255, upload_to=lambda s, name: s.upload_to(name), processors=[ResizeToFit(MAX_WIDTH, MAX_HEIGHT)], format='JPEG', options={'quality': 95})
+    thumb = ImageSpecField(image_field='image', processors=[ResizeToFit(MAX_THUMB_WIDTH, MAX_THUMB_HEIGHT)], format='JPEG', options={'quality': 60})
 
     is_album_logo = models.BooleanField(default=False, help_text="If this is checked this picture will be the album logo")
 
@@ -63,35 +66,10 @@ class Picture(models.Model):
     def save(self, *args, **kwargs):
         """
         Here we do the magic of creating a thumbnail automaticaly, when new picture are set.
-        """
-        committed = self.image._committed
-        if not committed:
-            # New picture has been uploaded. We must create a thumbnail for that image
-
-            filename = self.image.name
-            if not self.title:
-                self.title = filename.replace('_', ' ')
-
-            # Duplicate main image into thumb. Resizing will be done after saving
-            self.thumb.name = self.image.name
-            self.thumb.file = self.image.file
-            self.thumb._committed = False
-
-        super(self.__class__, self).save(*args, **kwargs)
-
-        if not committed:
-            # Start Real resizing
-            from PIL import Image
-            image = Image.open(self.image.path)
-
-            # Reduse size of main large image.
-            image.thumbnail((self.MAX_WIDTH, self.MAX_HEIGHT), Image.ANTIALIAS)
-            image.save(self.image.path, image.format)
-
-            # Create thumbnail
-
-            image.thumbnail((self.MAX_THUMB_WIDTH, self.MAX_THUMB_HEIGHT), Image.ANTIALIAS)
-            image.save(self.thumb.path, image.format)
+        """ 
+        if not (self.pk or self.title):
+            self.title = self.image.name.replace('_', ' ')
+        super(Picture, self).save(*args, **kwargs)
 
     def upload_to(self, name=''):
         return '%s/%s/%s' % (self.IMAGES_ROOT, self.gallery.slug, name)

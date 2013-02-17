@@ -112,6 +112,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'south',
     'tinymce',
+    'imagekit',
 
     'pages',
     'links',
