@@ -63,7 +63,7 @@
 				{% for gallery in galleries %}
 					<li>
 						<a href="{% url gallery gallery.slug %}" name="{{gallery.slug}}">
-							<span class="thumb-holder"><img src="{{gallery.get_thumbnail}}" alt="{{gallery.title}}" /></span>
+							<span class="thumb-holder"><img src="{{gallery.get_thumbnail_url}}" alt="{{gallery.title}}" /></span>
 							<span>{{gallery.title}}</span>
 						</a>
 					</li>

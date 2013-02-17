@@ -25,7 +25,7 @@ class Gallery(models.Model):
     def get_absolute_url(self):
         return ('gallery', (self.slug,), {})
 
-    def get_thumbnail(self):
+    def get_thumbnail_url(self):
         try:
             return self.pictures.order_by('-is_album_logo', '-modified')[0].thumb.url
         except:
