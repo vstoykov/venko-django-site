@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Галерия | {{ block.super }}{% endblock %}
+
+{% block extra_head %}
+	<meta name="keywords" content="Венелин, Стойков, Галерия, Снимки, венелин, стойков, галерия, снимки"/>
+	<meta name="description" content="{% if gallery %}Галерия {{ gallery.title }}{% else %}Списък с галерии{% endif %} на Венелин Стойков"/>
+	{{ block.super }}
+{% endblock %}
+
+{% block main_content %}
+	<div id="gallery">
+		<div class="article">
+			<h2 class="header">Галерия {% if gallery %} &gt; {{ gallery.title }}{% endif %}</h2>
+			<div class="content">
+				{% block content %}{% endblock %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

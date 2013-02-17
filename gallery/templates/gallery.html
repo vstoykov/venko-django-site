@@ -1,11 +1,9 @@
-{% extends "base.html" %}
+{% extends "gallery_base.html" %}
 
-{% block title %}{% if gallery %}{{gallery.title}} | {% endif %}Галерия | {{block.super}}{% endblock %}
+{% block title %}{{ gallery.title }} | {{ block.super }}{% endblock %}
 
 {% block extra_head %}
-	<meta name="keywords" content="Венелин, Стойков, Галерия, Снимки, венелин, стойков, галерия, снимки"/>
-    <meta name="description" content="{% if gallery %}Галерия {{gallery.title}}{% else %}Списък с галерии{% endif %} на Венелин Стойков"/>
-	{{block.super}}
+	{{ block.super }}
 	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/jquery.lightbox-0.5.css" media="all" />
 	<script type="text/javascript" src="{{STATIC_URL}}js/jquery.lightbox-0.5.min.js"></script>
 	<!--script type="text/javascript" src="{{STATIC_URL}}js/gallery.js"></script-->
@@ -36,43 +34,23 @@
       })();
     </script>
 {% endblock %}
-{% block main_content %}
-  <div id="gallery">
-	<div class="article">
-	  <h2 class="header">Галерия {% if gallery %} &gt; {{gallery.title}}{% endif %}</h2>
-	  <div class="content">
-		  {% if gallery %}
-			  <a href="{% url galleries %}">Виж всички галерии</a>
-              <div class="g-plusone-holder"><div class="g-plusone"></div></div>
-              <hr class="clearfix"/>
-				<dir id="gallery_list" class="gallery">
-					{% for picture in gallery.pictures.all %}
-						<li>
-							<a href="{{picture.image.url}}" title="{{picture.title}}">
-								<span class="thumb-holder"><img src="{{picture.thumb.url}}" width="{{picture.thumb.width}}" height="{{picture.thumb.height}}" alt="{{picture.title}}" /></span>
-								<!--p>{{picture.title}}</p-->
-							</a>
-						</li>
-					{% empty %}
-						<li>Няма качени снимки<li>
-					{% endfor %}
-				</dir>
-			  <hr/><a href="{% url galleries %}">Виж всички галерии</a>
-		  {% else %}
-			<dir class="gallery">
-				{% for gallery in galleries %}
-					<li>
-						<a href="{% url gallery gallery.slug %}" name="{{gallery.slug}}">
-							<span class="thumb-holder"><img src="{{gallery.get_thumbnail_url}}" alt="{{gallery.title}}" /></span>
-							<span>{{gallery.title}}</span>
-						</a>
-					</li>
-				{% empty %}
-					<li>Няма галерии</li>
-				{% endfor %}
-			</dir>
-		  {% endif %}
-	  </div>
-	</div>
-  </div>
+
+{% block content %}
+	<a href="{% url galleries %}">Виж всички галерии</a>
+	<div class="g-plusone-holder"><div class="g-plusone"></div></div>
+	<hr class="clearfix"/>
+	<dir id="gallery_list" class="gallery">
+		{% for picture in gallery.pictures.all %}
+			<li>
+				<a href="{{ picture.image.url }}" title="{{ picture.title }}">
+					<span class="thumb-holder"><img src="{{ picture.thumb.url }}" width="{{ picture.thumb.width }}" height="{{ picture.thumb.height }}" alt="{{ picture.title }}" /></span>
+					<!--p>{{picture.title}}</p-->
+				</a>
+			</li>
+		{% empty %}
+			<li>Няма качени снимки<li>
+		{% endfor %}
+	</dir>
+	<hr/>
+	<a href="{% url galleries %}">Виж всички галерии</a>
 {% endblock %}
