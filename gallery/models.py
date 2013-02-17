@@ -8,30 +8,22 @@ class Gallery(models.Model):
     And also define where uploaded pictures will be stored
     (different folder for every gallery, based on his name)
     """
-    GALLERIES_DIR = 'gallery/'
-
     title = models.CharField(max_length=60)
     slug = models.SlugField(max_length=60, unique=True)
 
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
-    def __unicode__(self):
-        return unicode(self.title)
-
     class Meta:
         verbose_name_plural = 'galleries'
         ordering = ['-created', '-pk']
 
+    def __unicode__(self):
+        return unicode(self.title)
+
     @models.permalink
     def get_absolute_url(self):
         return ('gallery', (self.slug,), {})
-
-    def get_dir(self):
-        return '%s%s/' % (self.GALLERIES_DIR, self.slug)
-
-    def get_thumb_dir(self):
-        return '%sthumbs/' % self.get_dir()
 
     def get_thumbnail(self):
         try:
@@ -50,17 +42,12 @@ class Picture(models.Model):
     MAX_HEIGHT = 600
     MAX_THUMB_WIDTH = 130
     MAX_THUMB_HEIGHT = 100
-
-    def get_upload_to(self, name=''):
-        return '%s%s' % (self.gallery.get_dir(), name)
-
-    def get_upload_thumb_to(self, name=''):
-        return '%s%s' % (self.gallery.get_thumb_dir(), name)
+    IMAGES_ROOT = 'gallery'
 
     gallery = models.ForeignKey(Gallery, related_name='pictures')
     title = models.CharField(max_length=255, blank=True, default='', help_text="Title of the picture")
-    image = models.ImageField(max_length=255, upload_to=get_upload_to)
-    thumb = models.ImageField(max_length=255, upload_to=get_upload_thumb_to, blank=True, null=True, editable=False)
+    image = models.ImageField(max_length=255, upload_to=lambda s, name: s.upload_to(name))
+    thumb = models.ImageField(max_length=255, upload_to=lambda s, name: s.upload_thumb_to(name), blank=True, null=True, editable=False)
 
     is_album_logo = models.BooleanField(default=False, help_text="If this is checked this picture will be the album logo")
 
@@ -72,16 +59,6 @@ class Picture(models.Model):
 
     def __unicode__(self):
         return unicode(self.title if self.title else self.image.name)
-
-    def preview(self):
-        """
-        Generate html for showing thumbnail image with link to the real one.
-        """
-        thumb = self.thumb
-        if not thumb:
-            return ''
-        return '<a href="%s"><img src="%s" width="%s" height="%s" alt="" /></a>' % (self.image.url, thumb.url, thumb.width, thumb.height,)
-    preview.allow_tags = True
 
     def save(self, *args, **kwargs):
         """
@@ -115,3 +92,19 @@ class Picture(models.Model):
 
             image.thumbnail((self.MAX_THUMB_WIDTH, self.MAX_THUMB_HEIGHT), Image.ANTIALIAS)
             image.save(self.thumb.path, image.format)
+
+    def upload_to(self, name=''):
+        return '%s/%s/%s' % (self.IMAGES_ROOT, self.gallery.slug, name)
+
+    def upload_thumb_to(self, name=''):
+        return '%s/%s/thumbs/%s' % (self.IMAGES_ROOT, self.gallery.slug, name)
+
+    def preview(self):
+        """
+        Generate html for showing thumbnail image with link to the real one.
+        """
+        if not self.thumb:
+            return ''
+        return '<a href="%(src)s" title="%(title)s"><img src="%(thumb_src)s" width="%(width)s" height="%(height)s" alt="%(title)s" /></a>' % {
+            'src': self.image.url, 'thumb_src': self.thumb.url, 'width': self.thumb.width, 'height': self.thumb.height, 'title': self.title}
+    preview.allow_tags = True
