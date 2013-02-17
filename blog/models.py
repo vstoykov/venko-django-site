@@ -56,8 +56,8 @@ class Entry(models.Model):
     seo_keywords = models.CharField(max_length=128, blank=True, default='')
     seo_description = models.CharField(max_length=256, blank=True, default='')
 
-    created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True, db_index=True)
+    modified = models.DateTimeField(auto_now=True, db_index=True)
 
     objects = EntryManager()
 

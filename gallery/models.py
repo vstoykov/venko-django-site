@@ -14,8 +14,8 @@ class Gallery(models.Model):
     title = models.CharField(max_length=60)
     slug = models.SlugField(max_length=60, unique=True)
 
-    created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True, db_index=True)
+    modified = models.DateTimeField(auto_now=True, db_index=True)
 
     class Meta:
         verbose_name_plural = 'galleries'
@@ -54,8 +54,8 @@ class Picture(models.Model):
 
     is_album_logo = models.BooleanField(default=False, help_text="If this is checked this picture will be the album logo")
 
-    uploaded = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
+    uploaded = models.DateTimeField(auto_now_add=True, db_index=True)
+    modified = models.DateTimeField(auto_now=True, db_index=True)
 
     class Meta:
         ordering = ['-uploaded', '-pk']

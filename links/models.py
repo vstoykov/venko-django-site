@@ -5,7 +5,7 @@ class Category(models.Model):
     """
     Links Category
     """
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, db_index=True)
 
     class Meta:
         verbose_name = 'Category'
