@@ -35,7 +35,7 @@ class Gallery(models.Model):
 
     def get_thumbnail(self):
         try:
-            return self.pictures.all()[0].thumb.url
+            return self.pictures.order_by('-is_album_logo', '-modified')[0].thumb.url
         except:
             return '%simg/gallery-folder.png' % settings.STATIC_URL
 
