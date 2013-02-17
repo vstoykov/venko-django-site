@@ -6,6 +6,9 @@
 	<meta name="keywords" content="Венелин, Стойков, Галерия, Снимки, венелин, стойков, галерия, снимки"/>
 	<meta name="description" content="{% if gallery %}Галерия {{ gallery.title }}{% else %}Списък с галерии{% endif %} на Венелин Стойков"/>
 	{{ block.super }}
+	<script type="text/javascript">
+		$(function(){ $(".gallery li img").addClass('shadow'); });
+	</script>
 {% endblock %}
 
 {% block main_content %}
