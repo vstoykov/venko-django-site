@@ -21,6 +21,7 @@ class Gallery(models.Model):
 
     class Meta:
         verbose_name_plural = 'galleries'
+        ordering = ['-created', '-pk']
 
     @models.permalink
     def get_absolute_url(self):
@@ -65,6 +66,9 @@ class Picture(models.Model):
 
     uploaded = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-uploaded', '-pk']
 
     def __unicode__(self):
         return unicode(self.title if self.title else self.image.name)
