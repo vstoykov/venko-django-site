@@ -14,7 +14,7 @@ class CategoryManager(models.Manager):
         return self.annotate(entries_count=models.Count('entries'))
 
     def active(self):
-        return self.with_entry_count().filter(entries_count__gt=0)
+        return self.with_entry_count().filter(entries_count__gt=0).order_by('-entries_count')
 
 
 class Category(models.Model):
