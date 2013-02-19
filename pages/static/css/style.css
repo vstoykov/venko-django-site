@@ -2,8 +2,8 @@
 @import url(http://fonts.googleapis.com/css?family=Ubuntu&subset=latin,cyrillic,cyrillic-ext);
 html {padding:0px; margin:0px;}
 body {
-    background-color: #555;
-    background-color: #454;
+    /*background-color: #454;*/
+    background-color: #494949;
     /*background-image:url(../img/bg_main_old.jpg);*/
     background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAABHNCSVQICAgIfAhkiAAAAB1JREFUCJlj+P//v/z///+5GNABBRLosv///5cHAFlkHrD/0XanAAAAAElFTkSuQmCC);
     /*background-repeat: repeat-x;*/
@@ -189,7 +189,7 @@ h1 {
 }
 .main_content .article,
 .mceContentBody {
-    background-color: #BBB;
+    background-color: #EEE;
     padding: 0px 0px 10px;
     margin: 0px 0px 20px;
     -webkit-border-radius: 10px;

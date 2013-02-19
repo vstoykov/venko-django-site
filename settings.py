@@ -143,7 +143,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'theme_advanced_buttons3': "tablecontrols,|,hr,charmap,emotions,iespell,media,image,|,cite,abbr,acronym,attribs,|,styleprops",
     'theme_advanced_buttons4': "",
 
-    'content_css': "%scss/tinymce.css" % STATIC_URL,
+    'content_css': "%scss/style.css" % STATIC_URL,
     'preformatted': True,
 
 }
