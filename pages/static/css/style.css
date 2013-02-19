@@ -187,7 +187,8 @@ h1 {
     border-radius: 5px;
     min-height: 50px;
 }
-.main_content .article {
+.main_content .article,
+.mceContentBody {
     background-color: #BBB;
     padding: 0px 0px 10px;
     margin: 0px 0px 20px;
@@ -219,6 +220,7 @@ h1 {
 
 .left_column .article p {padding:5px; text-indent: 20px;}
 
+.mceContentBody p,
 .main_content .article p {margin: 5px 10px; text-indent: 20px;}
  .main_content .article .img_holder {width: 200px; min-height: 280px; float: left; margin: 10px; padding: 2px;}
   .main_content .article .img_holder img {width: 200px; height: 275px;}
