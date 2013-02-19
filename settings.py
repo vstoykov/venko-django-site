@@ -94,6 +94,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     'django.middleware.cache.FetchFromCacheMiddleware',
+    'middleware.XUACompatibleMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
