@@ -1,0 +1,8 @@
+body {background-color: #454;}
+#header_logo {
+	background-color: green;
+	background:url(../img/header_top_bg.gif);
+}
+#main_menu li a { text-shadow: #090 1px 1px 1px; }
+.article .header { background-color: #050; }
+.main_content .article .header { background-color: #060; }
