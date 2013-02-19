@@ -1,6 +1,7 @@
 import os
 
 from django.views.static import serve, Http404
+from django.core.exceptions import MiddlewareNotUsed
 from django.conf import settings
 from django.db import connection
 
@@ -37,11 +38,15 @@ class SQLPrintingMiddleware(object):
     Middleware which prints out a list of all SQL queries done
     for each view that is processed. This is only useful for debugging.
     """
+    def __init__(self):
+        if not settings.DEBUG:
+            raise MiddlewareNotUsed
+
     def process_response(self, request, response):
-        if not settings.DEBUG or len(connection.queries) == 0 \
-            or request.path_info.startswith('/favicon.ico') \
-            or request.path_info.startswith(settings.STATIC_URL) \
-                or request.path_info.startswith(settings.MEDIA_URL):
+        if (len(connection.queries) == 0 or
+            request.path_info.startswith('/favicon.ico') or
+            request.path_info.startswith(settings.STATIC_URL) or
+            request.path_info.startswith(settings.MEDIA_URL)):
             return response
 
         indentation = 2
