@@ -120,12 +120,12 @@ INSTALLED_APPS = (
     'south',
     'tinymce',
     'imagekit',
+    'disqus',
 
     'pages',
     'links',
     'blog',
     'gallery',
-    'disqus',
 )
 
 INTERNAL_IPS = ('127.0.0.1',)
