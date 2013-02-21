@@ -160,7 +160,6 @@ except ImportError:
     import sys
     sys.exit("\033[1;31mCan not import settings_local\033[0m")
 
-
 try:
     __import__('uwsgi')
     __import__('uwsgi_admin')
@@ -168,3 +167,8 @@ except ImportError:
     pass
 else:
     INSTALLED_APPS += ('uwsgi_admin',)
+
+if not DEBUG:
+    TEMPLATE_LOADERS = (
+        ('django.template.loaders.cached.Loader', TEMPLATE_LOADERS)
+    )
