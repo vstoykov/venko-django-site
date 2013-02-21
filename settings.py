@@ -116,7 +116,6 @@ INSTALLED_APPS = (
     'django.contrib.redirects',
     'django.contrib.webdesign',
 
-    'django_extensions',
     'south',
     'tinymce',
     'imagekit',
@@ -159,6 +158,15 @@ try:
 except ImportError:
     import sys
     sys.exit("\033[1;31mCan not import settings_local\033[0m")
+
+
+try:
+    __import__('django_extensions')
+except ImportError:
+    pass
+else:
+    INSTALLED_APPS += ('django_extensions',)
+
 
 try:
     __import__('uwsgi')
