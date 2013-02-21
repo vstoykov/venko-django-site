@@ -170,5 +170,5 @@ else:
 
 if not DEBUG:
     TEMPLATE_LOADERS = (
-        ('django.template.loaders.cached.Loader', TEMPLATE_LOADERS)
+        ('django.template.loaders.cached.Loader', TEMPLATE_LOADERS),
     )
