@@ -18,13 +18,11 @@ class PictureInline(admin.TabularInline):
 
 
 class GalleryAdmin(admin.ModelAdmin):
-    # This is needet when rise specific error an need the name of the model
-    __name__ = 'Gallery'
-
     prepopulated_fields = {'slug': ('title',)}
     readonly_fields = ('created', 'modified',)
     inlines = (PictureInline,)
     date_hierarchy = 'created'
+    list_display = ('title', 'slug')
 
 
 admin.site.register(Picture, PictureAdmin)
