@@ -3,7 +3,7 @@
 {% block title %}Полезни Връзки | {{block.super}}{% endblock %}
 
 {% block extra_head %}
-	<meta name="keywords" content="Венелин, Стойков, полезни, връзки"/>
+	<meta name="keywords" content="полезни, връзки, интересни, bookmarks, Венелин, Стойков"/>
 	<meta name="description" content="Полезни Връзки на Венелин Стойков. Тук ще слагам връзки към интересни неща в мрежата, нещо като bookmarks."/>
 	{{block.super}}
 {% endblock %}
@@ -20,9 +20,8 @@
 					<dt {% if not forloop.first %}style="border-top: 1px solid #363;"{% endif %}>{{link_group.grouper}}</dt>
 					{% for link in link_group.list %}
 					<dd>
-						<a href="{{link.url}}" rel="nofollow">
-							<span>{{link.title}}</span><br/>
-							<small><i>{{link.url}}</i></small>
+						<a href="{{link.url}}" title="{{link.title}}" target="_blank" rel="nofollow">
+							<span>{{link.title}}</span> <br/> <small><i>{{link.url}}</i></small>
 						</a>
 					</dd>
 					{% endfor %}
