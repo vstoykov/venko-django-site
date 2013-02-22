@@ -22,6 +22,7 @@ class EntryAdmin(admin.ModelAdmin):
     def slug_as_link(self, obj):
         return '<a href="%s">%s</a>' % (obj.get_absolute_url(), obj.slug)
     slug_as_link.allow_tags = True
+    slug_as_link.admin_order_field = 'slug'
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Entry, EntryAdmin)
