@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.safestring import mark_safe
 
 
 class Category(models.Model):
@@ -30,3 +31,9 @@ class Link(models.Model):
 
     def __unicode__(self):
         return "%s (%s)" % (self.title, self.url)
+
+    def get_link(self):
+        return mark_safe(u'<a href="{0.url}" target="_blank" rel="nofollow">{0.url}</a>'.format(self))
+    get_link.short_description = 'url'
+    get_link.admin_order_field = 'url'
+    get_link.allow_tags = True
