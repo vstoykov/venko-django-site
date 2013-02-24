@@ -1,20 +1,21 @@
 {% extends "gallery_base.html" %}
+{% load staticfiles %}
 
 {% block title %}{{ gallery.title }} | {{ block.super }}{% endblock %}
 
 {% block extra_head %}
 	{{ block.super }}
-	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/jquery.lightbox-0.5.css" media="all" />
-	<script type="text/javascript" src="{{STATIC_URL}}js/jquery.lightbox-0.5.min.js"></script>
-	<!--script type="text/javascript" src="{{STATIC_URL}}js/gallery.js"></script-->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/jquery.lightbox-0.5.css' %}" media="all" />
+	<script type="text/javascript" src="{% static 'js/jquery.lightbox-0.5.min.js' %}"></script>
+	<!--script type="text/javascript" src="{% static 'js/gallery.js' %}"></script-->
 	<script type="text/javascript">
 		$(function() {
 			$("#gallery_list a").lightBox({
-				imageLoading: '/static/img/lightbox/loading.gif',
-				imageBtnClose: '/static/img/lightbox/close.gif',
-				imageBtnPrev: '/static/img/lightbox/prev.gif',
-				imageBtnNext: '/static/img/lightbox/next.gif',
-				imageBlank: '/static/img/lightbox/blank.gif',
+				imageLoading: '{% static "img/lightbox/loading.gif" %}',
+				imageBtnClose: '{% static "img/lightbox/close.gif" %}',
+				imageBtnPrev: '{% static "img/lightbox/prev.gif" %}',
+				imageBtnNext: '{% static "img/lightbox/next.gif" %}',
+				imageBlank: '{% static "img/lightbox/blank.gif" %}',
 			});
 		});
 	</script>

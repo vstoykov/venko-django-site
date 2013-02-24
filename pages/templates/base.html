@@ -1,16 +1,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="bg-BG" xml:lang="bg-BG" xmlns="http://www.w3.org/1999/xhtml">
-<head>
+<head>{% load staticfiles %}
 	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 	<meta name="author" content="Venelin Stoykov"/>
     <meta name="google-site-verification" content="HEaaQ5lv83-FYJUz9g5WuIUjISZZSrCs6fcOkAa5__8" />
 	<title>{% block title %}Венелин Стойков{% endblock %}</title>
-	<link rel="shortcut icon" href="{{STATIC_URL}}favicon.ico"/>
+	<link rel="shortcut icon" href="{% static 'favicon.ico' %}"/>
 	<link rel="alternate" type="application/rss+xml" title="Последни статии от блога на Венелин Стойков" href="{% url blog_feed %}" />
-	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style.css?v=6" media="all"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" media="all"/>
 	{% if debug %}
-	<script type="text/javascript" src="{{STATIC_URL}}js/jquery-1.4.2.min.js"></script>
-	<script type="text/javascript" src="{{STATIC_URL}}js/jquery-ui-1.7.2.min.js"></script>
+	<script type="text/javascript" src="{% static 'js/jquery-1.4.2.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery-ui-1.7.2.min.js' %}"></script>
 	{% else %}
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
