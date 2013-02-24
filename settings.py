@@ -54,7 +54,7 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = (
     here('pages/static/'),
 )
-
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
