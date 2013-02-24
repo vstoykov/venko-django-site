@@ -68,30 +68,6 @@ class SQLPrintingMiddleware(object):
         return response
 
 
-class StaticServeMiddleware(object):
-    """
-    Middleware to serve media files on developer server
-    You must put this at top of all middlewares for speedups
-    (Whe dont need sessions, request.user or other stuff)
-    """
-    MEDIA_URL = getattr(settings, 'MEDIA_URL', None)
-    MEDIA_ROOT = getattr(settings, 'MEDIA_ROOT', None)
-    IS_ACTIVE = getattr(settings, 'DEBUG', False)
-
-    def process_request(self, request):
-        if self.IS_ACTIVE and self.MEDIA_ROOT and self.MEDIA_URL and request.path_info.startswith(self.MEDIA_URL):
-            path = request.path_info.replace(self.MEDIA_URL, '').lstrip('/')
-            abs_uri = request.build_absolute_uri()
-            try:
-                response = serve(request, path=path, document_root=self.MEDIA_ROOT)
-                print " \033[1;32m[%s] %s\033[0m" % (response.status_code, abs_uri)
-                return response
-            except Http404:
-                print " \033[1;31m[%s] %s\033[0m" % (404, abs_uri)
-                raise Http404('Requested file was not found on the file system')
-        return None
-
-
 class XUACompatibleMiddleware(object):
     """
     Add a X-UA-Compatible header to the response
