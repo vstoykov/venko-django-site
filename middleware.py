@@ -2,6 +2,8 @@ import os
 
 from django.views.static import serve, Http404
 from django.core.exceptions import MiddlewareNotUsed
+from django.utils.encoding import DjangoUnicodeDecodeError
+from django.utils.html import strip_spaces_between_tags as minify_html
 from django.conf import settings
 from django.db import connection
 
@@ -98,4 +100,23 @@ class XUACompatibleMiddleware(object):
     """
     def process_response(self, request, response):
         response['X-UA-Compatible'] = 'IE=edge,chrome=1'
+        return response
+
+
+class MinifyHTMLMiddleware(object):
+    """
+    Remove spaces between html tags
+
+    Taken from django-pipeline but but modified to not be executed in debug.
+    """
+    def __init__(self):
+        if settings.DEBUG:
+            raise MiddlewareNotUsed
+
+    def process_response(self, request, response):
+        if response.has_header('Content-Type') and 'text/html' in response['Content-Type']:
+            try:
+                response.content = minify_html(response.content.strip())
+            except DjangoUnicodeDecodeError:
+                pass
         return response
