@@ -177,6 +177,13 @@ except ImportError:
 else:
     INSTALLED_APPS += ('uwsgi_admin',)
 
+try:
+    __import__('django_uwsgi')
+except ImportError:
+    pass
+else:
+    INSTALLED_APPS += ('django_uwsgi',)
+
 if not DEBUG:
     TEMPLATE_LOADERS = (
         ('django.template.loaders.cached.Loader', TEMPLATE_LOADERS),

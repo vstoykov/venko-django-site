@@ -29,6 +29,11 @@ if 'uwsgi_admin' in settings.INSTALLED_APPS:
         (r'^admin/uwsgi/', include('uwsgi_admin.urls')),
     ) + urlpatterns
 
+if 'django_uwsgi' in settings.INSTALLED_APPS:
+    urlpatterns = patterns('',
+        (r'^admin/uwsgi/', include('django_uwsgi.urls')),
+    ) + urlpatterns
+
 # Static URLS is served by server. Django serves they only in DEBUG mode
 if settings.DEBUG:
     urlpatterns += patterns('django.views.static',
