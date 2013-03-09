@@ -113,6 +113,7 @@ INSTALLED_APPS = (
     'imagekit',
     'disqus',
 
+    'venelin',
     'pages',
     'links',
     'blog',
