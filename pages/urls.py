@@ -1,6 +1,6 @@
-from django.conf.urls import url, patterns, include
+from django.conf.urls import url, patterns
 
-urlpatterns = patterns('django.contrib.flatpages.views',
-    url(r'^', include('django.contrib.flatpages.urls')),
+urlpatterns = patterns('pages.views',
+    url(r'^(?P<url>.+)', 'flatpage'),
     url(r'^$', 'flatpage', kwargs={'url': '/'}, name='home'),
 )
