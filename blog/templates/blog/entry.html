@@ -25,7 +25,7 @@
 {% endblock %}
 
 {% block blog_content %}
-    <a href="{% url my_blog_by_cat entry.category.slug %}">Виж всички постове от {{entry.category.title}}</a>
+    <a href="{% url 'my_blog_by_cat' entry.category.slug %}">Виж всички постове от {{entry.category.title}}</a>
     <div class="g-plusone-holder"><div class="g-plusone"></div></div>
     <hr class="clearfix"/>
 	<h2>{{entry.title}}</h2>

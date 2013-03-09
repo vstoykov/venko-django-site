@@ -9,7 +9,7 @@
 
 
 {% block blog_content %}
-	{% if category %}<a href="{% url my_blog %}">Виж всички постове</a><hr/>{% endif %}
+	{% if category %}<a href="{% url 'my_blog' %}">Виж всички постове</a><hr/>{% endif %}
 	<dl class="blog">
 		{% for entry in entries %}
 			<dt {% if not forloop.first %}class="border_t"{% endif %}><a href="{{ entry.get_absolute_url }}">{{entry.title}}</a><br/><small><i>Публикувано на {{entry.created}}</i></small></dt>

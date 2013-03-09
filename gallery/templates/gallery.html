@@ -31,7 +31,7 @@
 {% endblock %}
 
 {% block content %}
-	<a href="{% url galleries %}">Виж всички галерии</a>
+	<a href="{% url 'galleries' %}">Виж всички галерии</a>
 	<div class="g-plusone-holder"><div class="g-plusone"></div></div>
 	<hr class="clearfix"/>
 	<dir id="gallery_list" class="gallery">
@@ -47,5 +47,5 @@
 		{% endfor %}
 	</dir>
 	<hr/>
-	<a href="{% url galleries %}">Виж всички галерии</a>
+	<a href="{% url 'galleries' %}">Виж всички галерии</a>
 {% endblock %}

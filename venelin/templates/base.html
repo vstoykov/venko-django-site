@@ -6,7 +6,7 @@
     <meta name="google-site-verification" content="HEaaQ5lv83-FYJUz9g5WuIUjISZZSrCs6fcOkAa5__8" />
 	<title>{% block title %}Венелин Стойков{% endblock %}</title>
 	<link rel="shortcut icon" href="{% static 'favicon.ico' %}"/>
-	<link rel="alternate" type="application/rss+xml" title="Последни статии от блога на Венелин Стойков" href="{% url blog_feed %}" />
+	<link rel="alternate" type="application/rss+xml" title="Последни статии от блога на Венелин Стойков" href="{% url 'blog_feed' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" media="all"/>
 	{% if debug %}
 	<script type="text/javascript" src="{% static 'js/jquery-1.4.2.min.js' %}"></script>

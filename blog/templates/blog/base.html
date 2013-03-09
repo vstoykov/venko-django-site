@@ -21,7 +21,7 @@
 {% block left_column %}
 	<div class="article">
 		<h2 class="header">RSS</h2>
-		<a href="{% url blog_feed %}" class="rss">
+		<a href="{% url 'blog_feed' %}" class="rss">
 			<img src="{% static 'img/RSS_Icon.png' %}" alt="RSS" title="Абонирай се за последните статии от блога на Венелин Стойков" />
 			<span>Абонирай се за последните статии</span>
 		</a>
@@ -30,7 +30,7 @@
 		<h2 class="header">Категории в Блога</h2>
 		<ul class="blog-categories">
 		{% for category in categories %}
-			<li><a href="{% url my_blog_by_cat category.slug %}">{{category.title}} ({{category.entries_count}})</a></li>
+			<li><a href="{% url 'my_blog_by_cat' category.slug %}">{{category.title}} ({{category.entries_count}})</a></li>
 		{% empty %}
 			<li>Няма категории</li>
 		{% endfor %}

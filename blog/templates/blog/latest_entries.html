@@ -1,6 +1,6 @@
 <dl class="blog">
 {% for entry in latest %}
-	<dt><a href="{% url my_blog_entry entry.category.slug entry.slug %}">{{entry.title}}</a></dt>
+	<dt><a href="{% url 'my_blog_entry' entry.category.slug entry.slug %}">{{entry.title}}</a></dt>
 	<dd>{{entry.content|safe|truncatewords_html:50}}</dd>
 {% empty %}
 	<dt>Няма статии</dt><dd></dd>
