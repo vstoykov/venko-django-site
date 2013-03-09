@@ -3,7 +3,7 @@ import django.conf.global_settings as DEFAULT_SETTINGS
 from os import path
 here = lambda *x: path.join(path.abspath(path.dirname(__file__)), *x)
 
-PROJECT_DIR = here()
+PROJECT_DIR = here('../')
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
@@ -40,8 +40,8 @@ USE_L10N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-STATIC_ROOT = here('static/')
-MEDIA_ROOT = here('media/')
+STATIC_ROOT = here('../static/')
+MEDIA_ROOT = here('../media/')
 
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
@@ -50,10 +50,6 @@ MEDIA_ROOT = here('media/')
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-
-STATICFILES_DIRS = (
-    here('pages/static/'),
-)
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
@@ -71,22 +67,17 @@ TEMPLATE_LOADERS = (
     #'django.template.loaders.eggs.Loader',
 )
 
-TEMPLATE_DIRS = (
-    here('templates'),
-)
-
 TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
     'django.core.context_processors.request',
-    'django.core.context_processors.static',
 )
 
 
 MIDDLEWARE_CLASSES = (
-    'middleware.SQLPrintingMiddleware',
+    'venelin.middleware.SQLPrintingMiddleware',
     'django.middleware.http.ConditionalGetMiddleware',
     'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.gzip.GZipMiddleware',
-    'middleware.MinifyHTMLMiddleware',
+    'venelin.middleware.MinifyHTMLMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -95,13 +86,13 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     'django.middleware.cache.FetchFromCacheMiddleware',
-    'middleware.XUACompatibleMiddleware',
+    'venelin.middleware.XUACompatibleMiddleware',
 )
 
-ROOT_URLCONF = 'urls'
+ROOT_URLCONF = 'venelin.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'wsgi.application'
+WSGI_APPLICATION = 'venelin.wsgi.application'
 
 INSTALLED_APPS = (
     'django.contrib.auth',
