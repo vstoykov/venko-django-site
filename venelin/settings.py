@@ -1,4 +1,5 @@
 # Django settings for doommaster project.
+import re
 import django.conf.global_settings as DEFAULT_SETTINGS
 from os import path
 here = lambda *x: path.join(path.abspath(path.dirname(__file__)), *x)
@@ -71,7 +72,9 @@ TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
     'django.core.context_processors.request',
 )
 
-DISALLOWED_USER_AGENTS = ('ZmEu', )
+DISALLOWED_USER_AGENTS = (
+    re.compile('ZmEu'),
+)
 
 MIDDLEWARE_CLASSES = (
     'venelin.middleware.SQLPrintingMiddleware',
