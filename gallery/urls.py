@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import url, patterns
 
 urlpatterns = patterns('gallery.views',
     url(r'^$', 'galleries', name='galleries'),
