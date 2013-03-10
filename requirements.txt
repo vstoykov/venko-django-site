@@ -1,7 +1,7 @@
 Django>=1.5
-django_extensions
-south
+Pillow
+South
+django-extensions
 django-tinymce
 django-disqus
-Pillow
-django-imagekit==2.0.2
+django-imagekit==2.0.3
