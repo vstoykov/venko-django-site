@@ -71,6 +71,7 @@ TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
     'django.core.context_processors.request',
 )
 
+DISALLOWED_USER_AGENTS = ('ZmEu', )
 
 MIDDLEWARE_CLASSES = (
     'venelin.middleware.SQLPrintingMiddleware',
