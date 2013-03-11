@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Полезни Връзки | {{block.super}}{% endblock %}
+{% block title %}Полезни Връзки | {{ block.super }}{% endblock %}
 
 {% block extra_head %}
 	<meta name="keywords" content="полезни, връзки, интересни, bookmarks, Венелин, Стойков"/>
@@ -17,11 +17,11 @@
 			<dl class="links">
 				{% regroup links by category as links_list %}
 				{% for link_group in links_list %}
-					<dt {% if not forloop.first %}style="border-top: 1px solid #363;"{% endif %}>{{link_group.grouper}}</dt>
+					<dt {% if not forloop.first %}style="border-top: 1px solid #363;"{% endif %}>{{ link_group.grouper }}</dt>
 					{% for link in link_group.list %}
 					<dd>
-						<a href="{{link.url}}" title="{{link.title}}" target="_blank" rel="nofollow">
-							<span>{{link.title}}</span> <br/> <small><i>{{link.url}}</i></small>
+						<a href="{{ link.url }}" title="{{ link.title }}" target="_blank" rel="nofollow">
+							<span>{{ link.title }}</span> <br/> <small><i>{{ link.url }}</i></small>
 						</a>
 					</dd>
 					{% endfor %}

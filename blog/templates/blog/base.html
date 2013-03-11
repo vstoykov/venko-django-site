@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
-{% block title %}Блог | {{block.super}}{% endblock %}
+{% block title %}Блог | {{ block.super }}{% endblock %}
 
 {% block extra_head %}
-	{{block.super}}
+	{{ block.super }}
 	<link rel="stylesheet" href="http://yandex.st/highlightjs/7.2/styles/default.min.css" />
 	<script type="text/javascript" src="http://yandex.st/highlightjs/7.2/highlight.min.js"></script>
 	<script type="text/javascript">
@@ -30,7 +30,7 @@
 		<h2 class="header">Категории в Блога</h2>
 		<ul class="blog-categories">
 		{% for category in categories %}
-			<li><a href="{{ category.get_absolute_url }}">{{category.title}} ({{category.entries_count}})</a></li>
+			<li><a href="{{ category.get_absolute_url }}">{{ category.title }} ({{ category.entries_count }})</a></li>
 		{% empty %}
 			<li>Няма категории</li>
 		{% endfor %}
@@ -43,7 +43,7 @@
 {% block main_content %}
 	<div>
 		<div class="article">
-			<h2 class="header">Блог{% if category %} &gt; {{category.title}}{% endif %}</h2>
+			<h2 class="header">Блог{% if category %} &gt; {{ category.title }}{% endif %}</h2>
 			<div class="content">
 				{% block blog_content %}{% endblock %}
 			</div>

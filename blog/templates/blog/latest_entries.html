@@ -1,7 +1,7 @@
 <dl class="blog">
 {% for entry in latest %}
-	<dt><a href="{{ entry.get_absolute_url }}">{{entry.title}}</a></dt>
-	<dd>{{entry.content|safe|truncatewords_html:50}}</dd>
+	<dt><a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a></dt>
+	<dd>{{ entry.content|safe|truncatewords_html:50 }}</dd>
 {% empty %}
 	<dt>Няма статии</dt><dd></dd>
 {% endfor %}
