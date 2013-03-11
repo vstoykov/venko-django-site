@@ -30,7 +30,7 @@
 		<h2 class="header">Категории в Блога</h2>
 		<ul class="blog-categories">
 		{% for category in categories %}
-			<li><a href="{% url 'my_blog_by_cat' category.slug %}">{{category.title}} ({{category.entries_count}})</a></li>
+			<li><a href="{{ category.get_absolute_url }}">{{category.title}} ({{category.entries_count}})</a></li>
 		{% empty %}
 			<li>Няма категории</li>
 		{% endfor %}
