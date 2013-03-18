@@ -16,12 +16,9 @@ urlpatterns = patterns('',
     (r'^links/', include('links.urls')),
     (r'^gallery/', include('gallery.urls')),
 
-    (r'^', include('pages.urls')),
-)
+    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
 
-# Create sitemap
-urlpatterns = urlpatterns + patterns('django.contrib.sitemaps.views',
-    (r'^sitemap\.xml$', 'sitemap', {'sitemaps': sitemaps}),
+    (r'^', include('pages.urls')),
 )
 
 if 'uwsgi_admin' in settings.INSTALLED_APPS:
@@ -36,8 +33,8 @@ if 'django_uwsgi' in settings.INSTALLED_APPS:
 
 # Static URLS is served by server. Django serves they only in DEBUG mode
 if settings.DEBUG:
-    urlpatterns += patterns('django.views.static',
+    urlpatterns = patterns('django.views.static',
         url(r'^%s/(?P<path>.*)$' % settings.MEDIA_URL.strip('/'), 'serve',
             {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
         url(r'^(?P<path>favicon\.ico)$', 'serve', {'document_root': settings.STATIC_ROOT}),
-    ) + staticfiles_urlpatterns()
+    ) + staticfiles_urlpatterns() + urlpatterns
