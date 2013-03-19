@@ -4,6 +4,7 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 	<meta name="author" content="Venelin Stoykov"/>
     <meta name="google-site-verification" content="HEaaQ5lv83-FYJUz9g5WuIUjISZZSrCs6fcOkAa5__8" />
+    <meta name="google-translate-customization" content="b257c51f08a62a8b-88abd832c2f67adf-g9d96410b7541075b-11" />
 	<title>{% block title %}Венелин Стойков{% endblock %}</title>
 	<link rel="shortcut icon" href="{% static 'favicon.ico' %}"/>
 	<link rel="alternate" type="application/rss+xml" title="Последни статии от блога на Венелин Стойков" href="{% url 'blog_feed' %}" />
@@ -30,6 +31,7 @@
 <body>
 	<div id="header" class="shadow">
 		<div id="header_logo"><h1>Сайтът на Венелин Стойков</h1></div>
+		<div id="google_translate_element"></div>
 		<div id="main_menu">
 			<ul>
 				{% with request.META.PATH_INFO as PATH_INFO %}
@@ -75,5 +77,11 @@
         <p><a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10-blue.png" alt="Valid XHTML 1.0 Transitional" height="25" width="80" /></a></p>
 		<p>Уеб дизайн и разработка <a href="/about/">Венелин Стойков</a></p>
 	</div>
+	<script type="text/javascript">
+		function googleTranslateElementInit() {
+		  new google.translate.TranslateElement({pageLanguage: 'bg', includedLanguages: 'en,bg', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true, gaTrack: true, gaId: 'UA-22285007-1'}, 'google_translate_element');
+		}
+		</script>
+	<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
