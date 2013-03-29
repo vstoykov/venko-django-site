@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Sum
 from tinymce.models import HTMLField
 
 
@@ -10,8 +11,9 @@ def truncate_smart(txt, size):
 
 
 class CategoryManager(models.Manager):
+
     def with_entry_count(self):
-        return self.annotate(entries_count=models.Count('entries'))
+        return self.annotate(entries_count=Sum('entries__is_published'))
 
     def active(self):
         return self.with_entry_count().filter(entries_count__gt=0).order_by('-entries_count')
@@ -39,8 +41,12 @@ class Category(models.Model):
 
 
 class EntryManager(models.Manager):
+
     def get_query_set(self):
         return super(EntryManager, self).get_query_set().select_related('category')
+
+    def published(self):
+        return self.filter(is_published=True)
 
 
 class Entry(models.Model):
@@ -58,6 +64,7 @@ class Entry(models.Model):
 
     created = models.DateTimeField(auto_now_add=True, db_index=True)
     modified = models.DateTimeField(auto_now=True, db_index=True)
+    is_published = models.BooleanField()
 
     objects = EntryManager()
 

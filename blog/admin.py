@@ -11,8 +11,8 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class EntryAdmin(admin.ModelAdmin):
     readonly_fields = ('created', 'modified')
-    list_display = ('title', 'slug_as_link', 'category', 'created')
-    list_filter = ('category',)
+    list_display = ('title', 'slug_as_link', 'category', 'created', 'is_published')
+    list_filter = ('is_published', 'category',)
     prepopulated_fields = {'slug': ('title', )}
     search_fields = ('title', 'content',)
     date_hierarchy = 'created'

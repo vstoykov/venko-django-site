@@ -5,7 +5,7 @@ from blog.models import Category, Entry
 
 def blog_index(request, category=None):
     context = {}
-    entries = Entry.objects.order_by('-created')
+    entries = Entry.objects.published()
 
     if category:
         category = get_object_or_404(Category, slug=category)
@@ -20,7 +20,8 @@ def blog_index(request, category=None):
 
 
 def blog_entry(request, category, entry):
-    entry = get_object_or_404(Entry, category__slug=category, slug=entry)
+    qs = Entry.objects.all() if request.user.is_superuser else Entry.objects.published()
+    entry = get_object_or_404(qs, category__slug=category, slug=entry)
     context = {
         'entry': entry,
         'category': entry.category,
