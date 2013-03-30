@@ -73,7 +73,7 @@ TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
 )
 
 DISALLOWED_USER_AGENTS = (
-    re.compile('ZmEu'),
+    re.compile(r'^.*(ZmEu|[Ss]cann).*$'),
 )
 
 MIDDLEWARE_CLASSES = (
