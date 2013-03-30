@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Sum
+from django.db.models import Count
 from tinymce.models import HTMLField
 
 
@@ -13,7 +13,7 @@ def truncate_smart(txt, size):
 class CategoryManager(models.Manager):
 
     def with_entry_count(self):
-        return self.annotate(entries_count=Sum('entries__is_published'))
+        return self.annotate(entries_count=Count('entries__is_published'))
 
     def active(self):
         return self.with_entry_count().filter(entries_count__gt=0).order_by('-entries_count')
