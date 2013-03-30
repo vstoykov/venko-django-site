@@ -30,6 +30,7 @@ pre {
     margin: 10px;
     max-width: 630px;
     overflow-x: auto;
+    font-family: "Lucida Console", Monaco, monospace;
 }
 pre code {background: #F8F8FF !important;}
 .gist pre {max-width: none;}
