@@ -148,6 +148,30 @@ TINYMCE_SPELLCHECKER = False
 TINYMCE_COMPRESSOR = False
 
 CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
+CACHE_MIDDLEWARE_SECONDS = 24 * 3600  # One day
+CACHE_MIDDLEWARE_ALIAS = 'pages'
+
+# On production LocMeme must be changed with Memcached
+# LocMem is fast but is not memory efficient
+# (does not share cached item between threads)
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'default',
+    },
+    'pages': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'static',
+        'OPTIONS': {'MAX_ENTRIES': 1000},
+        'TIMEOUT': CACHE_MIDDLEWARE_SECONDS,
+    },
+    'staticfiles': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'static',
+        'OPTIONS': {'MAX_ENTRIES': 2000},
+        'TIMEOUT': 7 * 24 * 3600,  # One week
+    },
+}
 
 try:
     from settings_local import *
