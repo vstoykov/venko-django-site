@@ -13,7 +13,7 @@ def truncate_smart(txt, size):
 class CategoryManager(models.Manager):
 
     def with_entry_count(self):
-        return self.annotate(entries_count=Count('entries__is_published'))
+        return self.annotate(entries_count=Count('entries', field='CASE WHEN blog_entry.is_published THEN 1 END'))
 
     def active(self):
         return self.with_entry_count().filter(entries_count__gt=0).order_by('-entries_count')
