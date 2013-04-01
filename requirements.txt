@@ -5,3 +5,4 @@ django-extensions
 django-tinymce
 django-disqus
 django-imagekit==2.0.3
+django-admin-tools
