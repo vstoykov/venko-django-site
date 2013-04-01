@@ -21,11 +21,6 @@ urlpatterns = patterns('',
     (r'^', include('pages.urls')),
 )
 
-if 'uwsgi_admin' in settings.INSTALLED_APPS:
-    urlpatterns = patterns('',
-        (r'^admin/uwsgi/', include('uwsgi_admin.urls')),
-    ) + urlpatterns
-
 if 'django_uwsgi' in settings.INSTALLED_APPS:
     urlpatterns = patterns('',
         (r'^admin/uwsgi/', include('django_uwsgi.urls')),

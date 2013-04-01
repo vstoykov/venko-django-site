@@ -189,7 +189,6 @@ else:
 
 
 try:
-    __import__('uwsgi')
     __import__('uwsgi_admin')
 except ImportError:
     pass
