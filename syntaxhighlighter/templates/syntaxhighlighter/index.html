@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		{# form.highlight_css #}
+		.highlight {
+			min-width: 450px;
+		}
+	</style>
+</head>
+<body>
+	<div style="display: inline-block; vertical-align: top;">
+		<form action="?" method="POST">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button type="submit">Do Highlight</button>
+		</form>
+	</div>
+	<div style="display: inline-block; vertical-align: top;">
+		<p>Copy directly to Word!</p>
+		{{ form.highlighted_code }}
+	</div>
+</body>
+</html>
+

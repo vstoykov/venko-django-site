@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     (r'^blog/', include('blog.urls')),
     (r'^links/', include('links.urls')),
     (r'^gallery/', include('gallery.urls')),
+    (r'^highlighter/', include('syntaxhighlighter.urls')),
 
     (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
 
