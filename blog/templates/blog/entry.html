@@ -11,7 +11,7 @@
 	<meta property="og:title" content="{{ entry.seo_keywords }}"/>
 	<meta property="og:description" content="{{ entry.get_seo_description }}"/>
 	<meta property="og:image" content="{% static 'img/RSS_Icon.png' %}"/>
-	<meta property="og:type" content="article"/>
+	<link rel="image_src" href="{% static 'img/RSS_Icon.png' %}">
 {% endblock %}
 
 {% block extra_js %}
