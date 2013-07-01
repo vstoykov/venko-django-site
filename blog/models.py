@@ -1,13 +1,8 @@
 from django.db import models
 from django.db.models import Count
+from django.template.defaultfilters import striptags, truncatechars
+
 from tinymce.models import HTMLField
-
-
-def truncate_smart(txt, size):
-    """
-    Truncate text to given size. If text is longer then add "..."
-    """
-    return u''.join([txt[:size], '...']) if len(txt) > size + 3 else txt
 
 
 class CategoryManager(models.Manager):
@@ -74,7 +69,7 @@ class Entry(models.Model):
         verbose_name_plural = 'entries'
 
     def __unicode__(self):
-        return truncate_smart(self.title, 60)
+        return truncatechars(self.title, 60)
 
     @models.permalink
     def get_absolute_url(self):
@@ -85,3 +80,6 @@ class Entry(models.Model):
         Identifier used in disqus
         """
         return '%s-%s' % (self.category.slug, self.slug,)
+
+    def get_seo_description(self):
+        return self.seo_description or truncatechars(striptags(self.content), 200).replace('\n', ' ').replace('\r', '')
