@@ -22,7 +22,6 @@
 		var disqus_title = "{{entry.title|escape}}";
 		var disqus_url = "{{request.build_absolute_uri}}";
     </script>
-    {% disqus_show_comments %}
 	<script type="text/javascript">
       window.___gcfg = {lang: 'bg'};
 
@@ -43,4 +42,5 @@
 	<br/>
 	<p><small><i>Публикувано на {{ entry.created }}</i></small></p>
 	<hr/>
+    {% disqus_show_comments %}
 {% endblock %}
