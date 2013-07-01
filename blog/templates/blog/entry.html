@@ -3,9 +3,12 @@
 
 {% block title %}{{ entry.title }} | {{ entry.category }} | {{ block.super }}{% endblock %}
 
-{% block extra_head %}
+{% block seo_tags %}
 	<meta name="keywords" content="{{ entry.seo_keywords }}"/>
 	<meta name="description" content="{% if entry.seo_description %}{{ entry.seo_description }}{% else %}Страница от блога на Венелин Стойков - {{ entry.title }} в категория {{ entry.category }}{% endif %}"/>
+{% endblock %}
+
+{% block extra_js %}
 	{{block.super}}
 	{% disqus_dev %}
 	<script type="text/javascript">

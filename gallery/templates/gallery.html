@@ -3,11 +3,16 @@
 
 {% block title %}{{ gallery.title }} | {{ block.super }}{% endblock %}
 
-{% block extra_head %}
-	{{ block.super }}
+{% block css %}
 	<link rel="stylesheet" type="text/css" href="{% static 'css/jquery.lightbox-0.5.css' %}" media="all" />
+{% endblock %}
+
+{% block js %}
 	<script type="text/javascript" src="{% static 'js/jquery.lightbox-0.5.min.js' %}"></script>
 	<!--script type="text/javascript" src="{% static 'js/gallery.js' %}"></script-->
+{% endblock %}
+
+{% block extra_js %}
 	<script type="text/javascript">
 		$(function() {
 			$("#gallery_list a").lightBox({

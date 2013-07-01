@@ -3,10 +3,15 @@
 
 {% block title %}Блог | {{ block.super }}{% endblock %}
 
-{% block extra_head %}
-	{{ block.super }}
+{% block css %}
 	<link rel="stylesheet" href="http://yandex.st/highlightjs/7.2/styles/default.min.css" />
+{% endblock %}
+
+{% block js %}
 	<script type="text/javascript" src="http://yandex.st/highlightjs/7.2/highlight.min.js"></script>
+{% endblock %}
+
+{% block extra_js %}
 	<script type="text/javascript">
 		hljs.tabReplace = '    ';
 		$(function() {
