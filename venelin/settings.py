@@ -80,7 +80,6 @@ MIDDLEWARE_CLASSES = (
     'venelin.middleware.SQLPrintingMiddleware',
     'django.middleware.http.ConditionalGetMiddleware',
     'django.middleware.cache.UpdateCacheMiddleware',
-    'django.middleware.gzip.GZipMiddleware',
     'venelin.middleware.MinifyHTMLMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
