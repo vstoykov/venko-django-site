@@ -4,18 +4,17 @@ from blog.models import Category, Entry
 
 
 def blog_index(request, category=None):
-    context = {}
     entries = Entry.objects.published()
 
     if category:
         category = get_object_or_404(Category, slug=category)
         entries = entries.filter(category=category)
 
-    context.update({
+    context = {
         'category': category,
         'entries': entries,
         'categories': Category.objects.active()
-    })
+    }
     return render(request, 'blog/index.html', context)
 
 
