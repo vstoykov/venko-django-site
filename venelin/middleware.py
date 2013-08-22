@@ -22,15 +22,15 @@ class SQLPrintingMiddleware(object):
             return response
 
         indentation = 2
-        print "\n\n%s\033[1;35m[SQL Queries for]\033[1;34m %s\033[0m\n" % (" " * indentation, request.path_info)
+        print("\n\n%s\033[1;35m[SQL Queries for]\033[1;34m %s\033[0m\n" % (" " * indentation, request.path_info))
         total_time = 0.0
         for query in connection.queries:
             nice_sql = query['sql'].replace('"', '').replace(',', ', ')
             sql = "\033[1;31m[%s]\033[0m %s" % (query['time'], nice_sql)
             total_time = total_time + float(query['time'])
-            print "%s%s\n" % (" " * indentation, sql)
+            print("%s%s\n" % (" " * indentation, sql))
         replace_tuple = (" " * indentation, str(total_time))
-        print "%s\033[1;32m[TOTAL TIME: %s seconds]\033[0m" % replace_tuple
+        print("%s\033[1;32m[TOTAL TIME: %s seconds]\033[0m" % replace_tuple)
         return response
 
 

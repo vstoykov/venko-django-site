@@ -30,7 +30,7 @@ class Gallery(models.Model):
         ordering = ['-created', '-pk']
 
     def __unicode__(self):
-        return unicode(self.title)
+        return self.title
 
     @models.permalink
     def get_absolute_url(self):
@@ -69,7 +69,7 @@ class Picture(models.Model):
         ordering = ['-uploaded', '-pk']
 
     def __unicode__(self):
-        return unicode(self.title if self.title else self.image.name)
+        return self.title or self.image.name
 
     def save(self, *args, **kwargs):
         """

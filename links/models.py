@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 from django.db import models
 from django.utils.safestring import mark_safe
 
@@ -33,7 +35,7 @@ class Link(models.Model):
         return "%s (%s)" % (self.title, self.url)
 
     def get_link(self):
-        return mark_safe(u'<a href="{0.url}" target="_blank" rel="nofollow">{0.url}</a>'.format(self))
+        return mark_safe('<a href="{0.url}" target="_blank" rel="nofollow">{0.url}</a>'.format(self))
     get_link.short_description = 'url'
     get_link.admin_order_field = 'url'
     get_link.allow_tags = True

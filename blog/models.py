@@ -33,7 +33,7 @@ class Category(models.Model):
         verbose_name_plural = 'categories'
 
     def __unicode__(self):
-        return unicode(self.title)
+        return self.title
 
     @models.permalink
     def get_absolute_url(self):
