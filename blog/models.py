@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Count
+from django.db.models import Count, Max
 from django.template.defaultfilters import striptags, truncatechars
 
 from tinymce.models import HTMLField
@@ -12,6 +12,11 @@ class CategoryManager(models.Manager):
 
     def active(self):
         return self.with_entry_count().filter(entries_count__gt=0).order_by('-entries_count')
+
+    def with_last_modified(self):
+        return self.annotate(
+            modified=Max('entries__created', field='CASE WHEN blog_entry.is_published THEN blog_entry.created END')
+        ).exclude(modified=None).order_by('-modified')
 
 
 class Category(models.Model):
