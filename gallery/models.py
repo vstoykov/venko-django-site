@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.utils.safestring import mark_safe
+from django.utils.encoding import force_str, force_text
 
 from imagekit.models import ProcessedImageField, ImageSpecField
 from imagekit.processors import ResizeToFit
@@ -29,8 +30,11 @@ class Gallery(models.Model):
         verbose_name_plural = 'galleries'
         ordering = ['-created', '-pk']
 
+    def __str__(self):
+        return force_str(self.title)
+
     def __unicode__(self):
-        return self.title
+        return force_text(self.__str__())
 
     @models.permalink
     def get_absolute_url(self):
@@ -68,8 +72,11 @@ class Picture(models.Model):
     class Meta:
         ordering = ['-uploaded', '-pk']
 
+    def __str__(self):
+        return force_str(self.title or self.image.name)
+
     def __unicode__(self):
-        return self.title or self.image.name
+        return force_text(self.__str__())
 
     def save(self, *args, **kwargs):
         """

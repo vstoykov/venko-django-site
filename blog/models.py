@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import Count, Max
 from django.template.defaultfilters import striptags, truncatechars
+from django.utils.encoding import force_str, force_text
 
 from tinymce.models import HTMLField
 
@@ -32,8 +33,11 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'categories'
 
+    def __str__(self):
+        return force_str(self.title)
+
     def __unicode__(self):
-        return self.title
+        return force_text(self.__str__())
 
     @models.permalink
     def get_absolute_url(self):
@@ -73,8 +77,11 @@ class Entry(models.Model):
         ordering = ('-created',)
         verbose_name_plural = 'entries'
 
+    def __str__(self):
+        return force_str(truncatechars(self.title, 60))
+
     def __unicode__(self):
-        return truncatechars(self.title, 60)
+        return force_text(self.__str__())
 
     @models.permalink
     def get_absolute_url(self):
