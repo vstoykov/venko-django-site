@@ -1,8 +1,14 @@
 from django.db import models
 from django.conf import settings
+from django.utils.safestring import mark_safe
 
 from imagekit.models import ProcessedImageField, ImageSpecField
 from imagekit.processors import ResizeToFit
+
+
+class GalleryManager(models.Manager):
+    def active(self):
+        return self.exclude(pictures=None)
 
 
 class Gallery(models.Model):
@@ -16,6 +22,8 @@ class Gallery(models.Model):
 
     created = models.DateTimeField(auto_now_add=True, db_index=True)
     modified = models.DateTimeField(auto_now=True, db_index=True)
+
+    objects = GalleryManager()
 
     class Meta:
         verbose_name_plural = 'galleries'
@@ -31,7 +39,7 @@ class Gallery(models.Model):
     def get_thumbnail_url(self):
         try:
             return self.pictures.order_by('-is_album_logo', '-modified')[0].thumb.url
-        except:
+        except IndexError:
             return '%simg/gallery-folder.png' % settings.STATIC_URL
 
 
@@ -72,10 +80,7 @@ class Picture(models.Model):
         super(Picture, self).save(*args, **kwargs)
 
     def upload_to(self, name=''):
-        return '%s/%s/%s' % (self.IMAGES_ROOT, self.gallery.slug, name)
-
-    def upload_thumb_to(self, name=''):
-        return '%s/%s/thumbs/%s' % (self.IMAGES_ROOT, self.gallery.slug, name)
+        return '/'.join((self.IMAGES_ROOT, self.gallery.slug, name))
 
     def preview(self):
         """
@@ -83,6 +88,5 @@ class Picture(models.Model):
         """
         if not self.thumb:
             return ''
-        return '<a href="%(src)s" title="%(title)s"><img src="%(thumb_src)s" width="%(width)s" height="%(height)s" alt="%(title)s" /></a>' % {
-            'src': self.image.url, 'thumb_src': self.thumb.url, 'width': self.thumb.width, 'height': self.thumb.height, 'title': self.title}
+        return mark_safe('<a href="{s.image.url}" title="{s.title}"><img src="{thumb.url}" width="{thumb.width}" height="{thumb.height}" alt="{s.title}" /></a>'.format(s=self, thumb=self.thumb))
     preview.allow_tags = True
