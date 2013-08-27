@@ -19,6 +19,8 @@ urlpatterns = patterns('',
     (r'^highlighter/', include('syntaxhighlighter.urls')),
 
     (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
+    (r'^robots\.txt$', 'django.shortcuts.render', {'template_name': 'robots.txt', 'content_type': 'text/plain; charset=utf-8'}),
+    (r'^(?P<path>favicon\.ico)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 
     (r'^', include('pages.urls')),
 )
@@ -33,5 +35,4 @@ if settings.DEBUG:
     urlpatterns = patterns('django.views.static',
         url(r'^%s/(?P<path>.*)$' % settings.MEDIA_URL.strip('/'), 'serve',
             {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
-        url(r'^(?P<path>favicon\.ico)$', 'serve', {'document_root': settings.STATIC_ROOT}),
     ) + staticfiles_urlpatterns() + urlpatterns

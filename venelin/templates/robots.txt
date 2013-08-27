@@ -1,4 +1,4 @@
-Sitemap: http://venelin.sytes.net/sitemap.xml
+Sitemap: http://{{ request.get_host }}/sitemap.xml
 
 User-agent: *
 Disallow: /static/
