@@ -6,3 +6,4 @@ django-tinymce>=1.5.1
 django-disqus>=0.4.1
 django-imagekit>=3.0.3
 django-admin-tools
+pygments

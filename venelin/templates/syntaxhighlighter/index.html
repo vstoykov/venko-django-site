@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block css %}
+	<style type="text/css">
+		{# form.highlight_css #}
+		pre {
+			padding: 0 5px;
+			margin: 0;
+		}
+	</style>
+{% endblock %}
+
+{% block main_content %}
+<div>
+    <div class="article">
+        <h2 class="header">Syntax Highlighter</h2>
+        <div class="content">
+			<div style="display: inline-block; vertical-align: top;">
+				<form action="?" method="POST">
+					{% csrf_token %}
+					<p>{{ form.lexer.label_tag}} {{ form.lexer }}</p>
+					{{ form.code }}
+					<button type="submit">Do Highlight</button>
+				</form>
+			</div>
+			<div style="display: inline-block; vertical-align: top;">
+				<p>Copy directly to Word!</p>
+				{{ form.highlighted_code }}
+			</div>
+        </div>
+    </div>
+</div>
+{% endblock %}

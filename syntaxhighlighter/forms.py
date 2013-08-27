@@ -3,6 +3,7 @@ from django.utils.safestring import mark_safe
 
 from pygments import highlight
 from pygments.lexers import get_lexer_by_name
+from pygments.lexers import get_all_lexers
 from pygments.formatters import HtmlFormatter
 
 LANGUAGE_CHOICES = (
@@ -11,11 +12,15 @@ LANGUAGE_CHOICES = (
     ('java', 'Java'),
     ('ruby', 'Ruby'),
     ('perl', 'Perl'),
+    ('c#', 'C#'),
+    ('html', 'HTML'),
+    ('groovy', 'Groovy'),
 )
 
+LANGUAGE_CHOICES = sorted([(l[1][0], l[0]) for l in get_all_lexers()], key=lambda x: x[0])
 
 class HighlightForm(forms.Form):
-    lexer = forms.ChoiceField(choices=LANGUAGE_CHOICES, required=True)
+    lexer = forms.ChoiceField(choices=LANGUAGE_CHOICES, required=True, initial='python')
     code = forms.CharField(widget=forms.Textarea(attrs={'cols': 80, 'rows': 30}), required=True)
 
     def do_highlight(self):
