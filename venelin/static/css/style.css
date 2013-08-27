@@ -53,6 +53,8 @@ pre code {background: #F8F8FF !important;}
     width: 100%;
 }
 #header_logo {
+    margin: 0 auto;
+    width: 900px;
     background-color: blue;
     background:url(../img/header_top_bg.png);
     color: #333;
@@ -278,5 +280,5 @@ a.rss img {float: left;}
 a.rss span { display: block; padding-top: 10px; font-size: 12px;}
 
 .g-plusone-holder {float: right; position: relative; top: -8px;}
-#google_translate_element {position: absolute; top: 0; right: 0;}
+#google_translate_element {position: absolute; top: 18px; right: 0;}
 .gsc-control-cse.gsc-control-cse-bg {min-height: 300px; background-color: #EEE;}

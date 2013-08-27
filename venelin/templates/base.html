@@ -37,8 +37,6 @@
 </head>
 <body>
 	<div id="header" class="shadow">
-		<div id="header_logo"><h1>Сайтът на Венелин Стойков</h1></div>
-		<div id="google_translate_element"></div>
 		<div id="main_menu">
 			<ul>
 				{% with request.META.PATH_INFO as PATH_INFO %}
@@ -51,6 +49,8 @@
 				{% endwith %}
 			</ul>
 		</div>
+		<div id="google_translate_element"></div>
+		<div id="header_logo"><h1>Сайтът на Венелин Стойков</h1></div>
 	</div>
 
 	<div id="body">
