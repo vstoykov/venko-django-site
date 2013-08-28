@@ -20,6 +20,8 @@
 	{% endif %}
 	{% block js %}{% endblock %}
 	{% block extra_head %}{% endblock %}
+	{% block ga %}
+	{% if not debug %}
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
 		_gaq.push(['_setAccount', 'UA-22285007-1']);
@@ -30,6 +32,8 @@
 			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 		})();
 	</script>
+	{% endif %}
+	{% endblock %}
 </head>
 <body>
 	<div id="header" class="shadow">

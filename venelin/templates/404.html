@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 
 {% block title %}Заявеният адрес не може да бъде намерен {% endblock %}
+{% block seo_tags %}
+	<meta name="robots" content="noindex, follow">
+{% endblock %}
+{% block ga %}{% endblock %}
 
 {% block main_content %}
 	<div class="article">
