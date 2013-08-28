@@ -3,7 +3,10 @@
 *.sock
 *.geany
 *.sublime*
+*.e4p
+*.eric4project
 site.db
 settings_local.py
+/virtenv
 /static/*
 /media/*
