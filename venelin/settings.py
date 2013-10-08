@@ -146,6 +146,7 @@ TINYMCE_DEFAULT_CONFIG = {
 
     'content_css': "%scss/style.css" % STATIC_URL,
     'preformatted': True,
+    'relative_urls': False,
 
 }
 TINYMCE_SPELLCHECKER = False
