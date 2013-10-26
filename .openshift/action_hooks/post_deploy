@@ -3,6 +3,3 @@
 # is deployed and started.  This script gets executed directly, so 
 # it could be python, php, ruby, etc.
 echo "Execute 'post_deploy' script"
-
-echo "Link static folders"
-ln -s ${OPENSHIFT_DATA_DIR}static ${OPENSHIFT_REPO_DIR}wsgi/static
