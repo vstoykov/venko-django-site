@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.views import redirect_to_login
-from django.core.xheaders import populate_xheaders
 from django.contrib.sites.models import get_current_site
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.flatpages.views import DEFAULT_TEMPLATE
@@ -61,5 +60,4 @@ def render_flatpage(request, f, extra_context=None):
     })
 
     response = render(request, templates, context)
-    populate_xheaders(request, response, FlatPage, f.id)
     return response
