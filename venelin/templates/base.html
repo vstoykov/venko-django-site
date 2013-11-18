@@ -54,8 +54,11 @@
 	</div>
 
 	<div id="body">
-		<div class="left_column">
-			{% block left_column %}
+		<div class="main_content">
+			{% block main_content %}{% endblock %}
+		</div>
+		<div class="sidebar">
+			{% block sidebar %}
 				<div class="article">
 					<h2 class="header">Любим цитат</h2>
                     <p><q>Поражение не съществува, докато човек не се признае за победен!</q></p>
@@ -76,9 +79,6 @@
 					<!-- Facebook Badge END -->
 				</div>
 			{% endblock %}
-		</div>
-		<div class="main_content">
-			{% block main_content %}{% endblock %}
 		</div>
 	</div>
 	<div id="footer">

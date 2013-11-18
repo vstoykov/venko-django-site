@@ -159,27 +159,27 @@ h1 {
     text-align: center;
 }
 
-.left_column, .main_content, {
+.sidebar, .main_content, {
     position:relative;
     padding: 0px;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
 }
-.left_column {
+.sidebar {
     width: 180px;
-    float: left;
+    float: right;
     margin-right: 10px;
 }
 .main_content {
     margin-bottom: 10px;
-    float: right;
+    float: left;
     /*color:black;*/
     min-height: 300px;
     width: 700px;
 }
 
-.left_column .article {
+.sidebar .article {
     background-color: #AAA;
     padding: 5px;
     margin: 0px 0px 10px;
@@ -219,7 +219,7 @@ h1 {
     border-bottom-right-radius: 0px;
 }
 
-.left_column .article p {padding:5px; text-indent: 20px;}
+.sidebar .article p {padding:5px; text-indent: 20px;}
 
 .mceContentBody p,
 .main_content .article p {margin: 5px 10px; text-indent: 20px;}
