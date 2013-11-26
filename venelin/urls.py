@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     (r'^links/', include('links.urls')),
     (r'^gallery/', include('gallery.urls')),
     (r'^highlighter/', include('syntaxhighlighter.urls')),
+    (r'^search/', 'django.shortcuts.render', {'template_name': 'search.html'}),
 
     (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
     (r'^robots\.txt$', 'django.shortcuts.render', {'template_name': 'robots.txt', 'content_type': 'text/plain; charset=utf-8'}),
