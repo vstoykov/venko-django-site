@@ -144,7 +144,7 @@ aside > .box > header {
 	font-size: 15px;
 	font-weight: bold;
 	margin: 0px;
-	padding: 0px 20px;
+	padding: 0px 15px;
 }
 #main-menu li a:hover {
 	text-decoration: none;
@@ -342,5 +342,6 @@ a.rss img {float: left;}
 a.rss span { display: block; padding-top: 10px; font-size: 12px;}
 
 .g-plusone-holder {float: right; position: relative; top: -8px;}
-#google_translate_element {float: right; position: relative; top: 5px;}
+#google_translate_element {float: right; position: relative; top: 5px; margin-right: 5px;}
+.search {float: right; position: relative; top: 5px;}
 .gsc-control-cse.gsc-control-cse-bg {min-height: 300px; background-color: #EEE;}

@@ -44,6 +44,7 @@
 <body>
 	<header class="gradient">
 		<div class="wrapper">
+			<form action="/search/" class="search"><input type="text" name="q" value="{{ request.GET.q }}" placeholder="Въведи ключова дума"><button type="submit">Търси</button></form>
 			<div id="google_translate_element"></div>
 			<nav id="main-menu">
 				<ul>
