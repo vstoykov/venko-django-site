@@ -7,6 +7,20 @@
     <meta name="description" content="Личната страница на Венелин Стойков - {{ flatpage.title }}"/>
 {% endblock %}
 
-{% block main_content %}
-    {{ flatpage.content }}
+{% block breadcrumb %}
+	{{ block.super }}
+	<li><a href="{{ request.path }}">{{ flatpage.title }}</a></li>
+{% endblock %}
+
+
+{% block header %}
+	{{ block.super }}
+	<h1>{{ flatpage.title }}</h1>
+{% endblock %}
+
+{% block content %}
+	{{ block.super }}
+	<article class="flatpage">
+		{{ flatpage.content }}
+	</article>
 {% endblock %}

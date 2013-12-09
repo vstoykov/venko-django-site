@@ -6,21 +6,29 @@
 	<meta name="description" content="{% if category %}{{ category }} - категория от блога{% else %}Блогът{% endif %} на Венелин Стойков. Това е място за споделяне на моя опит от различни сфери на моите интереси."/>
 {% endblock %}
 
+{% block header %}
+	{{ block.super }}
+	{% if category %}<h1><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></h1>{% endif %}
+{% endblock %}
 
-{% block blog_content %}
-	{% if category %}<a href="{% url 'my_blog' %}">Виж всички постове</a><hr/>{% endif %}
-	<dl class="blog">
-		{% for entry in entries %}
-			<dt {% if not forloop.first %}class="border_t"{% endif %}><a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a><br/><small><i>Публикувано на {{ entry.created }}</i></small></dt>
-			<dd>
-				{{ entry.content|safe|truncatewords_html:100 }}
-				<a href="{{ entry.get_absolute_url }}#disqus_thread">Comments</a>
-			</dd>
-		{% empty %}
-			<dt>Няма статии в тази категория</dt><dd></dd>
-		{% endfor %}
-	</dl>
+{% block content %}
+	{{ block.super }}
+	{% for entry in entries %}
+		<article>
+			<header>
+				<h2><a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a></h2>
+				<em>Публикувано на <time datetime="{{ entry.created|date:'c' }}">{{ entry.created }}</time></em>
+			</header>
+			{{ entry.content|safe|truncatewords_html:100 }}
+			<a href="{{ entry.get_absolute_url }}#disqus_thread">Comments</a>
+		</article>
+	{% empty %}
+		<p>Няма статии в тази категория</p>
+	{% endfor %}
+{% endblock %}
+
+{% block extra_js %}
+	{{ block.super }}
 	{% load disqus_tags %}
 	{% disqus_num_replies %}
 {% endblock %}
-

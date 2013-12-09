@@ -10,17 +10,17 @@
 {% block extra_js %}
 	{{ block.super }}
 	<script type="text/javascript">
-		$(function(){ $(".gallery li img").addClass('shadow'); });
+		$(function(){ $(".gallery figure img").addClass('shadow'); });
 	</script>
 {% endblock %}
 
-{% block main_content %}
-	<div id="gallery">
-		<div class="article">
-			<h2 class="header">Галерия {% if gallery %} &gt; {{ gallery.title }}{% endif %}</h2>
-			<div class="content">
-				{% block content %}{% endblock %}
-			</div>
-		</div>
-	</div>
+{% block breadcrumb %}
+	{{ block.super }}
+	<li><a href="/gallery/">Галерия</a></li>
+	{% if gallery %}<li><a href="{{ gallery.get_absolute_url }}">{{ gallery }}</a></li>{% endif %}
+{% endblock %}
+
+{% block header %}
+	{{ block.super }}
+	<h1>{{ gallery.title|default:"Галерия" }}</h1>
 {% endblock %}
