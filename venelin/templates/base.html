@@ -48,7 +48,7 @@
 			<div id="google_translate_element"></div>
 			<nav id="main-menu">
 				<ul>
-					<li {% if "/" == request.path %}class="current"{% endif %}><a href="/">Начало</a></li>
+					<li><a href="/"><span class="icon-home"></span></a></li>
 					<li {% if "/blog/" in request.path %}class="current"{% endif %}><a href="/blog/">Статии</a></li>
 					<li {% if "/gallery/" in request.path %}class="current"{% endif %}><a href="/gallery/">Галерия</a></li>
 					<li {% if "/links/" == request.path %}class="current"{% endif %}><a href="/links/">Връзки</a></li>
