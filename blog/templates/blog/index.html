@@ -17,7 +17,7 @@
 		<article>
 			<header>
 				<h2><a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a></h2>
-				<em>Публикувано на <time datetime="{{ entry.created|date:'c' }}">{{ entry.created }}</time></em>
+				<em>Публикувано на <time datetime="{{ entry.created|date:'c' }}">{{ entry.created|date:'j F Y' }}</time></em>
 			</header>
 			{{ entry.content|safe|truncatewords_html:100 }}
 			<a href="{{ entry.get_absolute_url }}#disqus_thread">Comments</a>
