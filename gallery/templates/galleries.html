@@ -5,7 +5,7 @@
 	<section class="gallery">
 		{% for gallery in galleries %}
 			<figure>
-				<a href="{% url 'gallery' gallery.slug %}" name="{{ gallery.slug }}">
+				<a href="{{ gallery.get_absolute_url }}" name="{{ gallery.slug }}">
 					<span class="thumb-holder"><img src="{{ gallery.get_thumbnail_url }}" alt="{{ gallery.title }}" /></span>
 					<figcaption>{{ gallery.title }}</figcaption>
 				</a>

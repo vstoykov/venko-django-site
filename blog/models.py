@@ -41,7 +41,7 @@ class Category(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('my_blog_by_cat', (), {'category': self.slug})
+        return ('blog:category', (), {'category': self.slug})
 
 
 class EntryManager(models.Manager):
@@ -85,7 +85,7 @@ class Entry(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('my_blog_entry', [], {'category': self.category.slug, 'entry': self.slug})
+        return ('blog:entry', [], {'category': self.category.slug, 'entry': self.slug})
 
     def get_identifier(self):
         """
