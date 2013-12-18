@@ -23,6 +23,7 @@ body:after {
 }
 
 h1 {
+	line-height: 2em;
 	font-size: 2em;
 	color: #007425;
 	margin: 0px auto;
@@ -198,13 +199,15 @@ aside > .box > header {
 }
 
 q {font-style: italic;}
-pre {
+pre, code {
 	border: 1px solid #DEDEDE;
 	background: #F8F8FF;
+	font-family: "Lucida Console", Monaco, monospace;
+}
+pre {
 	padding: 10px;
 	margin: 10px;
 	overflow-x: auto;
-	font-family: "Lucida Console", Monaco, monospace;
 }
 pre code {background: #F8F8FF !important;}
 .gist pre {max-width: none;}
@@ -216,6 +219,7 @@ pre code {background: #F8F8FF !important;}
 .center {text-align: center; text-indent: 0px !important;}
 .justify {text-align: justify;}
 .content {margin: 0px; padding: 10px; min-height: 600px;}
+.content p {line-height: 20px;}
 .holder {position:relative;}
 .flr {float: right;}
 .clearfix {clear: both;}
