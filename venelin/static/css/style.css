@@ -6,7 +6,8 @@ html {
 }
 body {
 	background-color: #F0F0F0;
-	background-image: url(../img/background.png); 
+	background-image: url(../img/background.png);
+	background-attachment: fixed;
 	color: #303030;
 	font-family: 'Ubuntu', sans-serif;
 	font-size: 14px;
@@ -94,6 +95,17 @@ body > .wrapper > header {
 	height: 0;
 }
 
+.row-wrapper > section {
+	width: 75%;
+	float: left;
+}
+
+.row-wrapper > aside {
+	float: right;
+	width: 20%;
+	margin-top: 20px;
+}
+
 @media all and (max-width: 1000px) {
 	.row-wrapper > section {
 		width: 90%;
@@ -102,19 +114,6 @@ body > .wrapper > header {
 
 	.row-wrapper > aside {
 		display: none;
-	}
-}
-
-@media all and (min-width: 1000px) {
-	.row-wrapper > section {
-		width: 75%;
-		float: left;
-	}
-
-	.row-wrapper > aside {
-		float: right;
-		width: 20%;
-		margin-top: 20px;
 	}
 }
 
