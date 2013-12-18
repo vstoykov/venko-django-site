@@ -16,7 +16,7 @@
 
 {% block header %}
 	{{ block.super }}
-	<h1><a href="{{ entry.get_absolute_url }}" title="{{ entry.title }}">{{ entry.title }}</a></h1>
+	<h1>{{ entry.title }}</h1>
 	<em>Публикувано на <time datetime="{{ entry.created|date:'c' }}">{{ entry.created|date:'j F Y' }}</time></em>
 	<div class="g-plusone-holder"><div class="g-plusone"></div></div>
 {% endblock %}
