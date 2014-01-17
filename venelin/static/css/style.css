@@ -24,11 +24,11 @@ body:after {
 }
 
 h1 {
-	line-height: 2em;
+	line-height: 1.2em;
 	font-size: 2em;
 	color: #007425;
 	margin: 0px auto;
-	padding: 0 0 8px 0;
+	padding: 0 0 15px 0;
 	text-align: center;
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.9);
 }
@@ -95,17 +95,23 @@ body > .wrapper > header {
 .row-wrapper > section {
 	width: 75%;
 	float: left;
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .row-wrapper > aside {
 	float: right;
 	width: 20%;
 	margin-top: 20px;
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 @media all and (max-width: 1000px) {
 	.row-wrapper > section {
-		width: 98%;
+		width: 100%;
 		float: none;
 	}
 
@@ -303,7 +309,7 @@ a.rss {display: block; height: 64px;}
 a.rss img {float: left;}
 a.rss span { display: block; padding-top: 10px; font-size: 12px;}
 
-.g-plusone-holder {float: right; position: relative; top: -8px;}
+.g-plusone-holder {float: right; position: relative; top: -3px;}
 #google_translate_element {min-width: 150px; min-height: 23px; float: right; position: relative; top: 5px; margin-right: 5px;}
 .search {float: right; position: relative; top: 5px;}
 .search > input[type=text] {width: 20ex;}
