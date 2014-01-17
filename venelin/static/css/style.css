@@ -108,7 +108,7 @@ body > .wrapper > header {
 
 @media all and (max-width: 1000px) {
 	.row-wrapper > section {
-		width: 90%;
+		width: 98%;
 		float: none;
 	}
 
@@ -231,7 +231,7 @@ pre code {background: #F8F8FF !important;}
 .center {text-align: center; text-indent: 0px !important;}
 .justify {text-align: justify;}
 .content {margin: 0px; padding: 10px; min-height: 600px;}
-.content p {line-height: 20px;}
+.content p {line-height: 20px; text-indent: 20px; text-align: justify;}
 .holder {position:relative;}
 .flr {float: right;}
 .clearfix {clear: both;}
