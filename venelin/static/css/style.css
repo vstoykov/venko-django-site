@@ -142,21 +142,34 @@ aside > .box > header {
 	border-radius: 5px;
 }
 
+
+#main-menu:after {
+	clear: both;
+	display: block;
+	content: " ";
+}
+
+.site-logo {
+	float: left;
+	margin: 10px 10px 0 10px;
+}
+
+.site-logo img {
+	width: 165px;
+}
+
 #main-menu ul {
-	display: inline-block;
+	float: left;
 	padding: 0;
-	margin: 0;
+	margin: 10px;
 }
 #main-menu ul li {
 	display: inline-block;
 	height: 32px;
 	margin: 1px;
 }
-#main-menu li.current {
-	background-color:#999;
-	background-image:url(../img/menu_button_down.gif);
-	margin-left: 0px;
-	margin-right: 0px;
+#main-menu li.current a {
+	color: #9A9A9A;
 }
 #main-menu li a {
 	display: inline-block;
@@ -294,7 +307,7 @@ a.rss img {float: left;}
 a.rss span { display: block; padding-top: 10px; font-size: 12px;}
 
 .g-plusone-holder {float: right; position: relative; top: -8px;}
-#google_translate_element {float: right; position: relative; top: 5px; margin-right: 5px;}
+#google_translate_element {min-width: 150px; min-height: 23px; float: right; position: relative; top: 5px; margin-right: 5px;}
 .search {float: right; position: relative; top: 5px;}
 .search > input[type=text] {width: 20ex;}
 .gsc-control-cse.gsc-control-cse-bg {
