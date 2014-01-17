@@ -1,11 +1,11 @@
-<dl class="blog">
 {% for entry in latest %}
-	<dt><a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a></dt>
-	<dd>{{ entry.content|safe|truncatewords_html:50 }}</dd>
+	<article class="blog">
+		<header><a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a></header>
+		{{ entry.content|safe|truncatewords_html:50 }}
+	</article>
 {% empty %}
-	<dt>Няма статии</dt><dd></dd>
+	<p>Няма статии</p>
 {% endfor %}
-</dl>
 {% if show_more_link %}
-	<p><a href="{% url 'my_blog' %}">Oще статии...</a></p>
+	<p><a href="{% url 'blog:index' %}">Oще статии...</a></p>
 {% endif %}

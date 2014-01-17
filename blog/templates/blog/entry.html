@@ -14,33 +14,35 @@
 	<link rel="image_src" href="{% static 'img/RSS_Icon.png' %}">
 {% endblock %}
 
-{% block extra_js %}
-	{{block.super}}
-	{% disqus_dev %}
-	<script type="text/javascript">
-		var disqus_identifer = "{{entry.get_identifier}}";
-		var disqus_title = "{{entry.title|escape}}";
-		var disqus_url = "{{request.build_absolute_uri}}";
-    </script>
-	<script type="text/javascript">
-      window.___gcfg = {lang: 'bg'};
-
-      (function() {
-        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-        po.src = 'https://apis.google.com/js/plusone.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-      })();
-    </script>
+{% block header %}
+	{{ block.super }}
+	<h1>{{ entry.title }}</h1>
+	<em>Публикувано на <time datetime="{{ entry.created|date:'c' }}">{{ entry.created|date:'j F Y' }}</time></em>
+	<div class="g-plusone-holder"><div class="g-plusone"></div></div>
 {% endblock %}
 
-{% block blog_content %}
-    <a href="{{ entry.category.get_absolute_url }}">Виж всички постове от {{ entry.category.title }}</a>
-    <div class="g-plusone-holder"><div class="g-plusone"></div></div>
-    <hr class="clearfix"/>
-	<h2><a href="{{ entry.get_absolute_url }}" title="{{ entry.title }}">{{ entry.title }}</a></h2>
-	{{entry.content|safe}}
-	<br/>
-	<p><small><i>Публикувано на {{ entry.created }}</i></small></p>
-	<hr/>
-    {% disqus_show_comments %}
+{% block content %}
+	{{ block.super }}
+	<article>
+		{{ entry.content|safe }}
+	</article>
+	{% disqus_show_comments %}
+{% endblock %}
+
+{% block extra_js %}
+	{{ block.super }}
+	{% disqus_dev %}
+	<script type="text/javascript">
+		var disqus_identifer = "{{ entry.get_identifier }}";
+		var disqus_title = "{{ entry.title|escape }}";
+		var disqus_url = "{{ request.build_absolute_uri }}";
+	</script>
+	<script type="text/javascript">
+	  window.___gcfg = {lang: '{{ LANGUAGE_CODE }}'};
+	  (function() {
+		var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+		po.src = 'https://apis.google.com/js/plusone.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	  })();
+	</script>
 {% endblock %}

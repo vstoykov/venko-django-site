@@ -6,19 +6,15 @@
 	<meta name="description" content="Личната интернет страница на Венелин Стойков. Това е място където ще записвам различни интересни неща в сферата на IT областта."/>
 {% endblock %}
 
-{% block main_content %}
-<div id="home">
-	<div class="article">
-		<h2 class="header">{{ flatpage.title }}</h2>
-		<div class="content">
-			{{ flatpage.content }}
-		</div>
-	</div>
-	<div class="article">
-		<h2 class="header">Последни статии</h2>
-		<div class="content">
-			{% latest_entries 4 %}
-		</div>
-	</div>
-</div>
+{% block content %}
+	<header><h2>Последни статии</h2></header>
+	{% latest_entries 4 %}
+{% endblock %}
+
+
+{% block body %}
+	<header>
+		{{ flatpage.content }}
+	</header>
+	{{ block.super }}
 {% endblock %}

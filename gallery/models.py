@@ -40,7 +40,7 @@ class Gallery(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('gallery', (self.slug,), {})
+        return ('gallery:gallery', (self.slug,), {})
 
     def get_thumbnail_url(self):
         try:
@@ -83,7 +83,7 @@ class Picture(models.Model):
     def save(self, *args, **kwargs):
         """
         Here we do the magic of creating a thumbnail automaticaly, when new picture are set.
-        """ 
+        """
         if not (self.pk or self.title):
             self.title = self.image.name.replace('_', ' ')
         super(Picture, self).save(*args, **kwargs)

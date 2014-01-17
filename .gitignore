@@ -10,3 +10,5 @@ settings_local.py
 /virtenv
 /static/*
 /media/*
+.project
+.pydevproject

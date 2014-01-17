@@ -1,16 +1,17 @@
 {% extends "gallery_base.html" %}
 
 {% block content %}
-	<dir class="gallery">
+	{{ block.super }}
+	<section class="gallery">
 		{% for gallery in galleries %}
-			<li>
-				<a href="{% url 'gallery' gallery.slug %}" name="{{ gallery.slug }}">
+			<figure>
+				<a href="{{ gallery.get_absolute_url }}" name="{{ gallery.slug }}">
 					<span class="thumb-holder"><img src="{{ gallery.get_thumbnail_url }}" alt="{{ gallery.title }}" /></span>
-					<span>{{ gallery.title }}</span>
+					<figcaption>{{ gallery.title }}</figcaption>
 				</a>
-			</li>
+			</figure>
 		{% empty %}
-			<li>Няма галерии</li>
+			<p>Няма галерии</p>
 		{% endfor %}
-	</dir>
+	</section>
 {% endblock %}

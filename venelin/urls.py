@@ -13,9 +13,9 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     (r'^tinymce/', include('tinymce.urls')),
 
-    (r'^blog/', include('blog.urls')),
-    (r'^links/', include('links.urls')),
-    (r'^gallery/', include('gallery.urls')),
+    (r'^blog/', include('blog.urls', namespace='blog')),
+    (r'^links/', include('links.urls', namespace='links')),
+    (r'^gallery/', include('gallery.urls', namespace='gallery')),
     (r'^highlighter/', include('syntaxhighlighter.urls')),
     (r'^search/', 'django.shortcuts.render', {'template_name': 'search.html'}),
 
