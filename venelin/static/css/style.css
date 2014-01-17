@@ -315,9 +315,12 @@ a.rss span { display: block; padding-top: 10px; font-size: 12px;}
 .search > input[type=text] {width: 20ex;}
 .gsc-control-cse.gsc-control-cse-bg {
 	min-height: 300px;
-	background-color: #F0F0F0;
-	background-image: url(../img/background.png);
+	background: transparent;
 	border: none;
+}
+.gsc-control-cse .gsc-webResult.gsc-result,
+.gsc-control-cse .gsc-results .gsc-imageResult {
+	background: transparent;
 }
 
 .icon-home {
