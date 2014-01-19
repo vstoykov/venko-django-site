@@ -102,7 +102,7 @@ body > .wrapper > header {
 
 .row-wrapper > aside {
 	float: right;
-	width: 20%;
+	width: 22%;
 	margin-top: 20px;
 	-webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -110,6 +110,12 @@ body > .wrapper > header {
 }
 
 @media all and (max-width: 1000px) {
+	.row-wrapper > aside {
+		width: 23%;
+	}
+}
+
+@media all and (max-width: 800px) {
 	.row-wrapper > section {
 		width: 100%;
 		float: none;
