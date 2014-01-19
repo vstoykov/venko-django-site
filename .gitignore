@@ -5,10 +5,11 @@
 *.sublime*
 *.e4p
 *.eric4project
+*.anjuta*
+.project
+.pydevproject
 site.db
 settings_local.py
 /virtenv
 /static/*
 /media/*
-.project
-.pydevproject
