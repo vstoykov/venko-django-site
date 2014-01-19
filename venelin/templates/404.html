@@ -1,17 +1,22 @@
 {% extends "base.html" %}
 
 {% block title %}Заявеният адрес не може да бъде намерен {% endblock %}
+
 {% block seo_tags %}
 	<meta name="robots" content="noindex, follow">
 {% endblock %}
+
 {% block ga %}{% endblock %}
 
-{% block main_content %}
-	<div class="article">
-		<h2 class="header">Грешка 404</h2>
-		<div class="content">
-			<h3>Заявеният адрес не може да бъде намерен.</h3>
-			<p> За сметка на това може да разгледате информация <a href="/about/">за мен</a> или да разгледате <a href="/gallery/">галерията</a>, или да прочетете нещо от <a href="/blog/">моя блог</a>. </p>
-		</div>
-	</div>
+{% block header %}
+	{{ block.super }}
+	<h1>Грешка 404</h1>
+{% endblock %}
+
+{% block content %}
+	{{ block.super }}
+	<article>
+		<h3>Заявеният адрес не може да бъде намерен.</h3>
+		<p> За сметка на това може да разгледате информация <a href="/about/">за мен</a> или да разгледате <a href="/gallery/">галерията</a>, или да прочетете нещо от <a href="/blog/">моя блог</a>. </p>
+	</article>
 {% endblock %}

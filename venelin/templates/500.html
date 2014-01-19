@@ -1,98 +1,80 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="bg-BG" xml:lang="bg-BG" xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="{{ LANGUAGE_CODE }}" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="{{ LANGUAGE_CODE }}" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="{{ LANGUAGE_CODE }}" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="{{ LANGUAGE_CODE }}" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="bg" class="no-js"> <!--<![endif]-->
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-	<meta name="author" content="Venelin Stoykov"/>
-	<meta name="google-site-verification" content="HEaaQ5lv83-FYJUz9g5WuIUjISZZSrCs6fcOkAa5__8" />
+	<meta charset="utf-8">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Venelin Stoykov">
+	<meta name="google-site-verification" content="HEaaQ5lv83-FYJUz9g5WuIUjISZZSrCs6fcOkAa5__8">
+	<meta name="google-translate-customization" content="b257c51f08a62a8b-88abd832c2f67adf-g9d96410b7541075b-11">
+	<meta name="robots" content="all">
 	<title>Грешка | Венелин Стойков</title>
-	<meta name="robots" content="noindex, follow">
-	<link rel="shortcut icon" href="/static/favicon.ico"/>
-	<link rel="alternate" type="application/rss+xml" title="Последни статии от блога на Венелин Стойков" href="/blog/feed/" />
-	<link rel="stylesheet" type="text/css" href="/static/css/style.css?v=4" media="all"/>
-	<link rel="stylesheet" type="text/css" href="/static/css/blue_style.css" media="all"/>
 
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
-
+	<link rel="shortcut icon" href="/static/favicon.ico">
+	<script type="text/javascript" src="/static/js/modernizr.custom.07045.js"></script>
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu&amp;subset=latin,cyrillic,cyrillic-ext" media="all">
+	<link rel="stylesheet" type="text/css" href="/static/css/style.css" media="all">
 </head>
 <body>
-	<div id="header" class="shadow">
-		<div id="header_logo">
-			<h1>Личната страница на Венелин Стойков</h1>
+	<header class="gradient">
+		<div class="wrapper">
+			<form action="/search/" class="search"><input type="text" name="q" placeholder="Въведи ключова дума"><button type="submit">Търси</button></form>
+			<div id="google_translate_element"></div>
+			<a href="/" class="site-logo" title="Venelin Stoykov"><img src="/static/img/logo.png" alt="Venelin Stoykov"></a>
+			<nav id="main-menu">
+				<ul>
+					<li><a href="/"><span class="icon-home"></span></a></li>
+					<li><a href="/blog/">Статии</a></li>
+					<li><a href="/gallery/">Галерия</a></li>
+					<li><a href="/links/">Връзки</a></li>
+					<li><a href="/about/">За Мен</a></li>
+					<li><a href="/contacts/">Контакти</a></li>
+				</ul>
+			</nav>
 		</div>
-		<div id="main_menu">
-			<ul>
-				<li><a href="/"><span>Начало</span></a></li>
-				<li><a href="/blog/"><span>Статии</span></a></li>
-				<li><a href="/gallery/"><span>Галерия</span></a></li>
-				<li><a href="/links/"><span>Връзки</span></a></li>
-				<li><a href="/about/"><span>За Мен</span></a></li>
-				<li><a href="/contacts/"><span>Контакти</span></a></li>
-			</ul>
-		</div>
-	</div>
-
-	<div id="body">
-		<div class="main_content">
-			<div class="article">
-				<h2 class="header">Грешка 500</h2>
-				<div class="content">
-					<h3>Нещо се обърка и страницата не може да бъде показана.</h3>
+	</header>
+	<div class="wrapper">
+		{% block body %}
+			<div class="row-wrapper">
+				<section class="content">
+					<header>
+						<nav class="breadcrumb">
+							<ul><li><a href="/">Начало</a></li></ul>
+						</nav>
+						<h1>Грешка 500</h1>
+					</header>
+					<hr class="clearfix"/>
+					<h2>Нещо се обърка и страницата не може да бъде показана.</h2>
 					<p> Ако искате може да пишете на <a href="mailto:doommaster@email.bg">doommaster@email.bg</a> за проблема. Или да продължите да разглеждате сайта. </p>
-				</div>
+				</section>
+				<aside class="sidebar">
+					{% block sidebar %}
+						<section class="box">
+							<header>Любим цитат</header>
+							<p><q>Поражение не съществува, докато човек не се признае за победен!</q></p>
+						</section>
+						<section class="box">
+							<header>Facebook Badge</header>
+							<!-- Facebook Badge START -->
+							<p class="center">
+								<a href="http://bg-bg.facebook.com/vstoykov" target="_TOP" title="инж. В.Стойков"><img src="http://badge.facebook.com/badge/1489354320.122.791619019.png" alt="Facebook Badge" width="120" style="border: 0px;"></a>
+							</p>
+							<!-- Facebook Badge END -->
+						</section>
+					{% endblock %}
+				</aside>
 			</div>
-		</div>
-		<div class="sidebar">
-
-			<div class="article">
-				<h2 class="header">Любим цитат</h2>
-				<p>
-					<q>
-						Поражение не съществува, докато човек не се признае за победен!
-					</q>
-				</p>
-			</div>
-			<div class="article">
-				<h2 class="header">Ubuntu</h2>
-				<p class="center">
-					<a href="http://ubuntucounter.geekosophical.net" title="The Ubuntu Counter Project - user number # 23784">
-						<img src="http://ubuntucounter.geekosophical.net/img/ubuntu-user2.php?user=23784" alt="The Ubuntu Counter Project - user number # 23784" width="120" />
-					</a>
-				</p>
-				<p class="center">
-					<a href="http://www.ubuntu.com/" rel="nofollow">
-						<img alt="Ubuntu 12.04 is here" border="0" height="120" src="http://www.ubuntu.com/countdown/banner.png" width="120" />
-					</a>
-				</p>
-			</div>
-			<div class="article">
-				<h2 class="header">Facebook Badge</h2>
-				<!-- Facebook Badge START -->
-				<p class="center">
-					<a href="http://bg-bg.facebook.com/vstoykov" target="_TOP" title="инж. В.Стойков">
-						<img src="http://badge.facebook.com/badge/1489354320.122.791619019.png" alt="Facebook Badge" width="120" style="border: 0px;" />
-					</a>
-				</p>
-				<!-- Facebook Badge END -->
-			</div>
-
-		</div>
+		{% endblock %}
 	</div>
-	<div id="footer">
-		<p class="django-powered">
-			<a href="http://www.djangoproject.com/">
-				<img src="https://www.djangoproject.com/m/img/badges/djangomade124x25.gif" border="0" alt="Made with Django." title="Made with Django." />
-			</a>
-		</p>
-		<p>
-			<a href="http://validator.w3.org/check?uri=referer">
-				<img src="http://www.w3.org/Icons/valid-xhtml10-blue.png" alt="Valid XHTML 1.0 Transitional" height="25" width="80" />
-			</a>
-		</p>
-		<p>
-			Уеб дизайн и разработка
-			<a href="/about/">Венелин Стойков</a>
-		</p>
-	</div>
+	<footer>
+		<div class="wrapper">
+			<p class="django-powered"><a href="http://www.djangoproject.com/"><img src="https://www.djangoproject.com/m/img/badges/djangomade124x25.gif" border="0" alt="Made with Django." title="Made with Django."></a></p>
+			<p>Уеб дизайн и разработка <a href="/about/">Венелин Стойков</a></p>
+		</div>
+	</footer>
 </body>
 </html>
