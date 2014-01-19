@@ -26,7 +26,6 @@
 	</style>
 	<![endif]-->
 	<script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-	{% block js %}{% endblock %}
 	{% block extra_head %}{% endblock %}
 	{% block ga %}
 		{% if not debug %}
@@ -110,6 +109,7 @@
 			<p>Уеб дизайн и разработка <a href="/about/">Венелин Стойков</a></p>
 		</div>
 	</footer>
+	{% block js %}{% endblock %}
 	{% block extra_js %}{% endblock %}
 	<!--[if (gt IE 9)|!(IE)]><!--> 
 	<script type="text/javascript">
