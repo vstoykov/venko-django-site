@@ -2,9 +2,8 @@
 import re
 import django.conf.global_settings as DEFAULT_SETTINGS
 from os import path
-here = lambda *x: path.join(path.abspath(path.dirname(__file__)), *x)
 
-PROJECT_DIR = here('../')
+PROJECT_DIR = path.abspath(path.join(path.dirname(__file__), '..'))
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
@@ -42,8 +41,8 @@ USE_L10N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-STATIC_ROOT = here('../static/')
-MEDIA_ROOT = here('../media/')
+STATIC_ROOT = path.join(PROJECT_DIR, 'static/')
+MEDIA_ROOT = path.join(PROJECT_DIR, 'media/')
 
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
