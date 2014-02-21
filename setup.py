@@ -19,8 +19,9 @@ setup(
         'django-imagekit>=3.0.3',
         'django-admin-tools',
         'pygments',
-        'gevent',
-        'dj-static',
+        'uWSGI>=2.0.0',
+        #'gevent',
+        #'dj-static',
         'psycopg2',
     ],
 )
