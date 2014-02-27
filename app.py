@@ -7,6 +7,8 @@ from django.conf import settings
 
 IP = os.environ.get('OPENSHIFT_PYTHON_IP', '0.0.0.0')
 PORT = int(os.environ.get('OPENSHIFT_PYTHON_PORT', 8080))
+SOCKET_IP = os.environ.get('OPENSHIFT_PYTHON_IP', '127.0.0.1')
+SOCKET_PORT = 8888
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
@@ -26,9 +28,10 @@ def run_simple_wsgi_server(app, ip='0.0.0.0', port=8080):
 
 def run_uwsgi_server(ip='0.0.0.0', port=8080):
     http_address = '%s:%s' % (ip, port)
+    socket_address = '%s:%s' % (SOCKET_IP, SOCKET_PORT)
     arguments = [
         'uwsgi',
-        '--socket', os.path.join(PROJECT_DIR, 'uwsgi.sock'),
+        '--socket', socket_address,
         '--http', http_address,
         '--chdir', PROJECT_DIR,
         '--wsgi-file', os.path.join(PROJECT_DIR, 'venelin/wsgi.py'),
