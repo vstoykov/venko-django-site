@@ -13,7 +13,7 @@ class EntriesFeed(Feed):
     description = "Всички статии от блога на Венелин Стойков"
 
     def items(self):
-        return Entry.objects.select_related('category').order_by('-created')
+        return Entry.objects.published().select_related('category').order_by('-created')
 
     def item_title(self, item):
         return item.title
