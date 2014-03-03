@@ -117,7 +117,6 @@ INSTALLED_APPS = (
     'south',
     'tinymce',
     'imagekit',
-    'disqus',
 
     'venelin',
     'pages',

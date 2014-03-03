@@ -15,7 +15,6 @@ setup(
         'South>=0.8.2',
         'django-extensions>=1.2.0',
         'django-tinymce>=1.5.2',
-        'django-disqus>=0.4.1',
         'django-imagekit>=3.0.3',
         'django-admin-tools',
         'pygments',

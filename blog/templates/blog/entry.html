@@ -1,6 +1,6 @@
 {% extends 'blog/base.html' %}
 {% load static %}
-{% load disqus_tags %}
+{% load blog_tags %}
 
 {% block title %}{{ entry.title }} | {{ entry.category }} | {{ block.super }}{% endblock %}
 
@@ -30,17 +30,20 @@
 	<article>
 		{{ entry.content|safe }}
 	</article>
-	{% disqus_show_comments %}
+	{% show_comments %}
 {% endblock %}
 
-{% block extra_js %}
-	{{ block.super }}
+{% block extra_head %}
 	{% disqus_dev %}
 	<script type="text/javascript">
 		var disqus_identifer = "{{ entry.get_identifier }}";
 		var disqus_title = "{{ entry.title|escape }}";
 		var disqus_url = "{{ request.build_absolute_uri }}";
 	</script>
+{% endblock %}
+
+{% block extra_js %}
+	{{ block.super }}
 	<script type="text/javascript">
 	  window.___gcfg = {lang: '{{ LANGUAGE_CODE }}'};
 	  (function() {
