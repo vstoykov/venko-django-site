@@ -14,7 +14,7 @@ def get_openshift_secret_token():
     if token is not None:
         return token
     elif (name is not None and uuid is not None):
-        return hashlib.sha256(name + '-' + uuid).hexdigest()
+        return hashlib.sha256((name + '-' + uuid).encode('utf-8')).hexdigest()
     return None
 
 
@@ -26,5 +26,5 @@ def openshift_secure(value):
     secret_token = get_openshift_secret_token()
 
     if secret_token:
-        return hashlib.sha256(secret_token + '-' + value).hexdigest()
+        return hashlib.sha256((secret_token + '-' + value).encode('utf-8')).hexdigest()
     return value
