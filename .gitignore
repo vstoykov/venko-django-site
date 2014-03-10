@@ -8,6 +8,8 @@
 *.anjuta*
 .project
 .pydevproject
+.idea
+.ropeproject
 site.db
 settings_local.py
 /virtenv
