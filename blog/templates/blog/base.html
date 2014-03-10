@@ -15,10 +15,10 @@
 	<script type="text/javascript">
 		hljs.tabReplace = '    ';
 		$(function() {
-		    $('pre').each(function(i, e) {
-		    	if(!$(e).parents('.gist').length)
-		    		hljs.highlightBlock(e);
-		    });
+			$('pre').each(function(i, e) {
+				if(!$(e).parents('.gist').length)
+					hljs.highlightBlock(e);
+			});
 		});
 	</script>
 {% endblock %}
