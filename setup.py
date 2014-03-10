@@ -16,11 +16,9 @@ setup(
         'django-extensions>=1.2.0',
         'django-tinymce>=1.5.2',
         'django-imagekit>=3.0.3',
-        'django-admin-tools',
+        'django_admin_bootstrapped',
         'pygments',
         'uWSGI>=2.0.0',
-        #'gevent',
-        #'dj-static',
         'psycopg2',
     ],
 )

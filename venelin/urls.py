@@ -8,7 +8,6 @@ from .sitemap import sitemaps
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'^admin_tools/', include('admin_tools.urls')),
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),
     (r'^tinymce/', include('tinymce.urls')),

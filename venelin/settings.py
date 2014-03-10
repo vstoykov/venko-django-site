@@ -97,10 +97,8 @@ ROOT_URLCONF = 'venelin.urls'
 WSGI_APPLICATION = 'venelin.wsgi.application'
 
 INSTALLED_APPS = (
-    'admin_tools',
-    'admin_tools.theming',
-    'admin_tools.menu',
-    'admin_tools.dashboard',
+    'django_admin_bootstrapped',
+    'django_admin_bootstrapped.bootstrap3',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
