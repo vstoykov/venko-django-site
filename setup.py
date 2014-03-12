@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='venelins_site',
-    version='1.0.1',
+    version='1.2.0',
     description='venelin.sytes.net',
     author='Venelin Stoykov',
     author_email='vkstoykov@gmail.com',
@@ -18,7 +18,7 @@ setup(
         'django-imagekit>=3.0.3',
         'django_admin_bootstrapped',
         'pygments',
-        'uWSGI>=2.0.0',
+        #'uWSGI>=2.0.0',
         'psycopg2',
     ],
 )

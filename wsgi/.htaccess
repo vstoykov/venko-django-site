@@ -1,0 +1,3 @@
+RewriteEngine On
+
+RewriteRule ^application/favicon.ico$ /static/favicon.ico [L]

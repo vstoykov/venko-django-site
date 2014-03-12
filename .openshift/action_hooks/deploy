@@ -22,3 +22,6 @@ $SYNC_DB
 
 echo "Executing '$COLLECTSTATIC'"
 $COLLECTSTATIC
+
+echo "Linkig media root inside static root"
+ln -s "${OPENSHIFT_DATA_DIR}media" "${OPENSHIFT_REPO_DIR}wsgi/static/media"
