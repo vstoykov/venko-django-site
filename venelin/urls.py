@@ -10,7 +10,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),
-    (r'^tinymce/', include('tinymce.urls')),
+    (r'^\.ckeditor/', include('ckeditor.urls')),
 
     (r'^blog/', include('blog.urls', namespace='blog')),
     (r'^links/', include('links.urls', namespace='links')),

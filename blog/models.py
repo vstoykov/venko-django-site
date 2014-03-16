@@ -3,7 +3,7 @@ from django.db.models import Count, Max
 from django.template.defaultfilters import striptags, truncatechars
 from django.utils.encoding import force_str, force_text
 
-from tinymce.models import HTMLField
+from ckeditor.fields import RichTextField
 
 
 class CategoryManager(models.Manager):
@@ -61,7 +61,7 @@ class Entry(models.Model):
     category = models.ForeignKey(Category, related_name='entries')
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, db_index=True)
-    content = HTMLField()
+    content = RichTextField()
 
     seo_keywords = models.CharField(max_length=128, blank=True, default='')
     seo_description = models.CharField(max_length=256, blank=True, default='')

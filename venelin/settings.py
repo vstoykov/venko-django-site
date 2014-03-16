@@ -113,7 +113,7 @@ INSTALLED_APPS = (
     'django.contrib.webdesign',
 
     'south',
-    'tinymce',
+    'ckeditor',
     'imagekit',
 
     'venelin',
@@ -126,28 +126,23 @@ INSTALLED_APPS = (
 
 INTERNAL_IPS = ('127.0.0.1',)
 
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_RESTRICT_BY_USER = True
 
-TINYMCE_DEFAULT_CONFIG = {
-    'plugins': "autolink,lists,style,table,save,emotions,iespell,inlinepopups,preview,media,searchreplace,contextmenu,paste,directionality,fullscreen,noneditable,xhtmlxtras",
-
-    'theme': "advanced",
-    'theme_advanced_toolbar_location': "top",
-    'theme_advanced_toolbar_align': "left",
-    'theme_advanced_statusbar_location': "bottom",
-    'theme_advanced_resizing': True,
-
-    'theme_advanced_buttons1': "save,newdocument,|,fullscreen,code,|,search,replace,|,styleselect,formatselect,fontselect,fontsizeselect,|,removeformat,cleanup,help,|,undo,redo,preview",
-    'theme_advanced_buttons2': "cut,copy,paste,pastetext,pasteword,|,bold,italic,underline,strikethrough,|,sub,sup,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,|,outdent,indent,blockquote,link,unlink,anchor,|,forecolor,backcolor",
-    'theme_advanced_buttons3': "tablecontrols,|,hr,charmap,emotions,iespell,media,image,|,cite,abbr,acronym,attribs,|,styleprops",
-    'theme_advanced_buttons4': "",
-
-    'content_css': "%scss/style.css" % STATIC_URL,
-    'preformatted': True,
-    'relative_urls': False,
-
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar_Full': [
+            ['Styles', 'Format', 'SpellChecker'], ['Undo', 'Redo'], ['TextColor', 'BGColor'],
+            ['Image', 'Flash', 'Table', 'HorizontalRule'], ['Smiley', 'SpecialChar'], '/',
+            ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord'], ['Bold', 'Italic', 'Underline', 'Strike'],
+            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink', 'Anchor'], ['Maximize'], ['Source'],
+        ],
+        'toolbar': 'Full',
+        'contentsCss': path.join(STATIC_URL, 'css/style.css'),
+    },
 }
-TINYMCE_SPELLCHECKER = False
-TINYMCE_COMPRESSOR = False
 
 CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 CACHE_MIDDLEWARE_SECONDS = 24 * 3600  # One day

@@ -14,7 +14,7 @@ setup(
         'Pillow>=2.1.0',
         'South>=0.8.2',
         'django-extensions>=1.2.0',
-        'django-tinymce>=1.5.2',
+        'django-ckeditor-updated==4.2.8',
         'django-imagekit>=3.0.3',
         'django_admin_bootstrapped',
         'pygments',
