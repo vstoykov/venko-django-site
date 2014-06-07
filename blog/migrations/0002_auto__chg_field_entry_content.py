@@ -9,7 +9,7 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         
         # Changing field 'Entry.content'
-        db.alter_column('blog_entry', 'content', self.gf('tinymce.models.HTMLField')())
+        db.alter_column('blog_entry', 'content', self.gf('ckeditor.fields.RichTextField')())
 
 
     def backwards(self, orm):
@@ -28,7 +28,7 @@ class Migration(SchemaMigration):
         'blog.entry': {
             'Meta': {'ordering': "('-created',)", 'unique_together': "(('category', 'slug'),)", 'object_name': 'Entry'},
             'category': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'entries'", 'to': "orm['blog.Category']"}),
-            'content': ('tinymce.models.HTMLField', [], {}),
+            'content': ('ckeditor.fields.RichTextField', [], {}),
             'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'modified': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
