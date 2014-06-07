@@ -24,4 +24,5 @@ echo "Executing '$COLLECTSTATIC'"
 $COLLECTSTATIC
 
 echo "Linkig media root inside static root"
+mkdir -p "${OPENSHIFT_DATA_DIR}media"
 ln -s "${OPENSHIFT_DATA_DIR}media" "${OPENSHIFT_REPO_DIR}wsgi/static/media"
