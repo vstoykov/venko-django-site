@@ -132,14 +132,18 @@ CKEDITOR_RESTRICT_BY_USER = True
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar_Full': [
-            ['Styles', 'Format', 'SpellChecker'], ['Undo', 'Redo'], ['TextColor', 'BGColor'],
-            ['Image', 'Flash', 'Table', 'HorizontalRule'], ['Smiley', 'SpecialChar'], '/',
-            ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord'], ['Bold', 'Italic', 'Underline', 'Strike'],
-            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-            ['Link', 'Unlink', 'Anchor'], ['Maximize'], ['Source'],
+        'toolbar': [
+            { 'name': 'styles', 'items': [ 'Styles', 'Format' ] },
+            { 'name': 'editing', 'groups': [ 'find', 'selection', 'spellchecker' ], 'items': [ 'Scayt' ] },
+            { 'name': 'clipboard', 'groups': [ 'clipboard', 'undo' ], 'items': [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
+            { 'name': 'tools', 'items': [ 'Maximize' ] },
+            { 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ], 'items': [ 'Source' ] },
+            '/',
+            { 'name': 'basicstyles', 'groups': [ 'basicstyles', 'cleanup' ], 'items': [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
+            { 'name': 'paragraph', 'groups': [ 'list', 'indent', 'blocks', 'align', 'bidi' ], 'items': [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },
+            { 'name': 'links', 'items': [ 'Link', 'Unlink', 'Anchor' ] },
+            { 'name': 'insert', 'items': [ 'Image', 'Table', 'HorizontalRule', 'SpecialChar' ] },
         ],
-        'toolbar': 'Full',
         'contentsCss': path.join(STATIC_URL, 'css/style.css'),
     },
 }
