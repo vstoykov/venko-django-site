@@ -1,14 +1,15 @@
 # Django settings for doommaster project.
 import re
-import django.conf.global_settings as DEFAULT_SETTINGS
 from os import path
+from django.conf import global_settings
 
-BASE_DIR = path.abspath(path.join(path.dirname(__file__), '..'))
-DEBUG = False
+BASE_DIR = path.abspath(path.join(path.dirname(__file__), '..', '..'))
+
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('Venelin Stoykov', 'vkstoykov@gmail.com'),
+    # ('Your Name', 'your_email@example.com'),
 )
 
 MANAGERS = ADMINS
@@ -51,8 +52,6 @@ MEDIA_ROOT = path.join(BASE_DIR, 'media/')
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
-
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
@@ -68,7 +67,7 @@ TEMPLATE_LOADERS = (
     #'django.template.loaders.eggs.Loader',
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     'django.core.context_processors.request',
 )
 
@@ -133,16 +132,16 @@ CKEDITOR_RESTRICT_BY_USER = True
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': [
-            { 'name': 'styles', 'items': [ 'Styles', 'Format' ] },
-            { 'name': 'editing', 'groups': [ 'find', 'selection', 'spellchecker' ], 'items': [ 'Scayt' ] },
-            { 'name': 'clipboard', 'groups': [ 'clipboard', 'undo' ], 'items': [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
-            { 'name': 'tools', 'items': [ 'Maximize' ] },
-            { 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ], 'items': [ 'Source' ] },
-            '/',
-            { 'name': 'basicstyles', 'groups': [ 'basicstyles', 'cleanup' ], 'items': [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
-            { 'name': 'paragraph', 'groups': [ 'list', 'indent', 'blocks', 'align', 'bidi' ], 'items': [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },
-            { 'name': 'links', 'items': [ 'Link', 'Unlink', 'Anchor' ] },
-            { 'name': 'insert', 'items': [ 'Image', 'Table', 'HorizontalRule', 'SpecialChar' ] },
+            {'name': 'styles', 'items': ['Styles', 'Format']},
+            {'name': 'editing', 'groups': ['find', 'selection', 'spellchecker'], 'items': ['Scayt']},
+            {'name': 'clipboard', 'groups': ['clipboard', 'undo'], 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
+            {'name': 'tools', 'items': ['Maximize']},
+            {'name': 'document', 'groups': ['mode', 'document', 'doctools'], 'items': ['Source']},
+            '',
+            {'name': 'basicstyles', 'groups': ['basicstyles', 'cleanup'], 'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
+            {'name': 'paragraph', 'groups': ['list', 'indent', 'blocks', 'align', 'bidi'], 'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote']},
+            {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
+            {'name': 'insert', 'items': ['Image', 'Table', 'HorizontalRule', 'SpecialChar']},
         ],
         'contentsCss': path.join(STATIC_URL, 'css/style.css'),
     },
@@ -152,7 +151,7 @@ CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 CACHE_MIDDLEWARE_SECONDS = 24 * 3600  # One day
 CACHE_MIDDLEWARE_ALIAS = 'pages'
 
-# On production LocMeme must be changed with Memcached
+# On production LocMem must be changed with Memcached
 # LocMem is fast but is not memory efficient
 # (does not share cached item between threads)
 CACHES = {
@@ -173,12 +172,6 @@ CACHES = {
         'TIMEOUT': 7 * 24 * 3600,  # One week
     },
 }
-
-try:
-    from settings_local import *
-except ImportError:
-    import sys
-    sys.exit("\033[1;31mCan not import settings_local\033[0m")
 
 
 try:
@@ -202,8 +195,3 @@ except ImportError:
     pass
 else:
     INSTALLED_APPS += ('django_uwsgi',)
-
-if not DEBUG:
-    TEMPLATE_LOADERS = (
-        ('django.template.loaders.cached.Loader', TEMPLATE_LOADERS),
-    )
