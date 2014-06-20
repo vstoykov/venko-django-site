@@ -19,8 +19,6 @@ ALLOWED_HOSTS = ['*']
 DEFAULT_FROM_EMAIL = 'webmaster@venelin.sytes.net'
 EMAIL_PORT = 1025
 
-DISQUS_WEBSITE_SHORTNAME = 'venelin'
-
 try:
     from .local import *
 except ImportError:
