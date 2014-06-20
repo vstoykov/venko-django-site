@@ -69,6 +69,7 @@ TEMPLATE_LOADERS = (
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     'django.core.context_processors.request',
+    'venelin.context_processors.google_analytics',
 )
 
 DISALLOWED_USER_AGENTS = (

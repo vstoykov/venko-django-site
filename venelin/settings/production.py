@@ -50,3 +50,5 @@ SERVER_EMAIL = DEFAULT_FROM_EMAIL = 'webmaster@venelin.sytes.net'
 SECRET_KEY = openshift_secure('qi!k%l+n@hs8l8%)t@j2bl6_jj_x2q-g^em=i!6m17(7x1^$9r')
 
 DISQUS_WEBSITE_SHORTNAME = 'venelin'
+
+GOOGLE_ANALYTICS_CODE = 'UA-22285007-1'
