@@ -2,7 +2,7 @@ Header unset Pragma
 FileETag None
 Header unset ETag
 
-<FilesMatch "\.(ico|jpg|jpeg|png|gif|js|css|swf|pdf|flv|mp3)$">
+<FilesMatch "(?i)\.(ico|jpg|jpeg|png|gif|js|css|swf|pdf|flv|mp3)$">
 <IfModule mod_expires.c>
  ExpiresActive on
  ExpiresDefault "access plus 14 days"
