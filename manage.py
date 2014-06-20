@@ -3,7 +3,7 @@ import os
 import sys
 
 if __name__ == "__main__":
-    ENV = os.environ.get("DJANGO_ENV", "dev")
+    ENV = os.getenv("DJANGO_ENV") or os.getenv("OPENSHIFT_APP_NAME") and "openshift" or "dev"
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "venelin.settings.%s" % ENV)
 
     from django.core.management import execute_from_command_line
