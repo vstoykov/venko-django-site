@@ -19,6 +19,7 @@ LANGUAGE_CHOICES = (
 
 LANGUAGE_CHOICES = sorted([(l[1][0], l[0]) for l in get_all_lexers()], key=lambda x: x[0])
 
+
 class HighlightForm(forms.Form):
     lexer = forms.ChoiceField(choices=LANGUAGE_CHOICES, required=True, initial='python')
     code = forms.CharField(widget=forms.Textarea(attrs={'cols': 80, 'rows': 30}), required=True)

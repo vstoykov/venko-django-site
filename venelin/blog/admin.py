@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from blog.models import Category, Entry
+from .models import Category, Entry
 from .forms import EntryAdminForm
 
 

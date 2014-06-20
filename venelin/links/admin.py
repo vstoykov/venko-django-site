@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from links.models import Category, Link
+from .models import Category, Link
 
 
 class LinkInline(admin.TabularInline):

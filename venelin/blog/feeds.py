@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.contrib.syndication.views import Feed
 from django.template.defaultfilters import truncatewords_html
 
-from blog.models import Entry
+from .models import Entry
 
 
 class EntriesFeed(Feed):

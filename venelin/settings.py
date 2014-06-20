@@ -117,11 +117,11 @@ INSTALLED_APPS = (
     'imagekit',
 
     'venelin',
-    'pages',
-    'links',
-    'blog',
-    'gallery',
-    'syntaxhighlighter',
+    'venelin.pages',
+    'venelin.links',
+    'venelin.blog',
+    'venelin.gallery',
+    'venelin.syntaxhighlighter',
 )
 
 INTERNAL_IPS = ('127.0.0.1',)

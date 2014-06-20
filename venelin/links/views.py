@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from links.models import Link
+from .models import Link
 
 
 def links(request, template="links.html"):

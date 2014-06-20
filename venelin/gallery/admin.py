@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from gallery.models import Gallery, Picture
+from .models import Gallery, Picture
 
 
 class PictureAdmin(admin.ModelAdmin):

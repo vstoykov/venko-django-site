@@ -3,7 +3,7 @@ from django.contrib.sites.models import Site
 from django.conf import settings
 from django.template import Library
 
-from blog.models import Entry
+from ...models import Entry
 
 register = Library()
 

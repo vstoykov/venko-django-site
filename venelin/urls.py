@@ -12,17 +12,17 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     (r'^\.ckeditor/', include('ckeditor.urls')),
 
-    (r'^blog/', include('blog.urls', namespace='blog')),
-    (r'^links/', include('links.urls', namespace='links')),
-    (r'^gallery/', include('gallery.urls', namespace='gallery')),
-    (r'^highlighter/', include('syntaxhighlighter.urls')),
+    (r'^blog/', include('venelin.blog.urls', namespace='blog')),
+    (r'^links/', include('venelin.links.urls', namespace='links')),
+    (r'^gallery/', include('venelin.gallery.urls', namespace='gallery')),
+    (r'^highlighter/', include('venelin.syntaxhighlighter.urls')),
     (r'^search/', 'django.shortcuts.render', {'template_name': 'search.html'}),
 
     (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
     (r'^robots\.txt$', 'django.shortcuts.render', {'template_name': 'robots.txt', 'content_type': 'text/plain; charset=utf-8'}),
     (r'^(?P<path>favicon\.ico)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 
-    (r'^', include('pages.urls')),
+    (r'^', include('venelin.pages.urls')),
 )
 
 if 'django_uwsgi' in settings.INSTALLED_APPS:

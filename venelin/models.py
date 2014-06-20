@@ -2,9 +2,10 @@ from django.core.cache import get_cache
 from django.dispatch import receiver
 from django.db.models.signals import post_save, m2m_changed, post_delete
 from django.contrib.flatpages.models import FlatPage
-from blog.models import Entry
-from gallery.models import Picture
-from links.models import Link
+
+from .blog.models import Entry
+from .gallery.models import Picture
+from .links.models import Link
 
 
 def get_pages_cache():

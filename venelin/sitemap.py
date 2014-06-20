@@ -1,7 +1,7 @@
 from django.contrib.sitemaps import FlatPageSitemap, GenericSitemap
 
-from blog.models import Entry, Category
-from gallery.models import Gallery
+from .blog.models import Entry, Category
+from .gallery.models import Gallery
 
 
 sitemaps = {
