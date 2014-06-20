@@ -11,9 +11,6 @@ COLLECTSTATIC="$MANAGE collectstatic --noinput"
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/rh/postgresql92/root/usr/lib64/
 
-echo "Copying settings_local..."
-cp "${OPENSHIFT_REPO_DIR}venelin/settings_openshift.py" "${OPENSHIFT_REPO_DIR}settings_local.py"
-
 echo "Activate enviroment"
 source $OPENSHIFT_HOMEDIR/python/virtenv/bin/activate
 
@@ -21,8 +18,10 @@ echo "Executing '$SYNC_DB'"
 $SYNC_DB
 
 echo "Executing '$COLLECTSTATIC'"
+mkdir -p "${OPENSHIFT_DATA_DIR}static"
+ln -s -f "${OPENSHIFT_DATA_DIR}static" "${OPENSHIFT_REPO_DIR}wsgi/static"
 $COLLECTSTATIC
 
 echo "Linkig media root inside static root"
 mkdir -p "${OPENSHIFT_DATA_DIR}media"
-ln -s "${OPENSHIFT_DATA_DIR}media" "${OPENSHIFT_REPO_DIR}wsgi/static/media"
+ln -s -f "${OPENSHIFT_DATA_DIR}media" "${OPENSHIFT_DATA_DIR}static/media"
