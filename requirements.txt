@@ -6,3 +6,4 @@ django-ckeditor-updated==4.4.0
 django-imagekit>=3.2.1
 django_admin_bootstrapped
 pygments
+appenlight-client==0.6.7

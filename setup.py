@@ -18,7 +18,7 @@ setup(
         'django-imagekit>=3.2.1',
         'django_admin_bootstrapped',
         'pygments',
-        #'uWSGI>=2.0.0',
+        'appenlight-client==0.6.7',
         'psycopg2',
     ],
 )

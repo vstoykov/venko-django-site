@@ -1,9 +1,10 @@
 # Django settings for doommaster project.
 import re
-from os import path
+import os
 from django.conf import global_settings
+import appenlight_client.client as e_client
 
-BASE_DIR = path.abspath(path.join(path.dirname(__file__), '..', '..'))
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -17,6 +18,7 @@ MANAGERS = ADMINS
 
 DISQUS_WEBSITE_SHORTNAME = 'venelin'
 
+APPENLIGHT = e_client.get_config() if os.getenv('APPENLIGHT_KEY') else {}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -45,8 +47,8 @@ USE_L10N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-STATIC_ROOT = path.join(BASE_DIR, 'static/')
-MEDIA_ROOT = path.join(BASE_DIR, 'media/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
@@ -80,6 +82,7 @@ DISALLOWED_USER_AGENTS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'appenlight_client.django_middleware.AppenlightMiddleware',
     'venelin.middleware.SQLPrintingMiddleware',
     'django.middleware.http.ConditionalGetMiddleware',
     'django.middleware.cache.UpdateCacheMiddleware',
@@ -147,7 +150,7 @@ CKEDITOR_CONFIGS = {
             {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
             {'name': 'insert', 'items': ['Image', 'Table', 'HorizontalRule', 'SpecialChar']},
         ],
-        'contentsCss': path.join(STATIC_URL, 'css/style.css'),
+        'contentsCss': os.path.join(STATIC_URL, 'css/style.css'),
     },
 }
 
