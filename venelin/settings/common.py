@@ -86,7 +86,6 @@ DISALLOWED_USER_AGENTS = (
 
 MIDDLEWARE_CLASSES = (
     'appenlight_client.django_middleware.AppenlightMiddleware',
-    'venelin.middleware.SQLPrintingMiddleware',
     'django.middleware.http.ConditionalGetMiddleware',
     'django.middleware.cache.UpdateCacheMiddleware',
     'venelin.middleware.MinifyHTMLMiddleware',
