@@ -77,7 +77,7 @@ TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
 )
 
 TEMPLATE_DIRS = (
-    os.pathjoin(BASE_DIR, 'venelin/templates'),
+    os.path.join(BASE_DIR, 'venelin/templates'),
 )
 
 DISALLOWED_USER_AGENTS = (
