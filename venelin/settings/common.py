@@ -47,8 +47,8 @@ USE_L10N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'wsgi/static/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'wsgi/media/')
 
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a

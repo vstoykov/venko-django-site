@@ -13,5 +13,5 @@
 site.db
 settings_local.py
 /virtenv
-/static/*
-/media/*
+/wsgi/static/*
+/wsgi/media/*
