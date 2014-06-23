@@ -124,6 +124,7 @@ INSTALLED_APPS = (
     'south',
     'ckeditor',
     'imagekit',
+    'django_extensions',
 
     'venelin',
     'venelin.pages',
@@ -182,15 +183,6 @@ CACHES = {
         'TIMEOUT': 7 * 24 * 3600,  # One week
     },
 }
-
-
-try:
-    __import__('django_extensions')
-except ImportError:
-    pass
-else:
-    INSTALLED_APPS += ('django_extensions',)
-
 
 try:
     __import__('uwsgi_admin')
