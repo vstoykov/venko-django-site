@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-import hashlib, os
+import hashlib
+import os
 
 
 def get_openshift_secret_token():
@@ -9,8 +10,8 @@ def get_openshift_secret_token():
 
     """
     token = os.getenv('OPENSHIFT_SECRET_TOKEN')
-    name  = os.getenv('OPENSHIFT_APP_NAME')
-    uuid  = os.getenv('OPENSHIFT_APP_UUID')
+    name = os.getenv('OPENSHIFT_APP_NAME')
+    uuid = os.getenv('OPENSHIFT_APP_UUID')
     if token is not None:
         return token
     elif (name is not None and uuid is not None):
