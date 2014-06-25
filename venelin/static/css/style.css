@@ -170,26 +170,26 @@ aside > .box > header {
 #main-menu ul {
 	float: left;
 	padding: 0;
-	margin: 10px;
+	margin: 10px 10px 5px 30px;
 }
 #main-menu ul li {
 	display: inline-block;
 	height: 32px;
 	margin: 1px;
 }
+#main-menu li+li {
+	padding-left: 30px;
+}
 #main-menu li.current a {
 	color: #9A9A9A;
 }
 #main-menu li a {
-	display: inline-block;
 	color: #EEE;
-	line-height: 32px;
 	text-align: center;
 	text-shadow: 1px 1px 1px #000;
-	font-size: 15px;
 	font-weight: bold;
-	margin: 0px;
-	padding: 0px 15px;
+	font-size: 15px;
+	line-height: 32px;
 }
 #main-menu li a:hover {
 	text-decoration: none;
