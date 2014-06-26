@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 import hashlib
 import os
+import json
+
+import dj_database_url
 
 
 def get_openshift_secret_token():
@@ -31,3 +34,17 @@ def openshift_secure(value):
     if secret_token:
         return hashlib.sha256((secret_token + '-' + value).encode('utf-8')).hexdigest()
     return value
+
+
+def get_cloud_config(key):
+    """
+    Return Python object with data stored in os environment varialbe
+
+    """
+    return json.loads(os.getenv(key) or 'null')
+
+
+def get_claud_db_settings(key):
+    config = get_cloud_config(key)
+    if config:
+        return dj_database_url.parse(config['uri`'])
