@@ -44,7 +44,7 @@ def get_cloud_config(key):
     return json.loads(os.getenv(key) or 'null')
 
 
-def get_claud_db_settings(key):
+def get_cloud_db_settings(key):
     config = get_cloud_config(key)
     if config:
-        return dj_database_url.parse(config['uri`'])
+        return dj_database_url.parse(config['uri'])
