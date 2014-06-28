@@ -2,6 +2,8 @@ Header unset Pragma
 FileETag None
 Header unset ETag
 
+Header set X-UA-Compatible: IE=Edge
+
 <FilesMatch "(?i)\.(ico|jpg|jpeg|png|gif|js|css|swf|pdf|flv|mp3)$">
 <IfModule mod_expires.c>
  ExpiresActive on
