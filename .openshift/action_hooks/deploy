@@ -6,7 +6,7 @@
 echo "Execute 'deploy' script"
 
 MANAGE="python ${OPENSHIFT_REPO_DIR}manage.py"
-SYNC_DB="$MANAGE syncdb --migrate --noinput"
+SYNC_DB="$MANAGE migrate --noinput"
 COLLECTSTATIC="$MANAGE collectstatic --noinput"
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/rh/postgresql92/root/usr/lib64/
