@@ -9,6 +9,10 @@ from imagekit.models import ProcessedImageField, ImageSpecField
 from imagekit.processors import ResizeToFit
 
 
+def upload_picture_to(obj, name):
+    return '/'.join((obj.IMAGES_ROOT, obj.gallery.slug, name))
+
+
 class GalleryManager(models.Manager):
     def active(self):
         return self.exclude(pictures=None)
@@ -63,7 +67,7 @@ class Picture(models.Model):
 
     gallery = models.ForeignKey(Gallery, related_name='pictures')
     title = models.CharField(max_length=255, blank=True, default='', help_text="Title of the picture")
-    image = ProcessedImageField(max_length=255, upload_to=lambda s, name: s.upload_to(name), processors=[ResizeToFit(MAX_WIDTH, MAX_HEIGHT)], format='JPEG', options={'quality': 95})
+    image = ProcessedImageField(max_length=255, upload_to=upload_picture_to, processors=[ResizeToFit(MAX_WIDTH, MAX_HEIGHT)], format='JPEG', options={'quality': 95})
     thumb = ImageSpecField(source='image', processors=[ResizeToFit(MAX_THUMB_WIDTH, MAX_THUMB_HEIGHT)], format='JPEG', options={'quality': 60})
 
     is_album_logo = models.BooleanField(default=False, help_text="If this is checked this picture will be the album logo")
@@ -87,9 +91,6 @@ class Picture(models.Model):
         if not (self.pk or self.title):
             self.title = self.image.name.replace('_', ' ')
         super(Picture, self).save(*args, **kwargs)
-
-    def upload_to(self, name=''):
-        return '/'.join((self.IMAGES_ROOT, self.gallery.slug, name))
 
     def preview(self):
         """

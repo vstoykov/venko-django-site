@@ -20,7 +20,7 @@ class EntryAdmin(admin.ModelAdmin):
 
     form = EntryAdminForm
 
-    def queryset(self, request):
+    def get_queryset(self, request):
         return super(EntryAdmin, self).queryset(request).select_related('category')
 
     def slug_as_link(self, obj):

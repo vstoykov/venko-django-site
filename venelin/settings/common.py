@@ -119,10 +119,8 @@ INSTALLED_APPS = (
     'django.contrib.redirects',
     'django.contrib.webdesign',
 
-    'south',
     'ckeditor',
     'imagekit',
-    'django_extensions',
 
     'venelin',
     'venelin.pages',
@@ -131,6 +129,8 @@ INSTALLED_APPS = (
     'venelin.gallery',
     'venelin.syntaxhighlighter',
 )
+
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 INTERNAL_IPS = ('127.0.0.1',)
 
@@ -191,6 +191,25 @@ CACHES = {
         'TIMEOUT': 7 * 24 * 3600,  # One week
     },
 }
+
+SOUTH_MIGRATION_MODULES = {
+    'blog': 'venelin.blog.south_migrations',
+    'gallery': 'venelin.gallery.south_migrations',
+}
+
+try:
+    __import__('south')
+except ImportError:
+    pass
+else:
+    INSTALLED_APPS += ('south',)
+
+try:
+    __import__('django_extensions',)
+except ImportError:
+    pass
+else:
+    INSTALLED_APPS += ('django_extensions',)
 
 try:
     __import__('uwsgi_admin')

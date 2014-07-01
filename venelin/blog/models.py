@@ -46,8 +46,8 @@ class Category(models.Model):
 
 class EntryManager(models.Manager):
 
-    def get_query_set(self):
-        return super(EntryManager, self).get_query_set().select_related('category')
+    def get_queryset(self):
+        return super(EntryManager, self).get_queryset().select_related('category')
 
     def published(self):
         return self.filter(is_published=True)
@@ -68,7 +68,7 @@ class Entry(models.Model):
 
     created = models.DateTimeField(auto_now_add=True, db_index=True)
     modified = models.DateTimeField(auto_now=True, db_index=True)
-    is_published = models.BooleanField()
+    is_published = models.BooleanField(default=False)
 
     objects = EntryManager()
 

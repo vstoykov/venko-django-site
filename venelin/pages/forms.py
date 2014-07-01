@@ -11,6 +11,7 @@ class FlatPageForm(forms.ModelForm):
 
     class Meta:
         model = FlatPage
+        fields = '__all__'
         widgets = {
             'template_name': forms.Select(choices=get_flaptage_template_choices())
         }
