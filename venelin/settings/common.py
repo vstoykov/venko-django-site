@@ -105,8 +105,7 @@ ROOT_URLCONF = 'venelin.urls'
 WSGI_APPLICATION = 'venelin.wsgi.application'
 
 INSTALLED_APPS = (
-    'django_admin_bootstrapped',
-    'django_admin_bootstrapped.bootstrap3',
+    'wpadmin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -154,6 +153,15 @@ CKEDITOR_CONFIGS = {
             {'name': 'insert', 'items': ['Image', 'Table', 'HorizontalRule', 'SpecialChar']},
         ],
         'contentsCss': os.path.join(STATIC_URL, 'css/style.css'),
+    },
+}
+
+WPADMIN = {
+    'admin': {
+        'menu': {
+            'top': 'wpadmin.menu.menus.BasicTopMenu',
+            'left': 'wpadmin.menu.menus.BasicLeftMenu',
+        },
     },
 }
 

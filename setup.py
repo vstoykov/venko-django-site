@@ -16,7 +16,7 @@ setup(
         'django-extensions>=1.3.7',
         'django-ckeditor-updated==4.4.0',
         'django-imagekit>=3.2.1',
-        'django_admin_bootstrapped',
+        'django-wpadmin>=1.6.1,<1.7',
         'pygments',
         'appenlight-client==0.6.7',
         'psycopg2',
