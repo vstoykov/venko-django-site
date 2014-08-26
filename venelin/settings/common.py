@@ -162,6 +162,7 @@ WPADMIN = {
             'top': 'wpadmin.menu.menus.BasicTopMenu',
             'left': 'wpadmin.menu.menus.BasicLeftMenu',
         },
+        'custom_style': STATIC_URL + 'css/wpadmin-fix.css',
     },
 }
 
