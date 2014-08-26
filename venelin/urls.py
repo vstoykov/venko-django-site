@@ -1,38 +1,41 @@
-from django.conf.urls import url, patterns, include
+from django.conf.urls import url, include
 from django.conf import settings
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.shortcuts import render
+from django.views.static import serve
 
 from .sitemap import sitemaps
 
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    (r'^admin/', include(admin.site.urls)),
-    (r'^\.ckeditor/', include('ckeditor.urls')),
+urlpatterns = [
+    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^\.ckeditor/', include('ckeditor.urls')),
 
-    (r'^blog/', include('venelin.blog.urls', namespace='blog')),
-    (r'^links/', include('venelin.links.urls', namespace='links')),
-    (r'^gallery/', include('venelin.gallery.urls', namespace='gallery')),
-    (r'^highlighter/', include('venelin.syntaxhighlighter.urls')),
-    (r'^search/', 'django.shortcuts.render', {'template_name': 'search.html'}),
+    url(r'^blog/', include('venelin.blog.urls', namespace='blog')),
+    url(r'^links/', include('venelin.links.urls', namespace='links')),
+    url(r'^gallery/', include('venelin.gallery.urls', namespace='gallery')),
+    url(r'^highlighter/', include('venelin.syntaxhighlighter.urls')),
+    url(r'^search/', render, {'template_name': 'search.html'}),
 
-    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
-    (r'^robots\.txt$', 'django.shortcuts.render', {'template_name': 'robots.txt', 'content_type': 'text/plain; charset=utf-8'}),
-    (r'^(?P<path>favicon\.ico)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}),
+    url(r'^robots\.txt$', render, {'template_name': 'robots.txt', 'content_type': 'text/plain; charset=utf-8'}),
+    url(r'^(?P<path>favicon\.ico)$', serve, {'document_root': settings.STATIC_ROOT}),
 
-    (r'^', include('venelin.pages.urls')),
-)
+    url(r'^', include('venelin.pages.urls')),
+]
 
 if 'django_uwsgi' in settings.INSTALLED_APPS:
-    urlpatterns = patterns('',
-        (r'^admin/uwsgi/', include('django_uwsgi.urls')),
-    ) + urlpatterns
+    urlpatterns.append(
+        url(r'^admin/uwsgi/', include('django_uwsgi.urls')),
+    )
 
 # Static URLS is served by server. Django serves they only in DEBUG mode
 if settings.DEBUG:
-    urlpatterns = patterns('django.views.static',
-        url(r'^%s/(?P<path>.*)$' % settings.MEDIA_URL.strip('/'), 'serve',
+    urlpatterns = [
+        url(r'^%s/(?P<path>.*)$' % settings.MEDIA_URL.strip('/'), serve,
             {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
-    ) + staticfiles_urlpatterns() + urlpatterns
+    ] + staticfiles_urlpatterns() + urlpatterns

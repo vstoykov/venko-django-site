@@ -1,8 +1,8 @@
-from django.conf.urls import url, patterns
+from django.conf.urls import url
 
 from .views import flatpage
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^(?P<url>.+)', flatpage),
     url(r'^$', flatpage, kwargs={'url': '/'}, name='home'),
-)
+]
