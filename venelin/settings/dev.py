@@ -16,6 +16,10 @@ MIDDLEWARE_CLASSES = (
     'venelin.middleware.SQLPrintingMiddleware',
 ) + MIDDLEWARE_CLASSES
 
+INSTALLED_APPS += (
+	'debug_toolbar',
+)
+
 CACHE_MIDDLEWARE_SECONDS = 10
 
 ALLOWED_HOSTS = ['*']
