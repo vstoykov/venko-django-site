@@ -2,7 +2,7 @@
 import re
 import os
 from django.conf import global_settings
-import appenlight_client.client as e_client
+#import appenlight_client.client as e_client
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 
@@ -18,7 +18,7 @@ MANAGERS = ADMINS
 
 DISQUS_WEBSITE_SHORTNAME = 'venelin'
 
-APPENLIGHT = e_client.get_config() if os.getenv('APPENLIGHT_KEY') else {}
+#APPENLIGHT = e_client.get_config() if os.getenv('APPENLIGHT_KEY') else {}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -85,7 +85,7 @@ DISALLOWED_USER_AGENTS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'appenlight_client.django_middleware.AppenlightMiddleware',
+    #'appenlight_client.django_middleware.AppenlightMiddleware',
     'django.middleware.http.ConditionalGetMiddleware',
     'django.middleware.cache.UpdateCacheMiddleware',
     'venelin.middleware.MinifyHTMLMiddleware',
