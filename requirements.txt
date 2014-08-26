@@ -6,5 +6,5 @@ django-ckeditor-updated==4.4.0
 django-imagekit>=3.2.1
 django-wpadmin>=1.6.1,<1.7
 pygments
-appenlight-client==0.6.7
+appenlight-client==0.6.9
 dj-database-url==0.3.0
