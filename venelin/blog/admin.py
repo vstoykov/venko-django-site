@@ -21,7 +21,7 @@ class EntryAdmin(admin.ModelAdmin):
     form = EntryAdminForm
 
     def get_queryset(self, request):
-        return super(EntryAdmin, self).queryset(request).select_related('category')
+        return super(EntryAdmin, self).get_queryset(request).select_related('category')
 
     def slug_as_link(self, obj):
         return '<a href="%s">%s</a>' % (obj.get_absolute_url(), obj.slug)
