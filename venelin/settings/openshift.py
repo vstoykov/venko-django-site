@@ -30,5 +30,7 @@ if os.getenv('OPENSHIFT_POSTGRESQL_DB_USERNAME'):
 
 if os.getenv('CLOUDSQL_KEY'):
     DATABASES['cloudsql'] = get_cloud_db_settings(os.environ['CLOUDSQL_KEY'])
+    if DATABASES['cloudsql']:
+        DATABASES['default'] = DATABASES['cloudsql']
 
 SECRET_KEY = openshift_secure('qi!k%l+n@hs8l8%)t@j2bl6_jj_x2q-g^em=i!6m17(7x1^$9r')
