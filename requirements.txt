@@ -1,4 +1,4 @@
-git+https://github.com/django/django.git@1.7c2#egg=Django==1.7c2
+git+https://github.com/django/django.git@1.7c3#egg=Django==1.7c3
 Pillow==2.4.0
 django-extensions>=1.3.8
 django-ckeditor-updated==4.4.0

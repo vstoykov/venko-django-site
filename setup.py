@@ -10,7 +10,7 @@ setup(
     author_email='vkstoykov@gmail.com',
     url='http://venelin.sytes.net/',
     install_requires=[
-        'Django==1.7c2',
+        'Django==1.7c3',
         'Pillow==2.4.0',
         'django-extensions>=1.3.8',
         'django-ckeditor-updated==4.4.0',
