@@ -19,7 +19,7 @@ def get_flatpage_templates():
     ))
 
 
-def get_flaptage_template_choices():
+def get_flatpage_template_choices():
     return [(
             os.path.join("flatpages", tmp),
             tmp.replace('.html', '')

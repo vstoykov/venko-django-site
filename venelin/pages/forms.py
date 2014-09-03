@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.flatpages.models import FlatPage
 from ckeditor.fields import RichTextFormField
 
-from .utils import get_flaptage_template_choices
+from .utils import get_flatpage_template_choices
 
 
 class FlatPageForm(forms.ModelForm):
@@ -13,5 +13,5 @@ class FlatPageForm(forms.ModelForm):
         model = FlatPage
         fields = '__all__'
         widgets = {
-            'template_name': forms.Select(choices=get_flaptage_template_choices())
+            'template_name': forms.Select(choices=get_flatpage_template_choices())
         }
