@@ -2,25 +2,25 @@ import os
 from itertools import chain
 
 from django.conf import settings
-from django.utils.importlib import import_module
-
-APP_DIRS = [os.path.dirname(import_module(app).__file__) for app in settings.INSTALLED_APPS]
+from django.template.loaders.app_directories import app_template_dirs
 
 
 def get_flatpage_templates():
-    apps_templates = [os.listdir(path) for path in (
-        "%s/templates/flatpages" % app_dir for app_dir in APP_DIRS
-    ) if os.path.exists(path)]
+    flatpages_dirs = (
+        os.path.join(path, "flatpages")
+        for path in chain(settings.TEMPLATE_DIRS, app_template_dirs)
+        if os.path.exists(os.path.join(path, "flatpages"))
+    )
 
-    site_templates = [os.listdir(path) for path in (
-        "%s/flatpages" % tmp_dir.rstrip('/') for tmp_dir in settings.TEMPLATE_DIRS
-    ) if os.path.exists(path)]
-
-    return sorted(tmp for tmp in chain(*(apps_templates + site_templates)) if tmp.endswith('.html'))
+    return sorted(set(
+        tmp
+        for path in flatpages_dirs for tmp in os.listdir(path)
+        if tmp.endswith('.html')
+    ))
 
 
 def get_flaptage_template_choices():
     return [(
-            "flatpages/%s" % tmp,
+            os.path.join("flatpages", tmp),
             tmp.replace('.html', '')
             ) for tmp in get_flatpage_templates()]
