@@ -21,6 +21,6 @@
 {% block content %}
 	{{ block.super }}
 	<article class="flatpage">
-		{{ flatpage.content }}
+		{% block flatpage_content %}{{ flatpage.content }}{% endblock %}
 	</article>
 {% endblock %}

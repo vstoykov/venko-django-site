@@ -7,6 +7,7 @@ from django.shortcuts import render
 from django.views.static import serve
 
 from .sitemap import sitemaps
+from .contacts.views import conatct_form_flatpage
 
 admin.autodiscover()
 
@@ -14,13 +15,13 @@ urlpatterns = [
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^\.ckeditor/', include('ckeditor_uploader.urls')),
-
+    url(r'^captcha/', include('captcha.urls')),
     url(r'^blog/', include('venelin.blog.urls', namespace='blog')),
     url(r'^links/', include('venelin.links.urls', namespace='links')),
     url(r'^gallery/', include('venelin.gallery.urls', namespace='gallery')),
     url(r'^highlighter/', include('venelin.syntaxhighlighter.urls')),
     url(r'^search/', render, {'template_name': 'search.html'}),
-
+    url(r'^(?P<url>contacts/)$', conatct_form_flatpage),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}),
     url(r'^robots\.txt$', render, {'template_name': 'robots.txt', 'content_type': 'text/plain; charset=utf-8'}),
     url(r'^(?P<path>favicon\.ico)$', serve, {'document_root': settings.STATIC_ROOT}),

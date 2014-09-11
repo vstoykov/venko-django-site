@@ -216,6 +216,11 @@ aside > .box > header {
 	color: #303030;
 }
 
+input, textarea { border: 1px solid #333; min-width: 360px;}
+label {min-width: 80px; display: inline-block; text-align: right; vertical-align: top; margin-right: 10px;}
+fieldset {border: 1px solid #333;}
+legend {padding: 5px 10px;}
+
 q {font-style: italic;}
 pre, code {
 	border: 1px solid #DEDEDE;
@@ -241,6 +246,11 @@ pre code {background: #F8F8FF !important;}
 .holder {position:relative;}
 .flr {float: right;}
 .clearfix {clear: both;}
+.errorlist {color: red; margin-top: 0;}
+.table {display: table;}
+.table > * {display: table-row;}
+.table > * > * {display: table-cell; vertical-align: top;}
+.inline {display: inline-block; vertical-align: middle;}
 
 .mceContentBody p {margin: 5px 10px; text-indent: 20px;}
 
@@ -337,3 +347,8 @@ a.rss span { display: block; padding-top: 10px; font-size: 12px;}
 	height: 20px;
 }
 
+.contact-form {position: relative; display: inline-block;}
+.contact-form .inline {vertical-align: top;}
+.contact-form [type=submit] { position: absolute; bottom: 10px; right: 10px;}
+input[name=name], input[name=email] { width: 320px;}
+textarea[name=message] { width: 650px;}

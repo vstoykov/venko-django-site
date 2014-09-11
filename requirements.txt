@@ -8,3 +8,4 @@ django-imagekit>=4.0.1
 Pygments
 appenlight-client==0.6.25
 dj-database-url==0.5.0
+django-simple-captcha

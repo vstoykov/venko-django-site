@@ -1,0 +1,26 @@
+{% extends 'flatpages/default.html' %}
+
+{% block flatpage_content %}
+	{{ block.super }}
+	{% with contact_form as form %}
+        <form action="?" method="POST" class="contact-form">
+            {% csrf_token %}
+            <fieldset>
+                <legend>Форма за контакт</legend>
+                <div class="inline">
+                    <label for="{{ form.name.auto_id }}">Име</label> {{ form.name }} {{ form.name.errors }}
+                </div>
+                <div class="inline">
+                    {{ form.email.label_tag }} {{ form.email }} {{ form.email.errors }}
+                </div>
+                <div>
+                    <label for="{{ form.message.auto_id }}">Съобщение</label> {{ form.message }} {{ form.message.errors }}
+                </div>
+                <div>
+                    <label for="{{ form.message.auto_id }}">Въведете текста от картинката</label> {{ form.captcha }} {{ form.captcha.errors }}
+                </div>
+                <button type="submit">Изпрати</button>
+            </fieldset>
+        </form>
+    {% endwith %}
+{% endblock %}

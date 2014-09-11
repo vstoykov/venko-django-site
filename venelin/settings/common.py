@@ -138,6 +138,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'ckeditor',
     'imagekit',
+    'captcha',
 
     'venelin',
     'venelin.pages',
