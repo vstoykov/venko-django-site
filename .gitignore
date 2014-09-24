@@ -1,5 +1,6 @@
 *.pyc
 *.pid
+*.mo
 *.sock
 *.geany
 *.sublime*

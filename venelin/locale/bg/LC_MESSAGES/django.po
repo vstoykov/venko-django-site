@@ -1,0 +1,133 @@
+# Bulgarian translations for venelin.sytes.net.
+# Copyright (C) 2014 Venelin Stoykov
+# This file is distributed under the same license as the PACKAGE package.
+# Venelin Stoykov <vkstoykov@gmail.com>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-25 00:20+0300\n"
+"PO-Revision-Date: 2014-09-25 00:40+0200\n"
+"Last-Translator: Venelin Stoykov <v.k.stoykov@gmail.com>\n"
+"Language-Team: BG <vkstoykov@gmail.com>\n"
+"Language: BG\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#: blog/admin.py:31 blog/models.py:30 blog/models.py:66 gallery/models.py:29
+msgid "slug"
+msgstr "слъг"
+
+#: blog/admin.py:37 blog/models.py:36 blog/models.py:64 links/models.py:17
+#: links/models.py:31
+msgid "category"
+msgstr "категория"
+
+#: blog/admin.py:42
+msgid "Publish selected entries"
+msgstr "Публикуване на избраните статии"
+
+#: blog/admin.py:47
+msgid "Unpublish selected entries"
+msgstr "Отмяна на публикуването на избраните статии"
+
+#: blog/models.py:29 blog/models.py:65 gallery/models.py:28
+#: gallery/models.py:71 links/models.py:13 links/models.py:32
+msgid "title"
+msgstr "заглавие"
+
+#: blog/models.py:37 links/models.py:18
+msgid "categories"
+msgstr "категории"
+
+#: blog/models.py:67
+msgid "content"
+msgstr "съдържание"
+
+#: blog/models.py:69
+msgid "keywords"
+msgstr "ключови думи"
+
+#: blog/models.py:70
+msgid "description"
+msgstr "описание"
+
+#: blog/models.py:72 gallery/models.py:31
+msgid "created at"
+msgstr "създадено на"
+
+#: blog/models.py:73 gallery/models.py:32 gallery/models.py:78
+msgid "modified at"
+msgstr "променено на"
+
+#: blog/models.py:74
+msgid "is published"
+msgstr "публикувано"
+
+#: blog/models.py:81
+msgid "entry"
+msgstr "статия"
+
+#: blog/models.py:82
+msgid "entries"
+msgstr "статии"
+
+#: gallery/models.py:38 gallery/models.py:70
+msgid "gallery"
+msgstr "галерия"
+
+#: gallery/models.py:39
+msgid "galleries"
+msgstr "галерии"
+
+#: gallery/models.py:71
+msgid "Title of the picture"
+msgstr "Заглавие на снимката"
+
+#: gallery/models.py:72
+msgid "image"
+msgstr "изображение"
+
+#: gallery/models.py:75
+msgid "is album logo"
+msgstr "е лого на албума"
+
+#: gallery/models.py:75
+msgid "If this is checked this picture will be the album logo"
+msgstr "Ако е избрано тази снимка ще бъде лого на албума."
+
+#: gallery/models.py:77
+msgid "uploaded at"
+msgstr "качено на"
+
+#: gallery/models.py:82
+msgid "picture"
+msgstr "снимка"
+
+#: gallery/models.py:83
+msgid "pictures"
+msgstr "снимки"
+
+#: gallery/models.py:107
+msgid "preview"
+msgstr "превю"
+
+#: links/models.py:33
+msgid "URL"
+msgstr "URL"
+
+#: links/models.py:37
+msgid "link"
+msgstr "връзка"
+
+#: links/models.py:38
+msgid "links"
+msgstr "връзки"
+
+#: settings/common.py:235
+msgid "Go"
+msgstr "Действай"
