@@ -25,3 +25,6 @@ $COLLECTSTATIC
 echo "Linkig media root inside static root"
 mkdir -p "${OPENSHIFT_DATA_DIR}media"
 ln -s -f "${OPENSHIFT_DATA_DIR}media" "${OPENSHIFT_DATA_DIR}static/media"
+
+echo "Compile messages"
+cd "${OPENSHIFT_REPO_DIR}venelin"; django-admin.py compilemessages; cd -
