@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models import Count, Max
 from django.template.defaultfilters import striptags, truncatechars
 from django.utils.encoding import force_str, force_text
+from django.utils.translation import ugettext_lazy as _
 
 from ckeditor.fields import RichTextField
 
@@ -25,13 +26,15 @@ class Category(models.Model):
     Every blog entry is put in some category
     This model describe blog entry categories
     """
-    title = models.CharField(max_length=255)
-    slug = models.SlugField(unique=True, max_length=255, db_index=True)
+    title = models.CharField(_('title'), max_length=255)
+    slug = models.SlugField(_('slug'), unique=True, max_length=255, db_index=True)
 
     objects = CategoryManager()
 
     class Meta:
-        verbose_name_plural = 'categories'
+        ordering = 'title',
+        verbose_name = _('category')
+        verbose_name_plural = _('categories')
 
     def __str__(self):
         return force_str(self.title)
@@ -58,24 +61,25 @@ class Entry(models.Model):
     This models describe every blog entry with his
     category, title, slug and content
     """
-    category = models.ForeignKey(Category, related_name='entries')
-    title = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=255, db_index=True)
-    content = RichTextField()
+    category = models.ForeignKey(Category, verbose_name=_('category'), related_name='entries')
+    title = models.CharField(_('title'), max_length=255)
+    slug = models.SlugField(_('slug'), max_length=255, db_index=True)
+    content = RichTextField(_('content'))
 
-    seo_keywords = models.CharField(max_length=128, blank=True, default='')
-    seo_description = models.CharField(max_length=256, blank=True, default='')
+    seo_keywords = models.CharField(_('keywords'), max_length=128, blank=True, default='')
+    seo_description = models.CharField(_('description'), max_length=256, blank=True, default='')
 
-    created = models.DateTimeField(auto_now_add=True, db_index=True)
-    modified = models.DateTimeField(auto_now=True, db_index=True)
-    is_published = models.BooleanField(default=False)
+    created = models.DateTimeField(_('created at'), auto_now_add=True, db_index=True)
+    modified = models.DateTimeField(_('modified at'), auto_now=True, db_index=True)
+    is_published = models.BooleanField(_('is published'), default=False)
 
     objects = EntryManager()
 
     class Meta:
-        unique_together = (('category', 'slug',),)
-        ordering = ('-created',)
-        verbose_name_plural = 'entries'
+        unique_together = 'category', 'slug',
+        ordering = '-created',
+        verbose_name = _('entry')
+        verbose_name_plural = _('entries')
 
     def __str__(self):
         return force_str(truncatechars(self.title, 60))

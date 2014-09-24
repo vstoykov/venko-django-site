@@ -4,6 +4,8 @@ import os
 from django.conf import global_settings
 import appenlight_client.client as e_client
 
+_ = lambda x: x
+
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 DEBUG = True
@@ -34,6 +36,10 @@ DATE_FORMAT = 'j M Y'
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'bg'
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'venelin/locale'),
+)
 
 SITE_ID = 1
 
@@ -224,3 +230,6 @@ except ImportError:
     pass
 else:
     INSTALLED_APPS += ('django_uwsgi',)
+
+# Translation strings
+_('Go')
