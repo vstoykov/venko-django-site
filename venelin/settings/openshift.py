@@ -1,7 +1,7 @@
 import os
 
 from .common import *
-from openshiftlibs import openshift_secure, get_cloud_db_settings
+from openshiftlibs import openshift_secure, get_cloud_db_settings, get_cloud_cache_settings
 
 BASE_DIR = os.environ['OPENSHIFT_DATA_DIR']
 
@@ -32,5 +32,10 @@ if os.getenv('CLOUDSQL_KEY'):
     DATABASES['cloudsql'] = get_cloud_db_settings(os.environ['CLOUDSQL_KEY'])
     if DATABASES['cloudsql']:
         DATABASES['default'] = DATABASES['cloudsql']
+
+if os.getenv('CLOUDCACHE_KEY'):
+    CACHES = {
+        'default': get_cloud_cache_settings(os.environ['CLOUDCACHE_KEY'])
+    }
 
 SECRET_KEY = openshift_secure('qi!k%l+n@hs8l8%)t@j2bl6_jj_x2q-g^em=i!6m17(7x1^$9r')

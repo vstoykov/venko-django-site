@@ -7,3 +7,5 @@ git+https://github.com/vstoykov/django-wpadmin.git#egg=django-wpadmin==1.6.1
 pygments
 appenlight-client==0.6.9
 dj-database-url==0.3.0
+django_bmemcached==0.2.2
+

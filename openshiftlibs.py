@@ -48,3 +48,15 @@ def get_cloud_db_settings(key):
     config = get_cloud_config(key)
     if config:
         return dj_database_url.parse(config['uri'])
+
+def get_cloud_cache_settings(key):
+    config = get_cloud_config(key)
+    if config:
+        return {
+            'BACKEND': 'django_bmemcached.memcached.BMemcached',
+            'LOCATION': config['servers'],
+            'OPTIONS': {
+                'username': config['username'],
+                'password': config['password']
+            }
+        }
