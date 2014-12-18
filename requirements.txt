@@ -4,7 +4,7 @@ django-extensions>=1.4.9
 django-ckeditor-updated==4.4.4
 django-imagekit>=3.2.1
 django-wpadmin==1.7.0
-pygments
+Pygments
 appenlight-client==0.6.12
 dj-database-url==0.3.0
-git+https://github.com/vstoykov/django-bmemcached.git@080967905e8ec51a72b208b2dd2143a3b898d061egg=django_bmemcached==0.2.2
+https://github.com/jaysonsantos/django-bmemcached/archive/a863192266c80189a5bfafbfc68f3d1a4fbf783d.zip#egg=django_bmemcached==0.2.2
