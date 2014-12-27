@@ -17,7 +17,7 @@ MIDDLEWARE_CLASSES = (
 ) + MIDDLEWARE_CLASSES
 
 INSTALLED_APPS += (
-	'debug_toolbar',
+    'debug_toolbar',
 )
 
 CACHE_MIDDLEWARE_SECONDS = 10
