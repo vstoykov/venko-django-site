@@ -8,9 +8,9 @@ ADMINS = (
 )
 MANAGERS = ADMINS
 
-# TEMPLATE_LOADERS = (
-#     ('django.template.loaders.cached.Loader', TEMPLATE_LOADERS),
-# )
+TEMPLATE_LOADERS = (
+    ('django.template.loaders.cached.Loader', TEMPLATE_LOADERS),
+)
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
 
