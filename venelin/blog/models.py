@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Count, Max
+from django.db.models import Count, Max, When, Case
 from django.template.defaultfilters import striptags, truncatechars
 from django.utils.encoding import force_str, force_text
 from django.utils.translation import ugettext_lazy as _
@@ -10,14 +10,14 @@ from ckeditor.fields import RichTextField
 class CategoryManager(models.Manager):
 
     def with_entry_count(self):
-        return self.annotate(entries_count=Count('entries', field='CASE WHEN blog_entry.is_published THEN 1 END'))
+        return self.annotate(entries_count=Count(Case(When(entries__is_published=True, then=1))))
 
     def active(self):
         return self.with_entry_count().filter(entries_count__gt=0).order_by('-entries_count')
 
     def with_last_modified(self):
         return self.annotate(
-            modified=Max('entries__created', field='CASE WHEN blog_entry.is_published THEN blog_entry.created END')
+            modified=Max(Case(When(entries__is_published=True, then='entries__created')))
         ).exclude(modified=None).order_by('-modified')
 
 
