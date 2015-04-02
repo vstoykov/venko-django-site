@@ -97,9 +97,11 @@ MIDDLEWARE_CLASSES = (
     'venelin.middleware.MinifyHTMLMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.security.SecurityMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
     'django.middleware.cache.FetchFromCacheMiddleware',
     'venelin.middleware.XUACompatibleMiddleware',
@@ -202,6 +204,9 @@ SOUTH_MIGRATION_MODULES = {
     'blog': 'venelin.blog.south_migrations',
     'gallery': 'venelin.gallery.south_migrations',
 }
+
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
 
 try:
     __import__('south')
