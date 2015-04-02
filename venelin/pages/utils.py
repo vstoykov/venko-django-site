@@ -2,13 +2,13 @@ import os
 from itertools import chain
 
 from django.conf import settings
-from django.template.loaders.app_directories import app_template_dirs
+from django.template.loaders.app_directories import get_app_template_dirs
 
 
 def get_flatpage_templates():
     flatpages_dirs = (
         os.path.join(path, "flatpages")
-        for path in chain(settings.TEMPLATE_DIRS, app_template_dirs)
+        for path in chain(settings.TEMPLATE_DIRS, get_app_template_dirs('templates'))
         if os.path.exists(os.path.join(path, "flatpages"))
     )
 
