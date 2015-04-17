@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-25 00:20+0300\n"
+"POT-Creation-Date: 2015-04-18 02:06+0300\n"
 "PO-Revision-Date: 2014-09-25 00:40+0200\n"
 "Last-Translator: Venelin Stoykov <v.k.stoykov@gmail.com>\n"
 "Language-Team: BG <vkstoykov@gmail.com>\n"
@@ -34,6 +34,10 @@ msgstr "Публикуване на избраните статии"
 #: blog/admin.py:47
 msgid "Unpublish selected entries"
 msgstr "Отмяна на публикуването на избраните статии"
+
+#: blog/apps.py:7
+msgid "Blog"
+msgstr "Блог"
 
 #: blog/models.py:29 blog/models.py:65 gallery/models.py:28
 #: gallery/models.py:71 links/models.py:13 links/models.py:32
@@ -76,6 +80,10 @@ msgstr "статия"
 msgid "entries"
 msgstr "статии"
 
+#: gallery/apps.py:7
+msgid "Gallery"
+msgstr "Галерия"
+
 #: gallery/models.py:38 gallery/models.py:70
 msgid "gallery"
 msgstr "галерия"
@@ -116,6 +124,10 @@ msgstr "снимки"
 msgid "preview"
 msgstr "превю"
 
+#: links/apps.py:7
+msgid "Links"
+msgstr "Връзки"
+
 #: links/models.py:33
 msgid "URL"
 msgstr "URL"
@@ -128,6 +140,6 @@ msgstr "връзка"
 msgid "links"
 msgstr "връзки"
 
-#: settings/common.py:235
+#: settings/common.py:240
 msgid "Go"
 msgstr "Действай"
