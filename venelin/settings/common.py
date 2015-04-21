@@ -200,20 +200,10 @@ CACHES = {
     },
 }
 
-SOUTH_MIGRATION_MODULES = {
-    'blog': 'venelin.blog.south_migrations',
-    'gallery': 'venelin.gallery.south_migrations',
-}
 
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 
-try:
-    __import__('south')
-except ImportError:
-    pass
-else:
-    INSTALLED_APPS += ('south',)
 
 try:
     __import__('django_extensions',)
