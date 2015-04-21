@@ -127,6 +127,7 @@ INSTALLED_APPS = (
     'django.contrib.redirects',
     'django.contrib.webdesign',
 
+    'django_extensions',
     'ckeditor',
     'imagekit',
 
@@ -204,13 +205,6 @@ CACHES = {
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 
-
-try:
-    __import__('django_extensions',)
-except ImportError:
-    pass
-else:
-    INSTALLED_APPS += ('django_extensions',)
 
 try:
     __import__('uwsgi_admin')
