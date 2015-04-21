@@ -1,4 +1,4 @@
-from django.core.cache import get_cache
+from django.core.cache import caches
 from django.dispatch import receiver
 from django.db.models.signals import post_save, m2m_changed, post_delete
 from django.contrib.flatpages.models import FlatPage
@@ -10,11 +10,11 @@ from .links.models import Link
 
 def get_pages_cache():
     try:
-        return get_cache('pages')
-    except:
+        return caches['pages']
+    except KeyError:
         try:
-            return get_cache('default')
-        except:
+            return caches['default']
+        except KeyError:
             return None
 
 
