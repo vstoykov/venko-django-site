@@ -12,7 +12,7 @@
 .idea
 .ropeproject
 site.db
-settings_local.py
+/venelin/settings/local.py
 /virtenv
 /wsgi/static/*
 /wsgi/media/*
