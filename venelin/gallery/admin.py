@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.utils.decorators import method_decorator
+from django.utils.encoding import force_text
+from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_POST
 
 from .models import Gallery, Picture
@@ -60,7 +62,11 @@ class GalleryAdmin(admin.ModelAdmin):
         form = UploadPictureForm(request.POST, request.FILES)
         if form.is_valid():
             form.instance.gallery = gallery
-            form.save()
+            instance = form.save()
+            self.log_change(request, gallery, _('Added %(name)s "%(object)s".') % {
+                'name': force_text(instance._meta.verbose_name),
+                'object': force_text(instance),
+            })
             return JSONResponse({'picture': form.instance.as_dict()})
         return JSONResponseBadRequest({'errors': form.errors})
 
