@@ -68,3 +68,30 @@ class GalleryAdminTestCase(TestCase):
         self.assertEqual(400, response.status_code)
         self.assertEqual(0, self.gallery.pictures.count())
         self.assertIn('errors', json.loads(force_str(response.content)))
+
+    def test_ajax_upload_missing_gallery(self):
+        self.client.login(username='admin', password='admin')
+        response = self.client.post(
+            reverse('admin:gallery_gallery_upload', args=[404]),
+            {
+                'image': File(generate_image(), 'test-picture.png'),
+            }
+        )
+        self.assertEqual(404, response.status_code)
+
+    def test_ajax_upload_permission(self):
+        get_user_model().objects._create_user(
+            username='staff',
+            email='staff@example.com',
+            password='staff',
+            is_staff=True,
+            is_superuser=False,
+        )
+        self.client.login(username='staff', password='staff')
+        response = self.client.post(
+            reverse('admin:gallery_gallery_upload', args=[self.gallery.pk]),
+            {
+                'image': File(generate_image(), 'test-picture.png'),
+            }
+        )
+        self.assertEqual(403, response.status_code)

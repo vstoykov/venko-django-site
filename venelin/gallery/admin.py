@@ -1,7 +1,11 @@
 from django.contrib import admin
+from django.contrib.admin.utils import unquote
+from django.core.exceptions import PermissionDenied
 from django.utils.decorators import method_decorator
 from django.utils.encoding import force_text
 from django.utils.translation import ugettext_lazy as _
+from django.utils.html import escape
+from django.http import Http404
 from django.views.decorators.http import require_POST
 
 from .models import Gallery, Picture
@@ -58,7 +62,17 @@ class GalleryAdmin(admin.ModelAdmin):
 
     @method_decorator(require_POST)
     def upload_image(self, request, object_id):
-        gallery = self.get_object(request, object_id)
+        gallery = self.get_object(request, unquote(object_id))
+
+        if gallery is None:
+            raise Http404(_('%(name)s object with primary key %(key)r does not exist.') % {
+                'name': force_text(self.model._meta.verbose_name),
+                'key': escape(object_id),
+            })
+
+        if not self.has_change_permission(request, gallery):
+            raise PermissionDenied
+
         form = UploadPictureForm(request.POST, request.FILES)
         if form.is_valid():
             form.instance.gallery = gallery
