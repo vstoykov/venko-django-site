@@ -17,8 +17,9 @@ class PictureAdmin(admin.ModelAdmin):
 class PictureInline(admin.TabularInline):
     model = Picture
     readonly_fields = ('preview',)
-
+    fields = ('preview', 'is_album_logo', 'title', )
     extra = 0
+    show_change_link = True
 
 
 class GalleryAdmin(admin.ModelAdmin):
@@ -27,6 +28,18 @@ class GalleryAdmin(admin.ModelAdmin):
     inlines = (PictureInline,)
     date_hierarchy = 'created'
     list_display = ('title', 'slug')
+
+    class Media:
+        css = {
+            'screen': (
+                'css/gallery.admin.css',
+            )
+        }
+        js = (
+            'js/jquery.ui.widget.js',
+            'js/jquery.fileupload.js',
+            'js/gallery.admin.js',
+        )
 
     def get_urls(self):
         from django.conf.urls import url

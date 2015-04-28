@@ -1,0 +1,27 @@
+.loading {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-image: url(../img/lightbox/loading.gif);
+    background-repeat: no-repeat;
+}
+.hidden {
+    display: none;
+}
+.drop-zone.in {
+    position: relative;
+}
+.drop-zone .drop-zone-overly {
+    display: none;
+}
+.drop-zone.in .drop-zone-overly {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(137, 189, 234, 0.43);
+    -webkit-box-shadow: 0 0 20px 20px rgba(137, 189, 234, 0.43);
+    box-shadow: 0 0 20px 20px rgba(137, 189, 234, 0.43);
+}
