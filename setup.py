@@ -11,7 +11,7 @@ setup(
     url='http://venelin.sytes.net/',
     install_requires=[
         'Django==1.8',
-        'Pillow==2.7.0',
+        'Pillow==2.8.1',
         'django-extensions>=1.5.2',
         'django-ckeditor==4.4.7',
         'django-appconf>=1.0.1',
