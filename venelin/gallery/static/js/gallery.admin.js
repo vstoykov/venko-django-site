@@ -52,51 +52,75 @@
         return $this;
     };
 
+    $.fn.loadingOverly = function loadingOverly(action) {
+        var $this = this,
+            $instance = $this.data('loadingOverly');
+
+        if (typeof $instance === 'undefined') {
+            $instance = $('<div>', {'class': 'loading-overly'});
+            $instance.appendTo($this);
+            $this.data('loadingOverly', $instance);
+        }
+        if (action === 'show') {
+            $instance.removeClass('hidden');
+        } else if (action === 'hide') {
+            $instance.addClass('hidden');
+        } else if (action === 'destroy') {
+            $instance.remove();
+            $this.data('loadingOverly', undefined);
+        }
+        return $this;
+    }
+
     $(document).on('ready', function () {
         var $form = $('#gallery_form'),
             $fieldset = $form.find('fieldset.module:first'),
             $picturesGroup = $('#pictures-group'),
+            galleryID = $('#id_pictures-__prefix__-gallery').val(),
             $field = $('<input>', {type: 'file', multiple: 'multiple', 'class': 'fileupload'}),
-            $loading = $('<span>', {'class': 'loading hidden'}),
             $row = $('<div>', {'class': 'form-row'}).append(
                 $('<div>').append([
                     $('<label>').get(0),
-                    $field.get(0),
-                    $loading.get(0)
+                    $field.get(0)
                 ])
             ),
             progress = 0;
 
-        $fieldset.append($row);
+        if (galleryID) {
+            $fieldset.append($row);
+            $form.loadingOverly('hide');
 
-        $field.fileupload({
-            dataType: 'json',
-            url: 'upload/',
-            paramName: 'image',
-            dropZone: $fieldset.fileUploadDropZone(),
-            done: function (e, data) {
-                if (progress === 100) {
-                    setTimeout(function () {
-                        location.reload();
-                    }, 100);
+            $field.fileupload({
+                dataType: 'json',
+                url: 'upload/',
+                paramName: 'image',
+                dropZone: $fieldset.fileUploadDropZone(),
+                done: function (e, data) {
+                    if (progress === 100) {
+                        setTimeout(function () {
+                            location.reload();
+                        }, 100);
+                    }
+                },
+                progressall: function (e, data) {
+                    progress = parseInt(data.loaded / data.total * 100, 10);
+                    $form.loadingOverly('show');
                 }
-            },
-            progressall: function (e, data) {
-                progress = parseInt(data.loaded / data.total * 100, 10);
-                $loading.removeClass('hidden');
-            }
-        });
+            });
 
-        // Replace link for adding new images with new one that will open file dialog
-        setTimeout(function () {
-            var $addRow = $picturesGroup.find('.add-row a');
-            $addRow.replaceWith(
-                $('<a>', {href: 'javascript:;'}).text($addRow.text()).on('click', function (e) {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    $field.trigger('click');
-                })
-            );
-        });
+            // Replace link for adding new images with new one that will open file dialog
+            setTimeout(function () {
+                var $addRow = $picturesGroup.find('.add-row a');
+                $addRow.replaceWith(
+                    $('<a>', {href: 'javascript:;'}).text($addRow.text()).on('click', function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        $field.trigger('click');
+                    })
+                );
+            });
+        } else {
+            $picturesGroup.hide();
+        }
     });
 }(django.jQuery));

@@ -5,6 +5,17 @@
     background-image: url(../img/lightbox/loading.gif);
     background-repeat: no-repeat;
 }
+.loading-overly {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(234, 234, 234, 0.6);
+    background-image: url(../img/lightbox/loading.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+}
 .hidden {
     display: none;
 }
