@@ -105,3 +105,17 @@ class Picture(models.Model):
         return mark_safe('<a href="{s.image.url}" title="{s.title}"><img src="{thumb.url}" width="{thumb.width}" height="{thumb.height}" alt="{s.title}" /></a>'.format(s=self, thumb=self.thumb))
     preview.allow_tags = True
     preview.short_description = _('preview')
+
+    def as_dict(self):
+        """
+        Return dict representing picture data. It is used for the API
+        """
+        return {
+            'pk': self.pk,
+            'gallery': self.gallery_id,
+            'title': self.title,
+            'image': {
+                'url': self.image.url,
+                'thumbnail': self.thumb.url,
+            },
+        }
