@@ -16,9 +16,6 @@ MIDDLEWARE_CLASSES = (
     'venelin.middleware.SQLPrintingMiddleware',
 ) + MIDDLEWARE_CLASSES
 
-INSTALLED_APPS += (
-    'debug_toolbar',
-)
 
 CACHE_MIDDLEWARE_SECONDS = 10
 
@@ -31,3 +28,12 @@ try:
     from .local import *
 except ImportError:
     pass
+
+try:
+    __import__('debug_toolbar')
+except ImportError:
+    pass
+else:
+    INSTALLED_APPS += (
+        'debug_toolbar',
+    )
