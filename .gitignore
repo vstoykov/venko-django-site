@@ -7,10 +7,13 @@
 *.e4p
 *.eric4project
 *.anjuta*
+*.egg-info
+*.nja
 .project
 .pydevproject
 .idea
 .ropeproject
+.tox
 site.db
 /venelin/settings/local.py
 /virtenv
