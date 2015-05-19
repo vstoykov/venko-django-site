@@ -1,11 +1,11 @@
 Django==1.8.1
 Pillow==2.8.1
-django-extensions>=1.5.2
-django-ckeditor==4.4.7
+django-extensions>=1.5.5
+django-ckeditor==4.4.8
 django-appconf>=1.0.1
 django-imagekit>=3.2.6
 django-wpadmin==1.7.4
 Pygments
-appenlight-client==0.6.12
+appenlight-client==0.6.14
 dj-database-url==0.3.0
 https://github.com/jaysonsantos/django-bmemcached/archive/a863192266c80189a5bfafbfc68f3d1a4fbf783d.zip#egg=django_bmemcached==0.2.2
