@@ -1,0 +1,16 @@
+{
+  "jwolfe.file-tree-exclude.list": [
+    "node_modules",
+    "bower_components",
+    ".git",
+    ".tox",
+    ".ropeproject",
+    ".anjuta",
+    ".anjuta_sym_db.db",
+    ".idea",
+    ".pydevproject",
+    ".project",
+    "__pycache__",
+    "venelins_site.egg-info"
+  ]
+}
