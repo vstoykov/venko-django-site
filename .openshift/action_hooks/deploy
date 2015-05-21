@@ -11,9 +11,6 @@ COLLECTSTATIC="$MANAGE collectstatic --noinput"
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/rh/postgresql92/root/usr/lib64/
 
-echo "Activate enviroment"
-source $OPENSHIFT_HOMEDIR/python/virtenv/bin/activate
-
 echo "Executing '$SYNC_DB'"
 $SYNC_DB
 
