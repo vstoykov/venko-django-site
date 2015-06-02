@@ -1,8 +1,6 @@
 Sitemap: http://{{ request.get_host }}/sitemap.xml
 
 User-agent: *
-Disallow: /static/
-Disallow: /media/
 Disallow: /system
 Disallow: /_/
 Allow: /
