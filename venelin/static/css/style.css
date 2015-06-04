@@ -9,8 +9,8 @@ body {
 	background-image: url(../img/background.png);
 	background-attachment: fixed;
 	color: #303030;
-	font-family: 'Ubuntu', sans-serif;
-	font-size: 14px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 1em;
 	margin: 0px;
 	padding: 0px;
 	width: 100%;
@@ -188,7 +188,7 @@ aside > .box > header {
 	text-align: center;
 	text-shadow: 1px 1px 1px #000;
 	font-weight: bold;
-	font-size: 15px;
+	font-size: 1.1em;
 	line-height: 32px;
 }
 #main-menu li a:hover {
@@ -207,13 +207,10 @@ aside > .box > header {
 	display: inline-block;
 	margin: 0;
 }
-.breadcrumb li:after {
+.breadcrumb li + li:before {
 	content: "»";
-	margin: 0 0 0 2px;
-}
-.breadcrumb li:last-child:after {
-	content: "";
-	display: none;
+	margin: 0 4px 0 3px;
+	display: inline-block;
 }
 .breadcrumb li:last-child a {
 	color: #303030;
@@ -269,13 +266,15 @@ footer:after {
 	width: 0;
 }
 footer p {float: right; line-height: 25px; margin: 10px; }
-footer a, footer a:hover {color: #5E5C5C;}
+footer a, footer a:hover {color: #5E5C5C; white-space: nowrap;}
 
 .ui-tabs-hide {display: none}
 .ui-tabs-panel{padding:0px;}
 
 dl.links {margin-left: 20px;}
 dl.links dt {font-size: 1.2em; font-weight: bolder;}
+dl.links dd {margin-left: 10px;}
+dl.links dd + dt {border-top: 1px solid #363; margin-top: 10px; padding-top: 10px;}
 .links a {margin: 10px; display: block;}
 .links a span {color: #000;}
 .links a dd {margin-left: 0px;}
