@@ -19,3 +19,4 @@ site.db
 /virtenv
 /wsgi/static/*
 /wsgi/media/*
+/tags
