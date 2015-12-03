@@ -1,4 +1,5 @@
 import os
+import appenlight_client.client as e_client
 
 from .common import *
 from openshiftlibs import openshift_secure, get_cloud_db_settings, get_cloud_cache_settings
@@ -16,6 +17,11 @@ DATABASES = {
     },
 }
 DATABASES['default'] = DATABASES['sqlite']
+
+APPENLIGHT = e_client.get_config() if os.getenv('APPENLIGHT_KEY') else {}
+
+MIDDLEWARE_CLASSES += ('appenlight_client.django_middleware.AppenlightMiddleware', )
+
 
 if os.getenv('OPENSHIFT_POSTGRESQL_DB_USERNAME'):
     DATABASES['postgres'] = {

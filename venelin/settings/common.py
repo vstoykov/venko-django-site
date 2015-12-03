@@ -1,8 +1,6 @@
 # Django settings for doommaster project.
 import re
 import os
-from django.conf import global_settings
-import appenlight_client.client as e_client
 
 _ = lambda x: x
 
@@ -19,7 +17,6 @@ MANAGERS = ADMINS
 
 DISQUS_WEBSITE_SHORTNAME = 'venelin'
 
-APPENLIGHT = e_client.get_config() if os.getenv('APPENLIGHT_KEY') else {}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
