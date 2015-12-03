@@ -1,7 +1,6 @@
 from .openshift import *
 
 DEBUG = False
-TEMPLATE_DEBUG = False
 
 ADMINS = (
     ('Venelin Stoykov', 'vkstoykov@gmail.com'),
