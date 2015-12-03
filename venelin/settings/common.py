@@ -132,7 +132,6 @@ INSTALLED_APPS = (
     'django.contrib.flatpages',
     'django.contrib.sitemaps',
     'django.contrib.redirects',
-    'django.contrib.webdesign',
 
     'django_extensions',
     'ckeditor',
