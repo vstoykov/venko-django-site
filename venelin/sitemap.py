@@ -1,4 +1,8 @@
-from django.contrib.sitemaps import FlatPageSitemap, GenericSitemap
+from django.contrib.sitemaps import GenericSitemap
+try:
+    from django.contrib.flatpages.sitemaps import FlatPageSitemap
+except ImportError:
+    from django.contrib.sitemaps import FlatPageSitemap
 
 from .blog.models import Entry, Category
 from .gallery.models import Gallery
