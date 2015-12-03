@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.views import redirect_to_login
-from django.contrib.sites.models import get_current_site
+from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.flatpages.views import DEFAULT_TEMPLATE
 from django.shortcuts import render, get_object_or_404, Http404, HttpResponsePermanentRedirect
