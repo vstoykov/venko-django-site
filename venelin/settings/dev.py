@@ -23,6 +23,8 @@ ALLOWED_HOSTS = ['*']
 DEFAULT_FROM_EMAIL = 'webmaster@venelin.sytes.net'
 EMAIL_PORT = 1025
 
+USE_DEBUG_TOOLABR = True
+
 try:
     from .local import *
 except ImportError:
@@ -31,8 +33,10 @@ except ImportError:
 try:
     __import__('debug_toolbar')
 except ImportError:
-    pass
-else:
+    USE_DEBUG_TOOLABR = False
+
+
+if USE_DEBUG_TOOLABR:
     INSTALLED_APPS += 'debug_toolbar',
 
     DEBUG_TOOLBAR_PANELS = [
