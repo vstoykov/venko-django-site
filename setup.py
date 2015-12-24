@@ -12,8 +12,8 @@ setup(
     install_requires=[
         'Django==1.8.7',
         'Pillow==3.0.0',
-        'django-extensions==1.5.9',
         'django-ckeditor==4.5.1',
+        'django-extensions==1.6.1',
         'django-appconf>=1.0.1',
         'django-imagekit>=3.3',
         'django-wpadmin==1.7.4',
