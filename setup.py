@@ -3,7 +3,7 @@
 from setuptools import setup
 
 setup(
-    name='venelins_site',
+    name='venelin-site',
     version='1.2.3',
     description='venelin.sytes.net',
     author='Venelin Stoykov',
