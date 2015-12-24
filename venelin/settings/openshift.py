@@ -20,7 +20,7 @@ DATABASES['default'] = DATABASES['sqlite']
 
 APPENLIGHT = e_client.get_config() if os.getenv('APPENLIGHT_KEY') else {}
 
-MIDDLEWARE_CLASSES += ('appenlight_client.django_middleware.AppenlightMiddleware', )
+MIDDLEWARE_CLASSES = ('appenlight_client.django_middleware.AppenlightMiddleware', ) + MIDDLEWARE_CLASSES
 
 
 if os.getenv('OPENSHIFT_POSTGRESQL_DB_USERNAME'):
