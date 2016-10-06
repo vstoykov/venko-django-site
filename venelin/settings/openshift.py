@@ -1,14 +1,16 @@
+from .common import *  # NOQA
+
 import os
+import posixpath
 import appenlight_client.client as e_client
 
-from .common import *
 from openshiftlibs import openshift_secure, get_cloud_db_settings, get_cloud_cache_settings
 
 BASE_DIR = os.environ['OPENSHIFT_DATA_DIR']
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-MEDIA_URL = os.path.join(STATIC_URL, 'media/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = posixpath.join(STATIC_URL, 'media/')
 
 DATABASES = {
     'sqlite': {

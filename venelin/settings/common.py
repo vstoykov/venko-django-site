@@ -1,10 +1,11 @@
 # Django settings for doommaster project.
 import re
 import os
+import posixpath
 
 _ = lambda x: x
 
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 DEBUG = True
 
@@ -34,7 +35,7 @@ DATE_FORMAT = 'j M Y'
 LANGUAGE_CODE = 'bg'
 
 LOCALE_PATHS = (
-    os.path.join(BASE_DIR, 'venelin/locale'),
+    os.path.join(BASE_DIR, 'venelin', 'locale'),
 )
 
 SITE_ID = 1
@@ -49,11 +50,11 @@ USE_L10N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-STATIC_ROOT = os.path.join(BASE_DIR, 'wsgi/static/')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'wsgi/media/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'wsgi', 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'wsgi', 'media')
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'venelin/static/'),
+    os.path.join(BASE_DIR, 'venelin', 'static'),
 )
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
@@ -71,7 +72,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'venelin/templates'),
+            os.path.join(BASE_DIR, 'venelin', 'templates'),
         ],
         'OPTIONS': {
             'context_processors': [
@@ -167,7 +168,7 @@ CKEDITOR_CONFIGS = {
             {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
             {'name': 'insert', 'items': ['Image', 'Table', 'HorizontalRule', 'SpecialChar']},
         ],
-        'contentsCss': os.path.join(STATIC_URL, 'css/style.css'),
+        'contentsCss': posixpath.join(STATIC_URL, 'css/style.css'),
     },
 }
 
@@ -177,7 +178,7 @@ WPADMIN = {
             'top': 'wpadmin.menu.menus.BasicTopMenu',
             'left': 'wpadmin.menu.menus.BasicLeftMenu',
         },
-        'custom_style': STATIC_URL + 'css/wpadmin-fix.css',
+        'custom_style': posixpath.join(STATIC_URL, 'css/wpadmin-fix.css'),
     },
 }
 
