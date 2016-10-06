@@ -21,3 +21,5 @@ site.db
 /wsgi/static/*
 /wsgi/media/*
 /tags
+/build
+/dist
