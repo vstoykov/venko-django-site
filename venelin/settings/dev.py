@@ -1,6 +1,7 @@
+from .common import *  # NOQA
+
 import os
 
-from .common import *
 
 DEBUG = True
 
@@ -26,7 +27,7 @@ EMAIL_PORT = 1025
 USE_DEBUG_TOOLABR = True
 
 try:
-    from .local import *
+    from .local import *  # NOQA
 except ImportError:
     pass
 
