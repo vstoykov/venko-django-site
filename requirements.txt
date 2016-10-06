@@ -1,10 +1,10 @@
-Django==1.8.7
-Pillow==3.0.0
+Django==1.8.15
+Pillow==3.4.1
 django-ckeditor==4.5.1
-django-extensions==1.6.1
+django-extensions==1.7.4
 django-appconf>=1.0.1
 django-imagekit>=3.3
 django-wpadmin==1.7.4
 Pygments
-appenlight-client==0.6.15
-dj-database-url==0.3.0
+appenlight-client==0.6.17
+dj-database-url==0.4.1
