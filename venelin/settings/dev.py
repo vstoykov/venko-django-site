@@ -12,9 +12,7 @@ DATABASES = {
     },
 }
 
-MIDDLEWARE_CLASSES = (
-    'venelin.middleware.SQLPrintingMiddleware',
-) + MIDDLEWARE_CLASSES
+
 
 
 CACHE_MIDDLEWARE_SECONDS = 10
@@ -39,7 +37,11 @@ except ImportError:
 
 if USE_DEBUG_TOOLABR:
     INSTALLED_APPS += 'debug_toolbar',
+    MIDDLEWARE_CLASSES = (
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
+    ) + MIDDLEWARE_CLASSES
 
+    DEBUG_TOOLBAR_PATCH_SETTINGS = False
     DEBUG_TOOLBAR_PANELS = [
         'debug_toolbar.panels.versions.VersionsPanel',
         'debug_toolbar.panels.timer.TimerPanel',
@@ -60,6 +62,11 @@ if USE_DEBUG_TOOLABR:
         pass
     else:
         INSTALLED_APPS += 'template_timings_panel',
-        DEBUG_TOOLBAR_PANELS.append(
+        DEBUG_TOOLBAR_PANELS.insert(
+            8,
             'template_timings_panel.panels.TemplateTimings.TemplateTimings'
         )
+else:
+    MIDDLEWARE_CLASSES = (
+        'venelin.middleware.SQLPrintingMiddleware',
+    ) + MIDDLEWARE_CLASSES

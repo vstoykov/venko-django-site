@@ -1,8 +1,8 @@
 from django.conf.urls import url, include
+from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.shortcuts import render
 from django.views.static import serve
 
@@ -25,17 +25,16 @@ urlpatterns = [
     url(r'^robots\.txt$', render, {'template_name': 'robots.txt', 'content_type': 'text/plain; charset=utf-8'}),
     url(r'^(?P<path>favicon\.ico)$', serve, {'document_root': settings.STATIC_ROOT}),
 
+    url(r'^', include('django.contrib.staticfiles.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + [
+
     url(r'^', include('venelin.pages.urls')),
+
 ]
 
 if 'django_uwsgi' in settings.INSTALLED_APPS:
-    urlpatterns.append(
-        url(r'^admin/uwsgi/', include('django_uwsgi.urls')),
-    )
+    urlpatterns.insert(0, url(r'^admin/uwsgi/', include('django_uwsgi.urls')))
 
-# Static URLS is served by server. Django serves they only in DEBUG mode
-if settings.DEBUG:
-    urlpatterns = [
-        url(r'^%s/(?P<path>.*)$' % settings.MEDIA_URL.strip('/'), serve,
-            {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
-    ] + staticfiles_urlpatterns() + urlpatterns
+if 'debug_toolbar' in settings.INSTALLED_APPS:
+    import debug_toolbar
+    urlpatterns.insert(0, url(r'^__debug__/', include(debug_toolbar.urls)))
