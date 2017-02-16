@@ -13,7 +13,7 @@ setup(
         'Django==1.8.7',
         'Pillow==4.0.0',
         'django-ckeditor==5.2.1',
-        'django-extensions==1.6.1',
+        'django-extensions==1.7.5',
         'django-appconf>=1.0.1',
         'django-imagekit>=3.3',
         'django-wpadmin==1.7.4',
