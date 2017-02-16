@@ -18,7 +18,7 @@ setup(
         'django-imagekit>=3.3',
         'django-wpadmin==1.7.4',
         'Pygments',
-        'appenlight-client==0.6.15',
+        'appenlight-client==0.6.19',
         'psycopg2',
     ],
 )
