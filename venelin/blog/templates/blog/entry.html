@@ -34,12 +34,12 @@
 {% endblock %}
 
 {% block extra_head %}
-	{% disqus_dev %}
 	<script type="text/javascript">
 		var disqus_identifer = "{{ entry.get_identifier }}";
 		var disqus_title = "{{ entry.title|escape }}";
 		var disqus_url = "{{ request.build_absolute_uri }}";
 	</script>
+	{% disqus_dev %}
 {% endblock %}
 
 {% block extra_js %}
