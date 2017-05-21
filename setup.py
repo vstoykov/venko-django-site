@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='venelin-site',
-    version='1.2.3',
+    version='1.3.0',
     description='venelin.sytes.net',
     author='Venelin Stoykov',
     author_email='vkstoykov@gmail.com',
