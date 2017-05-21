@@ -1,11 +1,11 @@
-Django==1.8.17
-Pillow==4.0.0
+Django==1.8.18
+Pillow==4.1.1
 pilkit>=2.0
-django-ckeditor==5.2.1
-django-extensions==1.7.7
+django-ckeditor==5.2.2
+django-extensions==1.7.9
 django-appconf>=1.0.1
-django-imagekit>=4.0
+django-imagekit>=4.0.1
 django-wpadmin==1.7.4
 Pygments
-appenlight-client==0.6.19
+appenlight-client==0.6.21
 dj-database-url==0.4.2
