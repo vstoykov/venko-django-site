@@ -64,7 +64,7 @@ class Link(models.Model):
 
     def natural_key(self):
         return self.url,
-    natural_key.dependencies = 'links.category'
+    natural_key.dependencies = 'links.category',
 
     def get_link(self):
         return mark_safe('<a href="{0.url}" target="_blank" rel="nofollow">{0.url}</a>'.format(self))
