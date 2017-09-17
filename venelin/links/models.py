@@ -6,11 +6,19 @@ from django.utils.encoding import force_str, force_text
 from django.utils.translation import ugettext_lazy as _
 
 
+class CategoryManager(models.Manager):
+
+    def get_by_natural_key(self, title):
+        return self.get(title=title)
+
+
 class Category(models.Model):
     """
     Links Category
     """
     title = models.CharField(_('title'), max_length=255, db_index=True)
+
+    objects = CategoryManager()
 
     class Meta:
         ordering = 'title',
@@ -23,6 +31,15 @@ class Category(models.Model):
     def __unicode__(self):
         return force_text(self.__str__())
 
+    def natural_key(self):
+        return self.title,
+
+
+class LinkManager(models.Manager):
+
+    def get_by_natural_key(self, title):
+        return self.get(title=title)
+
 
 class Link(models.Model):
     """
@@ -31,6 +48,8 @@ class Link(models.Model):
     category = models.ForeignKey(Category, verbose_name=_('category'), related_name='links')
     title = models.CharField(_('title'), max_length=255)
     url = models.CharField(_('URL'), max_length=255)
+
+    objects = LinkManager()
 
     class Meta:
         ordering = 'category',
@@ -42,6 +61,10 @@ class Link(models.Model):
 
     def __unicode__(self):
         return force_text(self.__str__())
+
+    def natural_key(self):
+        return self.url,
+    natural_key.dependencies = 'links.category'
 
     def get_link(self):
         return mark_safe('<a href="{0.url}" target="_blank" rel="nofollow">{0.url}</a>'.format(self))

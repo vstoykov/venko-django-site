@@ -15,6 +15,10 @@ def upload_picture_to(obj, name):
 
 
 class GalleryManager(models.Manager):
+
+    def get_by_natural_key(self, slug):
+        return self.get(slug=slug)
+
     def active(self):
         return self.exclude(pictures=None)
 
@@ -44,6 +48,9 @@ class Gallery(models.Model):
     def __unicode__(self):
         return force_text(self.__str__())
 
+    def natural_key(self):
+        return self.slug,
+
     @models.permalink
     def get_absolute_url(self):
         return ('gallery:gallery', (self.slug,), {})
@@ -53,6 +60,11 @@ class Gallery(models.Model):
             return self.pictures.order_by('-is_album_logo', '-modified')[0].thumb.url
         except IndexError:
             return '%simg/gallery-folder.png' % settings.STATIC_URL
+
+
+class PictureManager(models.Manager):
+    def get_by_natural_key(self, image):
+        return self.get(image=image)
 
 
 class Picture(models.Model):
@@ -77,6 +89,8 @@ class Picture(models.Model):
     uploaded = models.DateTimeField(_('uploaded at'), auto_now_add=True, db_index=True)
     modified = models.DateTimeField(_('modified at'), auto_now=True, db_index=True)
 
+    objects = PictureManager()
+
     class Meta:
         ordering = '-uploaded', '-pk',
         verbose_name = _('picture')
@@ -95,6 +109,10 @@ class Picture(models.Model):
         if not (self.pk or self.title):
             self.title = self.image.name.replace('_', ' ')
         super(Picture, self).save(*args, **kwargs)
+
+    def natural_key(self):
+        return str(self.image),
+    natural_key.dependencies = 'gallery.gallery',
 
     def preview(self):
         """

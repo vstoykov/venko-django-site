@@ -9,6 +9,9 @@ from ckeditor.fields import RichTextField
 
 class CategoryManager(models.Manager):
 
+    def get_by_natural_key(self, slug):
+        return self.get(slug=slug)
+
     def with_entry_count(self):
         return self.annotate(entries_count=Count(Case(When(entries__is_published=True, then=1))))
 
@@ -42,6 +45,9 @@ class Category(models.Model):
     def __unicode__(self):
         return force_text(self.__str__())
 
+    def natural_key(self):
+        return self.slug,
+
     @models.permalink
     def get_absolute_url(self):
         return ('blog:category', (), {'category': self.slug})
@@ -51,6 +57,9 @@ class EntryManager(models.Manager):
 
     def get_queryset(self):
         return super(EntryManager, self).get_queryset().select_related('category')
+
+    def get_by_natural_key(self, slug):
+        return self.get(slug=slug)
 
     def published(self):
         return self.filter(is_published=True)
@@ -86,6 +95,10 @@ class Entry(models.Model):
 
     def __unicode__(self):
         return force_text(self.__str__())
+
+    def natural_key(self):
+        return self.slug,
+    natural_key.dependencies = ['blog.category']
 
     @models.permalink
     def get_absolute_url(self):
