@@ -1,19 +1,6 @@
 from .common import *  # NOQA
 
-import os
-
-
 DEBUG = True
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'site.db'),
-    },
-}
-
-
-
 
 CACHE_MIDDLEWARE_SECONDS = 10
 
