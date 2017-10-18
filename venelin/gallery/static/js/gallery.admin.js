@@ -92,7 +92,7 @@
 
             $field.fileupload({
                 dataType: 'json',
-                url: 'upload/',
+                url: '../upload/',
                 paramName: 'image',
                 dropZone: $fieldset.fileUploadDropZone(),
                 done: function (e, data) {
