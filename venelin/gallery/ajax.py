@@ -17,7 +17,7 @@ class JSONResponseMixin(object):
 
     def __init__(self, content, *args, **kwargs):
         json_content = json.dumps(content, cls=DjangoJSONEncoder, indent=self.INDENT)
-        super(JSONResponseMixin, self).__init__(json_content, JSON_CONTENT_TYPE, *args, **kwargs)
+        super().__init__(json_content, JSON_CONTENT_TYPE, *args, **kwargs)
 
 
 class JSONResponse(JSONResponseMixin, HttpResponse):

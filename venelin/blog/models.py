@@ -1,7 +1,8 @@
 from django.db import models
 from django.db.models import Count, Max, When, Case
 from django.template.defaultfilters import striptags, truncatechars
-from django.utils.encoding import force_str, force_text
+from django.urls import reverse
+from django.utils.encoding import force_str
 from django.utils.translation import ugettext_lazy as _
 
 from ckeditor.fields import RichTextField
@@ -42,15 +43,11 @@ class Category(models.Model):
     def __str__(self):
         return force_str(self.title)
 
-    def __unicode__(self):
-        return force_text(self.__str__())
-
     def natural_key(self):
         return self.slug,
 
-    @models.permalink
     def get_absolute_url(self):
-        return ('blog:category', (), {'category': self.slug})
+        return reverse('blog:category', kwargs={'category': self.slug})
 
 
 class EntryManager(models.Manager):
@@ -70,7 +67,7 @@ class Entry(models.Model):
     This models describe every blog entry with his
     category, title, slug and content
     """
-    category = models.ForeignKey(Category, verbose_name=_('category'), related_name='entries')
+    category = models.ForeignKey(Category, verbose_name=_('category'), related_name='entries', on_delete=models.PROTECT)
     title = models.CharField(_('title'), max_length=255)
     slug = models.SlugField(_('slug'), max_length=255, db_index=True)
     content = RichTextField(_('content'))
@@ -93,16 +90,12 @@ class Entry(models.Model):
     def __str__(self):
         return force_str(truncatechars(self.title, 60))
 
-    def __unicode__(self):
-        return force_text(self.__str__())
-
     def natural_key(self):
         return self.slug,
     natural_key.dependencies = ['blog.category']
 
-    @models.permalink
     def get_absolute_url(self):
-        return ('blog:entry', [], {'category': self.category.slug, 'entry': self.slug})
+        return reverse('blog:entry', kwargs={'category': self.category.slug, 'entry': self.slug})
 
     def get_identifier(self):
         """

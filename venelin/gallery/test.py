@@ -3,10 +3,10 @@ from io import BytesIO
 from PIL import Image
 
 from django.test import TestCase
-from django.core.urlresolvers import reverse
 from django.core.files.base import File
 from django.core.files.storage import default_storage
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 from django.utils.encoding import force_str
 
 from venelin.gallery.models import Gallery

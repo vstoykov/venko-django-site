@@ -24,9 +24,9 @@ except ImportError:
 
 if USE_DEBUG_TOOLABR:
     INSTALLED_APPS += 'debug_toolbar',
-    MIDDLEWARE_CLASSES = (
+    MIDDLEWARE = (
         'debug_toolbar.middleware.DebugToolbarMiddleware',
-    ) + MIDDLEWARE_CLASSES
+    ) + MIDDLEWARE
 
     DEBUG_TOOLBAR_PATCH_SETTINGS = False
     DEBUG_TOOLBAR_PANELS = [
@@ -54,6 +54,6 @@ if USE_DEBUG_TOOLABR:
             'template_timings_panel.panels.TemplateTimings.TemplateTimings'
         )
 else:
-    MIDDLEWARE_CLASSES = (
+    MIDDLEWARE = (
         'venelin.middleware.SQLPrintingMiddleware',
-    ) + MIDDLEWARE_CLASSES
+    ) + MIDDLEWARE

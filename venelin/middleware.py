@@ -1,18 +1,20 @@
 from django.core.exceptions import MiddlewareNotUsed
+from django.utils.deprecation import MiddlewareMixin
 from django.utils.encoding import DjangoUnicodeDecodeError
 from django.utils.html import strip_spaces_between_tags as minify_html
 from django.conf import settings
 from django.db import connection
 
 
-class SQLPrintingMiddleware(object):
+class SQLPrintingMiddleware(MiddlewareMixin):
     """
     Middleware which prints out a list of all SQL queries done
     for each view that is processed. This is only useful for debugging.
     """
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         if not settings.DEBUG:
             raise MiddlewareNotUsed
+        super().__init__(*args, **kwargs)
 
     def process_response(self, request, response):
         if (len(connection.queries) == 0 or
@@ -34,7 +36,7 @@ class SQLPrintingMiddleware(object):
         return response
 
 
-class XUACompatibleMiddleware(object):
+class XUACompatibleMiddleware(MiddlewareMixin):
     """
     Add a X-UA-Compatible header to the response
     This header tells to Internet Explorer to render page with latest
@@ -45,15 +47,16 @@ class XUACompatibleMiddleware(object):
         return response
 
 
-class MinifyHTMLMiddleware(object):
+class MinifyHTMLMiddleware(MiddlewareMixin):
     """
     Remove spaces between html tags
 
     Taken from django-pipeline but but modified to not be executed in debug.
     """
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         if settings.DEBUG:
             raise MiddlewareNotUsed
+        super().__init__(*args, **kwargs)
 
     def process_response(self, request, response):
         if response.has_header('Content-Type') and 'text/html' in response['Content-Type']:
