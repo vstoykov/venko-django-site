@@ -105,7 +105,7 @@ DISALLOWED_USER_AGENTS = (
     re.compile(r'^.*(ZmEu|[Ss]cann).*$'),
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.middleware.http.ConditionalGetMiddleware',
     'django.middleware.cache.UpdateCacheMiddleware',
     'venelin.middleware.MinifyHTMLMiddleware',

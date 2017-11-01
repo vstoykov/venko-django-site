@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
                 ('created', models.DateTimeField(db_index=True, auto_now_add=True)),
                 ('modified', models.DateTimeField(db_index=True, auto_now=True)),
                 ('is_published', models.BooleanField(default=False)),
-                ('category', models.ForeignKey(to='blog.Category')),
+                ('category', models.ForeignKey(to='blog.Category', on_delete=models.PROTECT)),
             ],
             options={
                 'verbose_name_plural': 'entries',

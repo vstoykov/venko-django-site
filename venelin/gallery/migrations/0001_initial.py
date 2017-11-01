@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
                 ('is_album_logo', models.BooleanField(help_text='If this is checked this picture will be the album logo', default=False)),
                 ('uploaded', models.DateTimeField(db_index=True, auto_now_add=True)),
                 ('modified', models.DateTimeField(db_index=True, auto_now=True)),
-                ('gallery', models.ForeignKey(to='gallery.Gallery')),
+                ('gallery', models.ForeignKey(to='gallery.Gallery', on_delete=models.CASCADE)),
             ],
             options={
                 'ordering': ['-uploaded', '-pk'],

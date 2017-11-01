@@ -45,7 +45,7 @@ class Link(models.Model):
     """
     This model handle a links to the world
     """
-    category = models.ForeignKey(Category, verbose_name=_('category'), related_name='links')
+    category = models.ForeignKey(Category, verbose_name=_('category'), related_name='links', on_delete=models.CASCADE)
     title = models.CharField(_('title'), max_length=255)
     url = models.CharField(_('URL'), max_length=255)
 

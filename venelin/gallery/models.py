@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.conf import settings
+from django.urls import reverse
 from django.utils.safestring import mark_safe
 from django.utils.encoding import force_str, force_text
 from django.utils.translation import ugettext_lazy as _
@@ -51,9 +52,8 @@ class Gallery(models.Model):
     def natural_key(self):
         return self.slug,
 
-    @models.permalink
     def get_absolute_url(self):
-        return ('gallery:gallery', (self.slug,), {})
+        return reverse('gallery:gallery', args=(self.slug,))
 
     def get_thumbnail_url(self):
         try:
@@ -79,7 +79,7 @@ class Picture(models.Model):
     MAX_THUMB_HEIGHT = 100
     IMAGES_ROOT = 'gallery'
 
-    gallery = models.ForeignKey(Gallery, verbose_name=_('gallery'), related_name='pictures')
+    gallery = models.ForeignKey(Gallery, verbose_name=_('gallery'), related_name='pictures', on_delete=models.CASCADE)
     title = models.CharField(_('title'), max_length=255, blank=True, default='', help_text=_("Title of the picture"))
     image = ProcessedImageField(verbose_name=_('image'), max_length=255, upload_to=upload_picture_to, processors=[ResizeToFit(MAX_WIDTH, MAX_HEIGHT)], format='JPEG', options={'quality': 95})
     thumb = ImageSpecField(source='image', processors=[ResizeToFit(MAX_THUMB_WIDTH, MAX_THUMB_HEIGHT)], format='JPEG', options={'quality': 60})
