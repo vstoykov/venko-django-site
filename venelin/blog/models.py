@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models import Count, Max, When, Case
 from django.template.defaultfilters import striptags, truncatechars
 from django.urls import reverse
-from django.utils.encoding import force_str, force_text
+from django.utils.encoding import force_str
 from django.utils.translation import ugettext_lazy as _
 
 from ckeditor.fields import RichTextField
@@ -42,9 +42,6 @@ class Category(models.Model):
 
     def __str__(self):
         return force_str(self.title)
-
-    def __unicode__(self):
-        return force_text(self.__str__())
 
     def natural_key(self):
         return self.slug,
@@ -92,9 +89,6 @@ class Entry(models.Model):
 
     def __str__(self):
         return force_str(truncatechars(self.title, 60))
-
-    def __unicode__(self):
-        return force_text(self.__str__())
 
     def natural_key(self):
         return self.slug,

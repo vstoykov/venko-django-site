@@ -1,10 +1,8 @@
-from __future__ import unicode_literals
-
 from django.db import models
 from django.conf import settings
 from django.urls import reverse
 from django.utils.safestring import mark_safe
-from django.utils.encoding import force_str, force_text
+from django.utils.encoding import force_str
 from django.utils.translation import ugettext_lazy as _
 
 from imagekit.models import ProcessedImageField, ImageSpecField
@@ -45,9 +43,6 @@ class Gallery(models.Model):
 
     def __str__(self):
         return force_str(self.title)
-
-    def __unicode__(self):
-        return force_text(self.__str__())
 
     def natural_key(self):
         return self.slug,
@@ -99,16 +94,13 @@ class Picture(models.Model):
     def __str__(self):
         return force_str(self.title or self.image.name)
 
-    def __unicode__(self):
-        return force_text(self.__str__())
-
     def save(self, *args, **kwargs):
         """
         Here we do the magic of creating a thumbnail automaticaly, when new picture are set.
         """
         if not (self.pk or self.title):
             self.title = self.image.name.replace('_', ' ')
-        super(Picture, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def natural_key(self):
         return str(self.image),

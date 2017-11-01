@@ -1,8 +1,6 @@
-from __future__ import unicode_literals
-
 from django.db import models
 from django.utils.safestring import mark_safe
-from django.utils.encoding import force_str, force_text
+from django.utils.encoding import force_str
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -27,9 +25,6 @@ class Category(models.Model):
 
     def __str__(self):
         return force_str(self.title)
-
-    def __unicode__(self):
-        return force_text(self.__str__())
 
     def natural_key(self):
         return self.title,
@@ -58,9 +53,6 @@ class Link(models.Model):
 
     def __str__(self):
         return force_str("{0.title} ({0.url})".format(self))
-
-    def __unicode__(self):
-        return force_text(self.__str__())
 
     def natural_key(self):
         return self.url,
