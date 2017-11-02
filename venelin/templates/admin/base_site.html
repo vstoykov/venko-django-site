@@ -3,6 +3,12 @@
 
 {% block title %}{{ title }} | {{ request.site.name }} {% trans 'Administration' %}{% endblock %}
 
+{% block extrahead %}
+<script>window.CKEDITOR_BASEPATH = '{% static "ckeditor/ckeditor/" %}';</script>
+{{ block.super }}
+{% endblock %}
+
+
 {% block branding %}
 <h1 id="site-name"><a href="{% url 'admin:index' %}">{{ request.site.name }} {% trans 'Administration' %}</a></h1>
 {% endblock %}
