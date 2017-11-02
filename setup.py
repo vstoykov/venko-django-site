@@ -13,7 +13,7 @@ setup(
         'Django>=1.11,<2.1',
         'Pillow==4.3.0',
         'pilkit>=2.0',
-        'django-ckeditor==5.2.2',
+        'django-ckeditor==5.3.1',
         'django-extensions==1.9.7',
         'django-appconf>=1.0.1',
         'django-imagekit>=4.0.1',
