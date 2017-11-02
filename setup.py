@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from setuptools import setup
 
 setup(
     name='venelin-site',
-    version='1.3.0',
+    version='2.0',
     description='venelin.sytes.net',
     author='Venelin Stoykov',
     author_email='vkstoykov@gmail.com',
