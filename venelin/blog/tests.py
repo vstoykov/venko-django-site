@@ -8,51 +8,53 @@ from venelin.blog.models import Entry, Category
 
 
 class BlogTestCase(TestCase):
-    def setUp(self):
-        self.category1 = Category.objects.create(title='Linux', slug='linux')
-        self.category2 = Category.objects.create(title='Django', slug='django')
-        self.category3 = Category.objects.create(title='No public entries', slug='no-public-entries')
-        self.category4 = Category.objects.create(title='No entries', slug='no-entries')
 
-        self.category1entry1 = Entry.objects.create(
+    @classmethod
+    def setUpTestData(cls):
+        cls.category1 = Category.objects.create(title='Linux', slug='linux')
+        cls.category2 = Category.objects.create(title='Django', slug='django')
+        cls.category3 = Category.objects.create(title='No public entries', slug='no-public-entries')
+        cls.category4 = Category.objects.create(title='No entries', slug='no-entries')
+
+        cls.category1entry1 = Entry.objects.create(
             title="Post About Linux",
             slug='post-about-linux',
-            category=self.category1,
+            category=cls.category1,
             content="<p>Content about Linux</p>",
             is_published=True,
             created=timezone.now() - timedelta(days=10)
         )
 
-        self.category1entry2 = Entry.objects.create(
+        cls.category1entry2 = Entry.objects.create(
             title="Unpublished Post About Linux",
             slug='unpublished-post-about-linux',
-            category=self.category1,
+            category=cls.category1,
             content="<p>Content about Linux</p>",
             is_published=False,
             created=timezone.now() - timedelta(days=6)
         )
 
-        self.category2entry1 = Entry.objects.create(
+        cls.category2entry1 = Entry.objects.create(
             title="Post About Django",
             slug='post-about-django',
-            category=self.category2,
+            category=cls.category2,
             content="<p>Content about Django</p>",
             is_published=True,
             created=timezone.now() - timedelta(days=4)
         )
 
-        self.category2entry2 = Entry.objects.create(
+        cls.category2entry2 = Entry.objects.create(
             title="Second Post About Django",
             slug='second-post-about-django',
-            category=self.category2,
+            category=cls.category2,
             content="<p>Content about Django</p>",
             is_published=True,
         )
 
-        self.category3entry = Entry.objects.create(
+        cls.category3entry = Entry.objects.create(
             title="Unpublished Post",
             slug='unpublished-post',
-            category=self.category3,
+            category=cls.category3,
             content="<p>Unpublished content</p>",
             is_published=False,
             created=timezone.now() - timedelta(days=2)

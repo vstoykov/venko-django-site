@@ -20,16 +20,22 @@ def generate_image():
 
 
 class GalleryAdminTestCase(TestCase):
-    def setUp(self):
-        self.user_admin = get_user_model().objects.create_superuser(
+
+    @classmethod
+    def setUpTestData(cls):
+        cls.user_admin_pk = get_user_model().objects.create_superuser(
             username='admin',
             email='admin@example.com',
             password='admin',
-        )
-        self.gallery = Gallery.objects.create(
+        ).pk
+        cls.gallery_pk = Gallery.objects.create(
             title='Test Gallery',
             slug='test-gallery',
-        )
+        ).pk
+
+    def setUp(self):
+        self.user_admin = get_user_model().objects.get(pk=self.user_admin_pk)
+        self.gallery = Gallery.objects.get(pk=self.gallery_pk)
 
     def tearDown(self):
         for picture in self.gallery.pictures.all():
@@ -37,7 +43,7 @@ class GalleryAdminTestCase(TestCase):
             default_storage.delete(picture.thumb.path)
 
     def test_ajax_upload(self):
-        self.client.login(username='admin', password='admin')
+        self.client.force_login(self.user_admin)
         response = self.client.post(
             reverse('admin:gallery_gallery_upload', args=[self.gallery.pk]),
             {
@@ -60,7 +66,7 @@ class GalleryAdminTestCase(TestCase):
         })
 
     def test_ajax_bad_upload(self):
-        self.client.login(username='admin', password='admin')
+        self.client.force_login(self.user_admin)
         response = self.client.post(
             reverse('admin:gallery_gallery_upload', args=[self.gallery.pk]),
             {'bad': 'data'},
@@ -70,7 +76,7 @@ class GalleryAdminTestCase(TestCase):
         self.assertIn('errors', json.loads(force_str(response.content)))
 
     def test_ajax_upload_missing_gallery(self):
-        self.client.login(username='admin', password='admin')
+        self.client.force_login(self.user_admin)
         response = self.client.post(
             reverse('admin:gallery_gallery_upload', args=[404]),
             {
@@ -80,14 +86,14 @@ class GalleryAdminTestCase(TestCase):
         self.assertEqual(404, response.status_code)
 
     def test_ajax_upload_permission(self):
-        get_user_model().objects._create_user(
+        user = get_user_model().objects.create_user(
             username='staff',
             email='staff@example.com',
             password='staff',
             is_staff=True,
             is_superuser=False,
         )
-        self.client.login(username='staff', password='staff')
+        self.client.force_login(user)
         response = self.client.post(
             reverse('admin:gallery_gallery_upload', args=[self.gallery.pk]),
             {
