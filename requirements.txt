@@ -5,6 +5,6 @@ django-ckeditor==5.3.1
 django-extensions==1.9.7
 django-appconf>=1.0.1
 django-imagekit>=4.0.1
-Pygments
+Pygments==2.2.0
 appenlight-client==0.6.21
 dj-database-url==0.4.2
