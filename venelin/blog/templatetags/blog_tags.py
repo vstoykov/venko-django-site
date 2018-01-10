@@ -2,7 +2,7 @@ from django.core.exceptions import ImproperlyConfigured
 from django.contrib.sites.models import Site
 from django.conf import settings
 from django.template import Library
-from django.utils.safestring import mark_safe
+from django.utils.html import format_html
 
 from ...models import Entry
 
@@ -42,10 +42,11 @@ def disqus_dev():
     """
     if settings.DEBUG:
         site = Site.objects.get_current()
-        return mark_safe(
+        return format_html(
             '<script type="text/javascript">'
-            'var disqus_developer=1, disqus_url="http://{site.domain}/";'
-            '</script>'.format(site=site)
+            'var disqus_developer=1, disqus_url="http://{domain}/";'
+            '</script>',
+            domain=site.domain,
         )
     return ""
 

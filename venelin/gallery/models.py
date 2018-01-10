@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.urls import reverse
-from django.utils.safestring import mark_safe
+from django.utils.html import format_html
 from django.utils.encoding import force_str
 from django.utils.translation import ugettext_lazy as _
 
@@ -112,8 +112,8 @@ class Picture(models.Model):
         """
         if not self.thumb:
             return ''
-        return mark_safe('<a href="{s.image.url}" title="{s.title}"><img src="{thumb.url}" width="{thumb.width}" height="{thumb.height}" alt="{s.title}" /></a>'.format(s=self, thumb=self.thumb))
-    preview.allow_tags = True
+        return format_html('<a href="{image_url}" title="{title}"><img src="{thumb_url}" width="{width}" height="{height}" alt="{title}" /></a>',
+                           image_url=self.image.url, title=self.title, thumb_url=self.thumb.url, width=self.thumb.width, height=self.thumb.height)
     preview.short_description = _('preview')
 
     def as_dict(self):
