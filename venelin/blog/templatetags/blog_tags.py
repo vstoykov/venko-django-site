@@ -1,5 +1,5 @@
 from django.core.exceptions import ImproperlyConfigured
-from django.contrib.sites.models import Site
+from django.contrib.sites.shortcuts import get_current_site
 from django.conf import settings
 from django.template import Library
 from django.utils.html import format_html
@@ -33,15 +33,15 @@ def latest_entries(context, n):
     return context
 
 
-@register.simple_tag
-def disqus_dev():
+@register.simple_tag(takes_context=True)
+def disqus_dev(context):
     """
     Return the HTML/js code to enable DISQUS comments on a local
     development server if settings.DEBUG is True.
 
     """
     if settings.DEBUG:
-        site = Site.objects.get_current()
+        site = get_current_site(context.request)
         return format_html(
             '<script type="text/javascript">'
             'var disqus_developer=1, disqus_url="http://{domain}/";'
