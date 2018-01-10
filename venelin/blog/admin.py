@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
+from django.utils.html import format_html
 
 from .models import Category, Entry
 from .forms import EntryAdminForm
@@ -25,14 +26,12 @@ class EntryAdmin(admin.ModelAdmin):
         return super(EntryAdmin, self).get_queryset(request).select_related('category')
 
     def slug_as_link(self, obj):
-        return '<a href="%s">%s</a>' % (obj.get_absolute_url(), obj.slug)
-    slug_as_link.allow_tags = True
+        return format_html('<a href="{}">{}</a>', obj.get_absolute_url(), obj.slug)
     slug_as_link.admin_order_field = 'slug'
     slug_as_link.short_description = _('slug')
 
     def category_as_link(self, obj):
-        return '<a href="%s">%s</a>' % (obj.category.get_absolute_url(), obj.category)
-    category_as_link.allow_tags = True
+        return format_html('<a href="{}">{}</a>', obj.category.get_absolute_url(), obj.category)
     category_as_link.admin_order_field = 'category'
     category_as_link.short_description = _('category')
 

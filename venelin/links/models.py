@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils.safestring import mark_safe
+from django.utils.html import format_html
 from django.utils.encoding import force_str
 from django.utils.translation import ugettext_lazy as _
 
@@ -59,7 +59,6 @@ class Link(models.Model):
     natural_key.dependencies = 'links.category',
 
     def get_link(self):
-        return mark_safe('<a href="{0.url}" target="_blank" rel="nofollow">{0.url}</a>'.format(self))
+        return format_html('<a href="{url}" target="_blank" rel="nofollow">{url}</a>', url=self.url)
     get_link.short_description = 'url'
     get_link.admin_order_field = 'url'
-    get_link.allow_tags = True
