@@ -7,12 +7,6 @@ ADMINS = (
 )
 MANAGERS = ADMINS
 
-
-TEMPLATES[0]['OPTIONS']['loaders'] = [
-    ('django.template.loaders.cached.Loader', TEMPLATES[0]['OPTIONS']['loaders']),
-]
-
-
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
 
 ALLOWED_HOSTS = [

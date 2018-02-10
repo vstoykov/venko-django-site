@@ -77,6 +77,7 @@ SECRET_KEY = 'qi!k%l+n@hs8l8%)t@j2bl6_jj_x2q-g^em=i!6m17(7x1^$9r'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'APP_DIRS': True,
         'DIRS': [
             os.path.join(BASE_DIR, 'venelin', 'templates'),
         ],
@@ -92,10 +93,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'venelin.context_processors.google_analytics',
             ],
-            'loaders': [
-                'django.template.loaders.filesystem.Loader',
-                'django.template.loaders.app_directories.Loader',
-            ]
         }
     },
 ]
