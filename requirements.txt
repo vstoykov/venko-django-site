@@ -7,4 +7,4 @@ django-appconf>=1.0.1
 django-imagekit>=4.0.1
 Pygments
 appenlight-client==0.6.25
-dj-database-url==0.4.2
+dj-database-url==0.5.0
