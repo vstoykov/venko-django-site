@@ -14,11 +14,11 @@ setup(
         'Pillow>=4.3.0',
         'pilkit>=2.0',
         'django-ckeditor==5.4.0',
-        'django-extensions==1.9.8',
+        'django-extensions>=2.0.0,<2.1',
         'django-appconf>=1.0.1',
         'django-imagekit>=4.0.1',
         'Pygments',
-        'appenlight-client==0.6.22',
+        'appenlight-client>=0.6.25',
         'psycopg2',
     ],
 )
