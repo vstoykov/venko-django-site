@@ -15,6 +15,7 @@
 .ropeproject
 .tox
 .vscode
+.env
 __pycache__
 site.db
 /venelin/settings/local.py
