@@ -243,7 +243,7 @@ try:
 except ImportError:
     pass
 else:
-    APPENLIGHT = e_client.get_config() if os.getenv('APPENLIGHT_KEY') else {}
+    APPENLIGHT = e_client.get_config() if os.getenv('APPENLIGHT_INI') else {}
     MIDDLEWARE = (
         'appenlight_client.django_middleware.AppenlightMiddleware',
     ) + MIDDLEWARE
