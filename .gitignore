@@ -16,6 +16,7 @@
 .tox
 .vscode
 .env
+.pytest*
 __pycache__
 site.db
 /venelin/settings/local.py
