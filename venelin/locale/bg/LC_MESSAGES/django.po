@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-18 02:06+0300\n"
+"POT-Creation-Date: 2018-04-02 23:13+0300\n"
 "PO-Revision-Date: 2014-09-25 00:40+0200\n"
 "Last-Translator: Venelin Stoykov <v.k.stoykov@gmail.com>\n"
 "Language-Team: BG <vkstoykov@gmail.com>\n"
@@ -20,20 +20,20 @@ msgstr ""
 "X-Language: bg_BG\n"
 "X-Source-Language: en\n"
 
-#: blog/admin.py:31 blog/models.py:30 blog/models.py:66 gallery/models.py:29
+#: blog/admin.py:31 blog/models.py:34 blog/models.py:72 gallery/models.py:32
 msgid "slug"
 msgstr "слъг"
 
-#: blog/admin.py:37 blog/models.py:36 blog/models.py:64 links/models.py:17
-#: links/models.py:31
+#: blog/admin.py:36 blog/models.py:40 blog/models.py:70 links/models.py:23
+#: links/models.py:43
 msgid "category"
 msgstr "категория"
 
-#: blog/admin.py:42
+#: blog/admin.py:41
 msgid "Publish selected entries"
 msgstr "Публикуване на избраните статии"
 
-#: blog/admin.py:47
+#: blog/admin.py:46
 msgid "Unpublish selected entries"
 msgstr "Отмяна на публикуването на избраните статии"
 
@@ -41,88 +41,98 @@ msgstr "Отмяна на публикуването на избраните с�
 msgid "Blog"
 msgstr "Блог"
 
-#: blog/models.py:29 blog/models.py:65 gallery/models.py:28
-#: gallery/models.py:71 links/models.py:13 links/models.py:32
+#: blog/models.py:33 blog/models.py:71 gallery/models.py:31
+#: gallery/models.py:78 links/models.py:17 links/models.py:44
 msgid "title"
 msgstr "заглавие"
 
-#: blog/models.py:37 links/models.py:18
+#: blog/models.py:41 links/models.py:24
 msgid "categories"
 msgstr "категории"
 
-#: blog/models.py:67
+#: blog/models.py:73
 msgid "content"
 msgstr "съдържание"
 
-#: blog/models.py:69
+#: blog/models.py:75
 msgid "keywords"
 msgstr "ключови думи"
 
-#: blog/models.py:70
+#: blog/models.py:76
 msgid "description"
 msgstr "описание"
 
-#: blog/models.py:72 gallery/models.py:31
+#: blog/models.py:78 gallery/models.py:34
 msgid "created at"
 msgstr "създадено на"
 
-#: blog/models.py:73 gallery/models.py:32 gallery/models.py:78
+#: blog/models.py:79 gallery/models.py:35 gallery/models.py:85
 msgid "modified at"
 msgstr "променено на"
 
-#: blog/models.py:74
+#: blog/models.py:80
 msgid "is published"
 msgstr "публикувано"
 
-#: blog/models.py:81
+#: blog/models.py:87
 msgid "entry"
 msgstr "статия"
 
-#: blog/models.py:82
+#: blog/models.py:88
 msgid "entries"
 msgstr "статии"
+
+#: gallery/admin.py:68
+#, python-format
+msgid "%(name)s object with primary key %(key)r does not exist."
+msgstr ""
+
+#: gallery/admin.py:80
+#, python-format
+msgid "Added %(name)s \"%(object)s\"."
+msgstr ""
 
 #: gallery/apps.py:7
 msgid "Gallery"
 msgstr "Галерия"
 
-#: gallery/models.py:38 gallery/models.py:70
+#: gallery/models.py:41 gallery/models.py:77
 msgid "gallery"
 msgstr "галерия"
 
-#: gallery/models.py:39
+#: gallery/models.py:42
 msgid "galleries"
 msgstr "галерии"
 
-#: gallery/models.py:71
+#: gallery/models.py:78
 msgid "Title of the picture"
 msgstr "Заглавие на снимката"
 
-#: gallery/models.py:72
+#: gallery/models.py:79
 msgid "image"
 msgstr "изображение"
 
-#: gallery/models.py:75
+#: gallery/models.py:82
 msgid "is album logo"
 msgstr "е лого на албума"
 
-#: gallery/models.py:75
+#: gallery/models.py:82
 msgid "If this is checked this picture will be the album logo"
 msgstr "Ако е избрано тази снимка ще бъде лого на албума"
 
-#: gallery/models.py:77
+#: gallery/models.py:84
 msgid "uploaded at"
 msgstr "качено на"
 
-#: gallery/models.py:82
+#: gallery/models.py:91
 msgid "picture"
 msgstr "снимка"
 
-#: gallery/models.py:83
+#: gallery/models.py:92
 msgid "pictures"
 msgstr "снимки"
 
-#: gallery/models.py:107
+#: gallery/models.py:117
 msgid "preview"
 msgstr "превю"
 
@@ -130,18 +140,21 @@ msgstr "превю"
 msgid "Links"
 msgstr "Връзки"
 
-#: links/models.py:33
+#: links/models.py:45
 msgid "URL"
 msgstr "URL"
 
-#: links/models.py:37
+#: links/models.py:51
 msgid "link"
 msgstr "връзка"
 
-#: links/models.py:38
+#: links/models.py:52
 msgid "links"
 msgstr "връзки"
 
-#: settings/common.py:240
-msgid "Go"
-msgstr "Действай"
+#: templates/admin/base_site.html:4 templates/admin/base_site.html:13
+msgid "Administration"
+msgstr ""
+
+#~ msgid "Go"
+#~ msgstr "Действай"
