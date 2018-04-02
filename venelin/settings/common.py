@@ -3,8 +3,6 @@ import re
 import os
 import posixpath
 
-_ = lambda x: x
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 DEBUG = False
@@ -261,6 +259,3 @@ except ImportError:
     pass
 else:
     INSTALLED_APPS += ('django_uwsgi',)
-
-# Translation strings
-_('Go')
