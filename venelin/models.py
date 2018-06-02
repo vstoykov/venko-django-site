@@ -19,10 +19,14 @@ def get_pages_cache():
 
 
 def invalidate_cache(**kwargs):
-    if kwargs['sender'] in [FlatPage, Entry, Picture, Link]:
-        cache = get_pages_cache()
-        if cache:
-            cache.clear()
+    cache = get_pages_cache()
+    if cache:
+        cache.clear()
 
-for signal in [post_save, m2m_changed, post_delete]:
-    receiver(signal)(invalidate_cache)
+
+# Register Receivers for for cleaning the cache
+_signals = (post_save, m2m_changed, post_delete)
+for _model in (FlatPage, Entry, Picture, Link):
+    receiver(_signals, sender=_model)(invalidate_cache)
+del _signals
+del _model
