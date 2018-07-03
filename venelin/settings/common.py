@@ -90,6 +90,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
                 'venelin.context_processors.google_analytics',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         }
     },
@@ -135,6 +137,7 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.redirects',
 
+    'social_django',
     'django_extensions',
     'ckeditor',
     'imagekit',
@@ -150,6 +153,13 @@ INSTALLED_APPS = (
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 INTERNAL_IPS = ('127.0.0.1',)
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.google_openidconnect.GoogleOpenIdConnect',
+    'django.contrib.auth.backends.ModelBackend',
+)
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
