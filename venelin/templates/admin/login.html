@@ -45,7 +45,9 @@
   {% endif %}
   <div class="submit-row">
 		<label>&nbsp;</label><input type="submit" value="{% trans 'Log in' %}" />
-		<a href="{% url 'social:begin' 'google-openidconnect' %}">Log in with Google OpenID</a>
+		<a href="{% url 'social:begin' 'google-openidconnect' %}">
+			<img src="https://developers.google.com/identity/images/btn_google_signin_light_normal_web.png" alt="Signin with Google">
+		</a>
   </div>
 </form>
 
