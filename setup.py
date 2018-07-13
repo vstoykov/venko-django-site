@@ -21,6 +21,8 @@ setup(
         'django-extensions>=2.0.6,<3',
         'django-appconf>=1.0.1',
         'django-imagekit>=4.0.1',
+        'social-auth-app-django>=2.1',
+        'pyjwkest>=1.4',
         'Pygments',
         'appenlight-client>=0.6.25',
         'psycopg2',
