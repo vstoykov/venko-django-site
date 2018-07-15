@@ -267,13 +267,6 @@ else:
     ) + MIDDLEWARE
 
 try:
-    __import__('uwsgi_admin')
-except ImportError:
-    pass
-else:
-    INSTALLED_APPS += ('uwsgi_admin',)
-
-try:
     __import__('django_uwsgi')
 except ImportError:
     pass
