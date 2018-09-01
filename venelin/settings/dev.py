@@ -6,7 +6,7 @@ CACHE_MIDDLEWARE_SECONDS = 10
 
 ALLOWED_HOSTS = ['*']
 
-DEFAULT_FROM_EMAIL = 'webmaster@venelin.sytes.net'
+DEFAULT_FROM_EMAIL = 'webmaster@stoykov.tk'
 EMAIL_PORT = 1025
 
 USE_DEBUG_TOOLABR = True

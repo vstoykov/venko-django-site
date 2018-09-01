@@ -1,5 +1,5 @@
 """
-WSGI config for venelin.sytes.net project.
+WSGI config for https://stoykov.tk project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

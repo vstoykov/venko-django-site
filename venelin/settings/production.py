@@ -13,7 +13,7 @@ ALLOWED_HOSTS = [
     '*',
 ]
 
-SERVER_EMAIL = DEFAULT_FROM_EMAIL = 'webmaster@venelin.sytes.net'
+SERVER_EMAIL = DEFAULT_FROM_EMAIL = 'webmaster@stoykov.tk'
 
 
 GOOGLE_ANALYTICS_CODE = 'UA-22285007-1'

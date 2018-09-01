@@ -8,10 +8,10 @@ needs_pytest = bool({'pytest', 'test', 'ptr'}.intersection(sys.argv))
 setup(
     name='venelin-site',
     version='2.1.1',
-    description='venelin.sytes.net',
+    description='Simple Personal WEB site made with Django',
     author='Venelin Stoykov',
     author_email='vkstoykov@gmail.com',
-    url='http://venelin.sytes.net/',
+    url='https://stoykov.tk/',
     setup_requires=['pytest-runner'] if needs_pytest else [],
     install_requires=[
         'Django>=1.11,<3',

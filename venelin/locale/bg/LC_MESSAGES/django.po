@@ -1,4 +1,4 @@
-# Bulgarian translations for venelin.sytes.net.
+# Bulgarian translations for https://stoykov.tk.
 # Copyright (C) 2014 Venelin Stoykov
 # This file is distributed under the same license as the PACKAGE package.
 # Venelin Stoykov <vkstoykov@gmail.com>, 2014.
