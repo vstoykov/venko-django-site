@@ -1,6 +1,6 @@
 from django.core.exceptions import MiddlewareNotUsed
 from django.utils.deprecation import MiddlewareMixin
-from django.utils.encoding import DjangoUnicodeDecodeError
+from django.utils.encoding import force_bytes, force_str, DjangoUnicodeDecodeError
 from django.utils.html import strip_spaces_between_tags as minify_html
 from django.conf import settings
 from django.db import connection
@@ -60,8 +60,21 @@ class MinifyHTMLMiddleware(MiddlewareMixin):
 
     def process_response(self, request, response):
         if response.has_header('Content-Type') and 'text/html' in response['Content-Type']:
+            charset = response.charset
             try:
-                response.content = minify_html(response.content.strip())
+                response.content = force_bytes(
+                    minify_html(
+                        force_str(
+                            response.content.strip(),
+                            encoding=charset,
+                        )
+                    ),
+                    encoding=charset,
+                )
+                response['Content-Length'] = len(response.content)
             except DjangoUnicodeDecodeError:
+                # For some reason convertion can not be done.
+                # Let's ignore the minification and return the response
+                # as is.
                 pass
         return response
