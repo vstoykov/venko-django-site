@@ -6,6 +6,7 @@ env:
   - DJANGO=111
   - DJANGO=20
   - DJANGO=21
+  - DJANGO=master
 
 python:
   - "3.5"
@@ -19,3 +20,5 @@ script:
 
 matrix:
   fast_finish: true
+  allow_failures:
+    - env: DJANGO=master
