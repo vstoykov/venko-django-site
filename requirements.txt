@@ -7,6 +7,6 @@ django-appconf>=1.0.1
 django-imagekit>=4.0.1
 social-auth-app-django>=2.1
 pyjwkest>=1.4
-Pygments
+Pygments==2.2.0
 appenlight-client==0.6.26
 dj-database-url==0.5.0
