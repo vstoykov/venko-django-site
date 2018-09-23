@@ -2,20 +2,20 @@ language: python
 
 sudo: false
 
+env:
+  - DJANGO=111
+  - DJANGO=20
+  - DJANGO=21
+
+python:
+  - "3.5"
+  - "3.6"
+
 install:
   - pip install tox
 
 script:
-  - tox
+  - tox -e py$(python -c 'import sys;print("".join(map(str, sys.version_info[:2])))')-dj${DJANGO}
 
 matrix:
   fast_finish: true
-  include:
-    - env: TOXENV=py35-dj111
-      python: 3.5
-    - env: TOXENV=py36-dj111
-      python: 3.6
-    - env: TOXENV=py35-dj20
-      python: 3.5
-    - env: TOXENV=py36-dj20
-      python: 3.6
