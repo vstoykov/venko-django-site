@@ -19,7 +19,7 @@ django-imagekit = ">=4.0.1"
 Pygments = "*"
 appenlight-client = ">=0.6.25"
 dj-database-url = ">=0.5.0"
-social-auth-app-django = {version = ">3.1", extras = ["openidconnect"]}
+social-auth-app-django = {version = ">=3.1.0", extras = ["openidconnect"]}
 python-jose = ">=3.0.0"
 
 [dev-packages]
