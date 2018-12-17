@@ -7,6 +7,6 @@ django-appconf>=1.0.1
 django-imagekit>=4.0.1
 social-auth-app-django[openidconnect]>=3.1
 python-jose>=3.0.0
-Pygments==2.3.0
+Pygments==2.3.1
 appenlight-client==0.6.26
 dj-database-url==0.5.0
