@@ -1,12 +1,12 @@
-from django.conf.urls import url
+from django.urls import path
 
 from .feeds import latest_entries_feed
 from .views import blog_index, blog_entry
 
 app_name = 'blog'
 urlpatterns = [
-    url(r'^feed/$', latest_entries_feed, name="feed"),
-    url(r'^(?P<category>[\w\_\-]+)/$', blog_index, name='category'),
-    url(r'^(?P<category>[\w\_\-]+)/(?P<entry>[\w\_\-]+)/$', blog_entry, name='entry'),
-    url(r'^$', blog_index, name='index'),
+    path('feed/', latest_entries_feed, name="feed"),
+    path('<category>/', blog_index, name='category'),
+    path('<category>/<entry>/', blog_entry, name='entry'),
+    path('', blog_index, name='index'),
 ]

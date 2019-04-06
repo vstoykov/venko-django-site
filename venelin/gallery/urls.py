@@ -1,9 +1,9 @@
-from django.conf.urls import url
+from django.urls import path
 
 from .views import galleries, gallery
 
 app_name = 'gallery'
 urlpatterns = [
-    url(r'^$', galleries, name='index'),
-    url(r'^(?P<slug>[\w\_\-]+)/$', gallery, name='gallery'),
+    path('', galleries, name='index'),
+    path('<slug>/', gallery, name='gallery'),
 ]
