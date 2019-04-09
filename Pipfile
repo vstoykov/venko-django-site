@@ -9,7 +9,7 @@ verify_ssl = true
 name = "piwheels"
 
 [packages]
-Django = ">=1.11,<3"
+Django = ">=2.2,<3"
 Pillow = ">=4.3.0"
 pilkit = ">=2.0"
 django-ckeditor = ">=5.4.0"

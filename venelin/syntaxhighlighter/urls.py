@@ -1,7 +1,7 @@
-from django.conf.urls import url
+from django.urls import path
 
 from .views import highlight
 
 urlpatterns = [
-    url(r'^$', highlight, name='highlighter'),
+    path('', highlight, name='highlighter'),
 ]
