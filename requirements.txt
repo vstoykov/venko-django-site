@@ -1,12 +1,12 @@
-Django==2.2
+Django==2.2.1
 Pillow==5.4.1
 pilkit>=2.0
-django-ckeditor==5.6.1
+django-ckeditor==5.7.1
 django-extensions==2.1.7
 django-appconf>=1.0.1
 django-imagekit>=4.0.1
 social-auth-core[openidconnect]>=2.0
 social-auth-app-django>=3.1
-Pygments==2.3.1
+Pygments==2.4.2
 appenlight-client==0.6.26
 dj-database-url==0.5.0
