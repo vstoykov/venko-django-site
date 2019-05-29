@@ -10,11 +10,11 @@
 	</style>
 {% endblock %}
 
-{% block main_content %}
-<div>
-    <div class="article">
-        <h2 class="header">Syntax Highlighter</h2>
-        <div class="content">
+{% block content %}
+	{{ block.super }}
+	<article>
+		<h2 class="header">Syntax Highlighter</h2>
+		<div class="content">
 			<div style="display: inline-block; vertical-align: top;">
 				<form action="?" method="POST">
 					{% csrf_token %}
@@ -27,7 +27,6 @@
 				<p>Copy directly to Word!</p>
 				{{ form.highlighted_code }}
 			</div>
-        </div>
-    </div>
-</div>
+		</div>
+	</article>
 {% endblock %}
