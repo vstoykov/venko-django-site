@@ -26,7 +26,6 @@ social-auth-app-django = ">=3.1.0"
 "flake8" = "*"
 pytest-django = "*"
 django-debug-toolbar = "*"
-ipdb = "*"
 docutils = "*"
 
 [requires]
