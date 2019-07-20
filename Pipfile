@@ -30,3 +30,8 @@ docutils = "*"
 
 [requires]
 python_version = "3.6"
+
+[scripts]
+server = "python3 manage.py runserver"
+migrations = "python3 manage.py migrate"
+shell = "python3 manage.py shell_plus"
