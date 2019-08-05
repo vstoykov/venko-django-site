@@ -70,8 +70,8 @@ class Picture(models.Model):
     """
     MAX_WIDTH = 900
     MAX_HEIGHT = 600
-    MAX_THUMB_WIDTH = 130
-    MAX_THUMB_HEIGHT = 100
+    MAX_THUMB_WIDTH = 180
+    MAX_THUMB_HEIGHT = 120
     IMAGES_ROOT = 'gallery'
 
     gallery = models.ForeignKey(Gallery, verbose_name=_('gallery'), related_name='pictures', on_delete=models.CASCADE)
