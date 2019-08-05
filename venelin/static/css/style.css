@@ -288,14 +288,15 @@ dl.links dd + dt {border-top: 1px solid #363; margin-top: 10px; padding-top: 10p
 .gallery figure {
 	display: inline;
 	display: inline-block;
-	width: 150px;
+	width: 200px;
 	margin: 10px;
 	vertical-align: top;
 	text-align: center;
 }
 .gallery .thumb-holder {
-	height: 100px;
-	display: block;
+	height: 120px;
+  display: block;
+  margin-bottom: 1em;
 }
 
 
