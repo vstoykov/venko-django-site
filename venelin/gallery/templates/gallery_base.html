@@ -7,13 +7,6 @@
 	<meta name="description" content="{% if gallery %}Галерия {{ gallery.title }}{% else %}Списък с галерии{% endif %} на Венелин Стойков"/>
 {% endblock %}
 
-{% block extra_js %}
-	{{ block.super }}
-	<script type="text/javascript">
-		$(function(){ $(".gallery figure img").addClass('shadow'); });
-	</script>
-{% endblock %}
-
 {% block breadcrumb %}
 	{{ block.super }}
 	<li><a href="/gallery/">Галерия</a></li>
