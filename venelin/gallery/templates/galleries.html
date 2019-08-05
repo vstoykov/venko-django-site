@@ -6,7 +6,7 @@
 		{% for gallery in galleries %}
 			<figure>
 				<a href="{{ gallery.get_absolute_url }}" name="{{ gallery.slug }}">
-					<span class="thumb-holder"><img src="{{ gallery.get_thumbnail_url }}" alt="{{ gallery.title }}" /></span>
+					<span class="thumb-holder"><img src="{{ gallery.get_thumbnail_url }}" alt="{{ gallery.title }}" onload="this.className = 'shadow'"/></span>
 					<figcaption>{{ gallery.title }}</figcaption>
 				</a>
 			</figure>

@@ -4,24 +4,25 @@
 {% block title %}{{ gallery.title }} | {{ block.super }}{% endblock %}
 
 {% block css %}
-	<link rel="stylesheet" type="text/css" href="{% static 'css/jquery.lightbox-0.5.css' %}" media="all" />
+	<link rel="stylesheet" type="text/css" href="{% static 'lightgallery/css/lightgallery.min.css' %}" media="all" />
 {% endblock %}
 
 {% block js %}
-	<script type="text/javascript" src="{% static 'js/jquery.lightbox-0.5.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'lightgallery/js/lightgallery.min.js' %}"></script>
 	<!--script type="text/javascript" src="{% static 'js/gallery.js' %}"></script-->
 {% endblock %}
 
 {% block extra_js %}
 	{{ block.super }}
 	<script type="text/javascript">
-		$(function() {
-			$("#gallery_list a").lightBox({
-				imageLoading: '{% static "img/lightbox/loading.gif" %}',
-				imageBtnClose: '{% static "img/lightbox/close.gif" %}',
-				imageBtnPrev: '{% static "img/lightbox/prev.gif" %}',
-				imageBtnNext: '{% static "img/lightbox/next.gif" %}',
-				imageBlank: '{% static "img/lightbox/blank.gif" %}',
+	(function onDOMReady(callback){
+		if (document.addEventListener){document.addEventListener('DOMContentLoaded', callback)}
+		else if (window.attachEvent){window.attachEvent('onload', callback)}
+		else {callback()}
+	})(function(){
+		lightGallery(document.getElementById('gallery_list'), {
+			selector: 'figure > a',
+			download: false
 			});
 		});
 	</script>
@@ -47,8 +48,8 @@
 		{% for picture in gallery.pictures.all %}
 			<figure>
 				<a href="{{ picture.image.url }}" title="{{ picture.title }}">
-					<img src="{{ picture.thumb.url }}" width="{{ picture.thumb.width }}" height="{{ picture.thumb.height }}" alt="{{ picture.title }}" />
-					<!--figcaption>{{picture.title}}</figcaption-->
+					<img src="{{ picture.thumb.url }}" width="{{ picture.thumb.width }}" height="{{ picture.thumb.height }}" alt="{{ picture.title }}" onload="this.className = 'shadow'"/>
+					{% comment %} <figcaption>{{picture.title}}</figcaption> {% endcomment %}
 				</a>
 			</figure>
 		{% empty %}
