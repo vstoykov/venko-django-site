@@ -15,14 +15,13 @@
 	<meta property="og:site_name" content="Сайтът на Венелин Стойков" />
 	<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host}}{% static 'img/rss-icon-big.png' %}"/>
 	<link rel="image_src" href="{{ request.scheme }}://{{ request.get_host}}{% static 'img/rss-icon-big.png' %}">
-	<link rel="author" href="https://plus.google.com/+VenelinStoykov" />
+	<link rel="author" href="/about/" />
 {% endblock %}
 
 {% block header %}
 	{{ block.super }}
 	<h1>{{ entry.title }}</h1>
 	<em>Публикувано на <time datetime="{{ entry.created|date:'c' }}">{{ entry.created|date:'j F Y' }}</time></em>
-	<div class="g-plusone-holder"><div class="g-plusone"></div></div>
 {% endblock %}
 
 {% block content %}
@@ -40,16 +39,4 @@
 		var disqus_url = "{{ request.build_absolute_uri }}";
 	</script>
 	{% disqus_dev %}
-{% endblock %}
-
-{% block extra_js %}
-	{{ block.super }}
-	<script type="text/javascript">
-		window.___gcfg = {lang: '{{ LANGUAGE_CODE }}'};
-		(function() {
-			var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-			po.src = 'https://apis.google.com/js/plusone.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-		})();
-	</script>
 {% endblock %}

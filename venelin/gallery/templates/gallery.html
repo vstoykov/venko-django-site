@@ -23,24 +23,11 @@
 		lightGallery(document.getElementById('gallery_list'), {
 			selector: 'figure > a',
 			download: false
-			});
 		});
+	});
 	</script>
-    <script type="text/javascript">
-      window.___gcfg = {lang: 'bg'};
-
-      (function() {
-        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-        po.src = 'https://apis.google.com/js/plusone.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-      })();
-    </script>
 {% endblock %}
 
-{% block header %}
-	<div class="g-plusone-holder"><div class="g-plusone"></div></div>
-	{{ block.super }}
-{% endblock %}
 
 {% block content %}
 	{{ block.super }}
