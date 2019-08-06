@@ -9,7 +9,7 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from django.utils.encoding import force_str
 
-from venelin.gallery.models import Gallery
+from venelin.gallery.models import Gallery, Picture
 
 
 def generate_image():
@@ -101,3 +101,70 @@ class GalleryAdminTestCase(TestCase):
             }
         )
         self.assertEqual(403, response.status_code)
+
+
+class GalleryApiTestCase(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        test_gallery = Gallery.objects.create(
+            title='Active Gallery',
+            slug='active-gallery',
+        )
+        Gallery.objects.create(
+            title='Empty Gallery',
+            slug='empty-gallery',
+        )
+        test_gallery.pictures.create(
+            image=File(generate_image(), 'test-picture.png'),
+            is_album_logo=True,
+        )
+
+    @classmethod
+    def tearDownClass(cls):
+        for picture in Picture.objects.all():
+            default_storage.delete(picture.image.path)
+            default_storage.delete(picture.thumb.path)
+
+    def test_ajax_list_galleries(self):
+        response = self.client.get(reverse('gallery:index.json'))
+        self.assertEqual(response.status_code, 200)
+        actual = response.json()
+        expected = {
+            'data': [
+                {
+                    'title': 'Active Gallery',
+                    'slug': 'active-gallery',
+                    'cover': '/media/CACHE/images/gallery/active-gallery/test-picture/62d6dc650f1c0ebb335c86a91044e39a.jpg',
+                },
+            ]
+        }
+        self.assertEqual(actual, expected)
+
+    def test_ajax_get_active_gallery(self):
+        response = self.client.get(reverse('gallery:gallery.json', args=['active-gallery']))
+        self.assertEqual(response.status_code, 200)
+        actual = response.json()
+        expected = {
+            'data': {
+                'title': 'Active Gallery',
+                'slug': 'active-gallery',
+                'pictures': [
+                    {
+                        'title': 'test-picture.png',
+                        'image': '/media/gallery/active-gallery/test-picture.jpg',
+                        'thumb': '/media/CACHE/images/gallery/active-gallery/test-picture/62d6dc650f1c0ebb335c86a91044e39a.jpg',
+                    },
+                ],
+            },
+        }
+        self.assertEqual(actual, expected)
+
+    def test_ajax_get_empty_gallery(self):
+        response = self.client.get(reverse('gallery:gallery.json', args=['empty-gallery']))
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.json(), {
+            'errors': [{
+                'code': 'NOT FOUND',
+                'description': 'No Gallery matches the given query.'
+            }],
+        })
