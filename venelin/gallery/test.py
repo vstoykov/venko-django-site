@@ -125,25 +125,33 @@ class GalleryApiTestCase(TestCase):
             default_storage.delete(picture.image.path)
             default_storage.delete(picture.thumb.path)
 
+    def assertStartsWith(self, text, prefix, msg=None):
+        if msg is None:
+            msg = "'{text}' does not starts with '{prefix}'".format(text=text, prefix=prefix)
+        self.assertTrue(text.startswith(prefix), msg)
+
     def test_ajax_list_galleries(self):
         response = self.client.get(reverse('gallery:index.json'))
         self.assertEqual(response.status_code, 200)
         actual = response.json()
+        actual_cover = actual.get('data', [{}])[0].get('cover')
         expected = {
             'data': [
                 {
                     'title': 'Active Gallery',
                     'slug': 'active-gallery',
-                    'cover': '/media/CACHE/images/gallery/active-gallery/test-picture/62d6dc650f1c0ebb335c86a91044e39a.jpg',
+                    'cover': actual_cover,
                 },
             ]
         }
         self.assertEqual(actual, expected)
+        self.assertStartsWith(actual_cover, '/media/CACHE/images/gallery/active-gallery/test-picture/')
 
     def test_ajax_get_active_gallery(self):
         response = self.client.get(reverse('gallery:gallery.json', args=['active-gallery']))
         self.assertEqual(response.status_code, 200)
         actual = response.json()
+        actual_thumb = actual.get('data', {}).get('pictures', [{}])[0].get('thumb')
         expected = {
             'data': {
                 'title': 'Active Gallery',
@@ -152,12 +160,13 @@ class GalleryApiTestCase(TestCase):
                     {
                         'title': 'test-picture.png',
                         'image': '/media/gallery/active-gallery/test-picture.jpg',
-                        'thumb': '/media/CACHE/images/gallery/active-gallery/test-picture/62d6dc650f1c0ebb335c86a91044e39a.jpg',
+                        'thumb': actual_thumb,
                     },
                 ],
             },
         }
         self.assertEqual(actual, expected)
+        self.assertStartsWith(actual_thumb, '/media/CACHE/images/gallery/active-gallery/test-picture/')
 
     def test_ajax_get_empty_gallery(self):
         response = self.client.get(reverse('gallery:gallery.json', args=['empty-gallery']))
