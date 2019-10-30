@@ -15,6 +15,7 @@
 .ropeproject
 .tox
 .vscode
+.eggs
 .env
 .pytest*
 __pycache__
