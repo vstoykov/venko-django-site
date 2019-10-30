@@ -34,4 +34,6 @@ python_version = "3.6"
 [scripts]
 server = "python3 manage.py runserver"
 migrations = "python3 manage.py migrate"
+collectstatic = "python3 manage.py collectstatic --noinput"
 shell = "python3 manage.py shell_plus"
+tests = "pytest"
