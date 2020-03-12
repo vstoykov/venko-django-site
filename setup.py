@@ -7,14 +7,14 @@ needs_pytest = bool({'pytest', 'test', 'ptr'}.intersection(sys.argv))
 
 setup(
     name='venelin-site',
-    version='2.1.1',
+    version='2.3.0',
     description='Simple Personal WEB site made with Django',
     author='Venelin Stoykov',
     author_email='vkstoykov@gmail.com',
     url='https://stoykov.tk/',
     setup_requires=['pytest-runner'] if needs_pytest else [],
     install_requires=[
-        'Django>=2.2,<3',
+        'Django>=2.2,<3.1',
         'Pillow>=4.3.0',
         'pilkit>=2.0',
         'django-ckeditor>=5.4.0,<6.0',
