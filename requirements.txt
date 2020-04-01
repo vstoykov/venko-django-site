@@ -1,5 +1,5 @@
 Django==2.2.11
-Pillow==7.0.0
+Pillow==7.1.0
 pilkit>=2.0
 django-ckeditor==5.9.0
 django-extensions==2.2.9
