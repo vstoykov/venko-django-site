@@ -5,13 +5,14 @@ sudo: false
 
 env:
   - DJANGO=22
-  - DJANGO=30
+  - DJANGO=31
   - DJANGO=master
 
 python:
   - "3.5"
   - "3.6"
   - "3.7"
+  - "3.8"
 
 install:
   - pip install tox
@@ -22,5 +23,7 @@ script:
 matrix:
   fast_finish: true
   allow_failures:
-    - env: DJANGO=master
-    - env: DJANGO=30
+    - python: "3.5"
+      env: DJANGO=master
+    - python: "3.5"
+      env: DJANGO=31
