@@ -7,7 +7,7 @@ ADMINS = (
 )
 MANAGERS = ADMINS
 
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 ALLOWED_HOSTS = [
     '*',
