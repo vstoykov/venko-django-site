@@ -23,8 +23,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install Dependencies
       run: |
-        python -m pip install --upgrade pip pipenv
-        pipenv install --deploy --dev
+        python -m pip install --upgrade pip tox
     - name: Run Tests
       run: |
-        pipenv run test
+        tox -e $(tox -l | grep py$(python -c 'import sys;print("{0}{1}".format(*sys.version_info))') | paste -sd "," -)
