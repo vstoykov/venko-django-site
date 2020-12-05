@@ -9,10 +9,10 @@ env:
   - DJANGO=master
 
 python:
-  - "3.5"
   - "3.6"
   - "3.7"
   - "3.8"
+  - "3.9"
 
 install:
   - pip install tox
@@ -23,7 +23,5 @@ script:
 matrix:
   fast_finish: true
   allow_failures:
-    - python: "3.5"
-      env: DJANGO=master
-    - python: "3.5"
-      env: DJANGO=31
+      - env: DJANGO=master
+
