@@ -17,7 +17,10 @@ LANGUAGE_CHOICES = (
     ('groovy', 'Groovy'),
 )
 
-LANGUAGE_CHOICES = sorted([(l[1][0], l[0]) for l in get_all_lexers()], key=lambda x: x[0])
+LANGUAGE_CHOICES = sorted(
+    [(aliases[0], name) for (name, aliases, *__) in get_all_lexers() if aliases],
+    key=lambda x: x[0],
+)
 
 
 class HighlightForm(forms.Form):
