@@ -27,7 +27,7 @@
 				<dt>{{ link_group.grouper }}</dt>
 				{% for link in link_group.list %}
 				<dd>
-					<a href="{{ link.url }}" title="{{ link.title }}" target="_blank" rel="nofollow">
+					<a href="{{ link.url }}" title="{{ link.title }}" target="_blank" rel="noopener noreferrer nofollow">
 						<span>{{ link.title }}</span> <br/> <small><i>{{ link.url }}</i></small>
 					</a>
 				</dd>
