@@ -1,11 +1,12 @@
 var galleries_obj;
 var gallery_json = '/static/js/gallery.json'
 
-function galleryShow(gallery) {
-  gallery = galleries_obj[gallery]
-  pictures = gallery.pictures;
+function galleryShow(galleryName) {
+  var gallery = galleries_obj[galleryName]
+  var pictures = gallery.pictures;
   $('#gallery_list').html('');
-  for (item in pictures) {
+  var picture;
+  for (var item in pictures) {
     picture = pictures[item];
     $('#gallery_list').append('<li><div class="thumb-holder"><a href="'+picture.src+'"><img src="'+picture.thumb.src+'" width="'+picture.thumb.width+'" height="'+picture.thumb.height+'" alt="" class="shadow" /></a></div><!--p>'+picture.title+'</p--></li>');
     //$('#gallery_list').append('<li><a href="'+picture.src+'">'+picture.thumb.outerHTML+'</a><p>'+picture.title+'</p></li>');
@@ -19,11 +20,12 @@ function listGalleries(galleries) {
   if (galleries == undefined) galleries = galleries_obj;
   $('.backToGalleries').css('visibility', 'hidden');
   $('#galleries_list').html('');
-  for (gallery in galleries) {
+  var gallery_obj;
+  for (var gallery in galleries) {
     gallery_obj = galleries[gallery];
     $('#galleries_list').append('<li><a href="javascript:void(0)" id="gallery_'+gallery+'" name="'+gallery+'"><img src="/static/img/gallery-folder.png" class="shadow" /><p>'+gallery_obj.title+'</p></a></li>');
     $('#gallery_'+gallery).click(function(){
-      gallery = $(this).attr('name');
+      var gallery = $(this).attr('name');
       galleryShow(gallery);
     });
   }
@@ -34,6 +36,8 @@ function listGalleries(galleries) {
 function loadGalleryData() {
   $.getJSON(gallery_json, function(data) {
     //console.log(data);
+    var gallery_obj, pictures;
+    var picture, g_location, pic_location, thumb_pic;
     for(var gallery in data) {
         gallery_obj = data[gallery];
         pictures = gallery_obj.pictures
