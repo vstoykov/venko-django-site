@@ -150,6 +150,8 @@ INSTALLED_APPS = (
     'venelin.syntaxhighlighter',
 )
 
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 INTERNAL_IPS = ('127.0.0.1',)
