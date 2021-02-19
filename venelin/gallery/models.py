@@ -3,7 +3,7 @@ from django.conf import settings
 from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.encoding import force_str
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from imagekit.models import ProcessedImageField, ImageSpecField
 from imagekit.processors import ResizeToFit
