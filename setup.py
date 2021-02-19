@@ -7,7 +7,7 @@ needs_pytest = bool({'pytest', 'test', 'ptr'}.intersection(sys.argv))
 
 setup(
     name='venelin-site',
-    version='2.1.2',
+    version='2.1.3',
     description='Simple Personal WEB site made with Django',
     author='Venelin Stoykov',
     author_email='vkstoykov@gmail.com',
@@ -21,8 +21,8 @@ setup(
         'django-extensions>=3.0.6,<4',
         'django-appconf>=1.0.1',
         'django-imagekit>=4.0.1',
-        'social-auth-core[openidconnect]>=3.0',
-        'social-auth-app-django>=3.1',
+        'social-auth-core[openidconnect]>=4.0.3',
+        'social-auth-app-django>=4.0.0',
         'Pygments',
         'appenlight-client>=0.6.25',
     ],
