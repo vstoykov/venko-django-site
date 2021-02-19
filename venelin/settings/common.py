@@ -259,16 +259,6 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 
 try:
-    import appenlight_client.client as e_client
-except ImportError:
-    pass
-else:
-    APPENLIGHT = e_client.get_config() if os.getenv('APPENLIGHT_INI') else {}
-    MIDDLEWARE = (
-        'appenlight_client.django_middleware.AppenlightMiddleware',
-    ) + MIDDLEWARE
-
-try:
     __import__('django_uwsgi')
 except ImportError:
     pass
