@@ -24,7 +24,6 @@ setup(
         'social-auth-core[openidconnect]>=4.0.3',
         'social-auth-app-django>=4.0.0',
         'Pygments',
-        'appenlight-client>=0.6.25',
     ],
     tests_require=['pytest-django'],
 )
