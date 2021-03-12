@@ -109,7 +109,6 @@
                 "sha256:1bb3032db185915b62d7c6209c5a8792be6a32ab2fedacc84e01b52c51aa3e69",
                 "sha256:a352e7e428770286cc899e2542b6cdaedb2b4953ff269a210103ec58f6198a61"
             ],
-            "markers": "python_version >= '3.0'",
             "version": "==0.7.1"
         },
         "dj-database-url": {
@@ -280,7 +279,6 @@
                 "sha256:6626f771e0417486701e0b4daff762e7212e820ca5b29fcc0d05f6f8736dfa6b",
                 "sha256:68a5ae6eb6c3a4a607e5b3c5d6a1e0ae4229dd62d245c7642d79d0b7b155eb84"
             ],
-            "markers": "python_version >= '3.0'",
             "version": "==3.2.0"
         },
         "pytz": {
@@ -332,11 +330,11 @@
                 "openidconnect"
             ],
             "hashes": [
-                "sha256:567b1f1bb1912e2c3153df888b48ba883dabdfe72f031e8cae4d404f61745c21",
-                "sha256:694eb355825cd72d3346afb816dd899493be1a8ee7405945d2e989cabed10cf2"
+                "sha256:5ab43b3b15dce5f059db69cc3082c216574739f0edbc98629c8c6e8769c67eb4",
+                "sha256:983b53167ac56e7ba4909db555602a6e7a98c97ca47183bb222eb85ba627bf2b"
             ],
             "index": "pypi",
-            "version": "==4.0.3"
+            "version": "==4.1.0"
         },
         "sqlparse": {
             "hashes": [
