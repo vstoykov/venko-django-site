@@ -16,7 +16,7 @@
 	} else {
 
 		// Browser globals
-		factory( (window.django || window).jQuery );
+		factory(window.django && window.django.jQuery || window.jQuery);
 	}
 }(function( $ ) {
 /*!
