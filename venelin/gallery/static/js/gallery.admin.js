@@ -26,7 +26,7 @@
             if (dropZoneTimeOut) {
                 clearTimeout(dropZoneTimeOut);
             }
-            if (types && types.contains('Files')) {
+            if (types && types.includes('Files')) {
                 e.stopPropagation();
                 $this.addClass(options.dragoverClass);
                 dataTransfer.dropEffect = options.dropEffect;
@@ -72,7 +72,7 @@
         return $this;
     }
 
-    $(document).on('ready', function () {
+    $(function () {
         var $form = $('#gallery_form'),
             $fieldset = $form.find('fieldset.module:first'),
             $picturesGroup = $('#pictures-group'),
@@ -95,7 +95,7 @@
                 url: '../upload/',
                 paramName: 'image',
                 dropZone: $fieldset.fileUploadDropZone(),
-                done: function (e, data) {
+                complete: function (e, data) {
                     if (progress === 100) {
                         setTimeout(function () {
                             location.reload();

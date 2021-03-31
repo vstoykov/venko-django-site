@@ -50,7 +50,7 @@ class GalleryAdmin(admin.ModelAdmin):
         info = self.model._meta.app_label, self.model._meta.model_name
 
         urlpatterns = [
-            path('(<int:object_id>)/upload/',
+            path('<int:object_id>/upload/',
                  self.admin_site.admin_view(self.upload_image),
                  name='%s_%s_upload' % info),
         ]
