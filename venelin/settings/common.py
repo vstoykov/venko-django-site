@@ -151,8 +151,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
-INTERNAL_IPS = ('127.0.0.1',)
-
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.google_openidconnect.GoogleOpenIdConnect',

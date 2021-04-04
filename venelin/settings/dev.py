@@ -9,6 +9,8 @@ ALLOWED_HOSTS = ['*']
 DEFAULT_FROM_EMAIL = 'webmaster@stoykov.tk'
 EMAIL_PORT = 1025
 
+INTERNAL_IPS = ('127.0.0.1',)
+
 USE_DEBUG_TOOLABR = True
 
 try:
