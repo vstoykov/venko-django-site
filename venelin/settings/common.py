@@ -57,9 +57,6 @@ USE_L10N = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'wsgi', 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'wsgi', 'media')
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'venelin', 'static'),
-)
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
