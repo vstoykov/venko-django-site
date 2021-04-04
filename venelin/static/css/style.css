@@ -45,13 +45,12 @@ a img { border: none; }
 
 .wrapper {
 	width: 100%;
-	max-width: 1000px;
+	max-width: 1200px;
 	margin: 0 auto;
 	padding: 0 10px;
 	-webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-
 }
 
 body > header {
@@ -336,4 +335,3 @@ a.rss span { display: block; padding-top: 10px; font-size: 12px;}
 	width: 21px;
 	height: 20px;
 }
-
