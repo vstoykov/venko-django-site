@@ -1,6 +1,5 @@
 from django.urls import path
-
-from .views import flatpage
+from django.contrib.flatpages.views import flatpage
 
 urlpatterns = [
     path('<path:url>', flatpage),
