@@ -7,7 +7,7 @@ needs_pytest = bool({'pytest', 'test', 'ptr'}.intersection(sys.argv))
 
 setup(
     name='venelin-site',
-    version='2.1.3',
+    version='2.1.4',
     description='Simple Personal WEB site made with Django',
     author='Venelin Stoykov',
     author_email='vkstoykov@gmail.com',
