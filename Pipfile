@@ -31,8 +31,8 @@ docutils = "*"
 python_version = "3.8"
 
 [scripts]
-server = "python3 manage.py runserver"
-migrations = "python3 manage.py migrate"
-collectstatic = "python3 manage.py collectstatic --noinput"
-shell = "python3 manage.py shell_plus"
+server = "python manage.py runserver"
+migrations = "python manage.py migrate"
+collectstatic = "python manage.py collectstatic --noinput"
+shell = "python manage.py shell_plus"
 tests = "pytest"
