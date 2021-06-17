@@ -1,4 +1,0 @@
-#!/bin/bash
-echo "Execute pre_start_python"
-
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/rh/postgresql92/root/usr/lib64/
