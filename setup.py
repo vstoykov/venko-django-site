@@ -14,7 +14,7 @@ setup(
     url='https://stoykov.tk/',
     setup_requires=['pytest-runner'] if needs_pytest else [],
     install_requires=[
-        'Django>=2.2,<4',
+        'Django>=2.2,<5',
         'Pillow>=4.3.0',
         'pilkit>=2.0',
         'django-ckeditor>=5.4.0,<7.0',
