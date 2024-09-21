@@ -1,0 +1,22 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    develop:
+      watch: 
+        - path: ./venelin/
+          action: rebuild
+        - path: ./Dockerfile
+          action: rebuild
+        - path: ./uwsgi.ini
+          action: rebuild
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - ./site.db:/app/site.db:rw
+      - ./wsgi/media:/app/wsgi/media:rw
+    environment:
+      - DJANGO_ENV=staging
+      - DEBUG=false
+      - DJANGO_SECRET_KEY=4*%f8=to$%4^pwi6jtlld0p$=d*&h4+vhye*^!oby*!p00bz3b

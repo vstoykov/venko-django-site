@@ -1,3 +1,4 @@
-from .production import *
+import os
+from .production import *  # NOQA
 
-DEBUG = True
+DEBUG = os.getenv("DEBUG") in ("true", "True", "1")
