@@ -16,6 +16,7 @@ class PictureAdmin(admin.ModelAdmin):
     list_display = ('title', 'preview', 'gallery')
     list_filter = ('gallery',)
     date_hierarchy = 'uploaded'
+    search_fields = ('title', )
 
 
 class PictureInline(admin.TabularInline):
@@ -32,6 +33,7 @@ class GalleryAdmin(admin.ModelAdmin):
     inlines = (PictureInline,)
     date_hierarchy = 'created'
     list_display = ('title', 'slug')
+    search_fields = ('title', )
 
     class Media:
         css = {
