@@ -23,8 +23,7 @@ __pycache__
 site.db
 /venelin/settings/local.py
 /virtenv
-/wsgi/static/*
-/wsgi/media*
+/www
 /tags
 /build
 /dist

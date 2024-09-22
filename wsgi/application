@@ -1,8 +1,0 @@
-#!/usr/bin/env python
-"""
-This file is used by OpenShift to load the wsgi application
-
-"""
-from venelin.wsgi import application
-
-__all__ = ['application']

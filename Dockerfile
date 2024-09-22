@@ -14,6 +14,6 @@ RUN DJANGO_SECRET_KEY=management python manage.py collectstatic --no-input \
     && DJANGO_SECRET_KEY=management python manage.py compilemessages \
     && chown -R root:www-data /app \
     && chmod g+w /app \
-    && chmod g+w /app/wsgi
+    && chmod g+w /app/www
 
 CMD [ "uwsgi", "--master", "--ini=uwsgi.ini", "--http=0.0.0.0:8000", "--uid=www-data", "--gid=www-data"]

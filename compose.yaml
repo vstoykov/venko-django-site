@@ -15,7 +15,7 @@ services:
       - "127.0.0.1:8000:8000"
     volumes:
       - ./site.db:/app/site.db:rw
-      - ./wsgi/media:/app/wsgi/media:rw
+      - ./www/media:/app/www/media:rw
     environment:
       - DJANGO_ENV=staging
       - DEBUG=false
