@@ -314,7 +314,6 @@ a.rss {display: block; height: 64px;}
 a.rss img {float: left;}
 a.rss span { display: block; padding-top: 25px;}
 
-#google_translate_element {min-width: 150px; min-height: 23px; float: right; position: relative; top: 5px; margin-right: 5px;}
 .search {float: right; position: relative; top: 5px;}
 .search > input[type=text] {width: 20ex;}
 .gsc-control-cse.gsc-control-cse-bg {
