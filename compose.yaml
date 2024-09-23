@@ -4,11 +4,17 @@ services:
       context: .
       dockerfile: Dockerfile
     develop:
-      watch: 
-        - path: ./venelin/
-          action: rebuild
-        - path: ./Dockerfile
-          action: rebuild
+      watch:
+        - action: rebuild
+          path: ./Dockerfile
+        - action: rebuild
+          path: ./Pipfile.lock
+        - action: sync
+          path: ./uwsgi.ini
+          target: /app/uwsgi.ini
+        - action: sync
+          path: ./venelin
+          target: /app/venelin
     deploy:
       resources:
         limits:
