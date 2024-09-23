@@ -1,3 +1,4 @@
+import warnings
 from django.db import models
 from django.conf import settings
 from django.urls import reverse
@@ -110,8 +111,12 @@ class Picture(models.Model):
         """
         Generate html for showing thumbnail image with link to the real one.
         """
-        if not self.thumb:
-            return ''
+        try:
+            if not self.thumb:
+                return ''
+        except OSError as err:
+            warnings.warn(err)
+            return format_html('<span class="help help-tooltip" title="{error}">N/A</span>', error=err)
         return format_html('<a href="{image_url}" title="{title}"><img src="{thumb_url}" width="{width}" height="{height}" alt="{title}" /></a>',
                            image_url=self.image.url, title=self.title, thumb_url=self.thumb.url, width=self.thumb.width, height=self.thumb.height)
     preview.short_description = _('preview')
