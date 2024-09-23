@@ -9,8 +9,14 @@ services:
           action: rebuild
         - path: ./Dockerfile
           action: rebuild
-        - path: ./uwsgi.ini
-          action: rebuild
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 384M
+        reservations:
+          cpus: "0.01"
+          memory: 128M
     ports:
       - "127.0.0.1:8000:8000"
     volumes:
