@@ -14,7 +14,7 @@ WORKDIR /app/
 RUN set -eux; \
     pip install --root-user-action=ignore --no-cache-dir uwsgi pipenv; \
     pipenv sync --system; \
-    pip uninstall --yes pipenv virtualenv; \
+    pip uninstall --root-user-action=ignore --yes pipenv virtualenv; \
     rm -rf /root/.cache;
     
 COPY ./ /app/
