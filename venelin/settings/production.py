@@ -24,6 +24,17 @@ GOOGLE_ANALYTICS_CODE = 'UA-22285007-1'
 
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv("PG_NAME"),
+        'USER': os.getenv("PG_USER"),
+        'PASSWORD': os.getenv("PG_PASSWORD"),
+        'HOST': os.getenv("PG_HOST"),
+        'PORT': os.getenv("PG_PORT"),
+    },
+}
+
 try:
     from .local import *  # NOQA
 except ImportError:

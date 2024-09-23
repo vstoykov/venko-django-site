@@ -32,4 +32,4 @@ RUN set -eux \
     chmod g+w /app; \
     chmod g+w /app/www;
 
-CMD [ "uwsgi", "--master", "--ini=uwsgi.ini", "--http=0.0.0.0:8000", "--uid=www-data", "--gid=www-data"]
+CMD [ "uwsgi", "--master", "--ini=uwsgi.ini", "--http=0.0.0.0:8000", "--uid=www-data", "--gid=www-data", "--env=HOME=/app"]
