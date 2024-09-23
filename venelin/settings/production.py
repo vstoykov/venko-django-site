@@ -9,6 +9,7 @@ ADMINS = (
     ('Venelin Stoykov', 'vkstoykov@gmail.com'),
 )
 MANAGERS = ADMINS
+SOCIAL_AUTH_GOOGLE_OAUTH2_WHITELISTED_EMAILS = [ADMINS[0][1]]
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
@@ -33,3 +34,9 @@ except ImportError:
 if not SECRET_KEY:
     warnings.warn("DJANGO_SECRET_KEY is not defined in environment! Generate random one.")
     SECRET_KEY = get_random_secret_key()
+
+if not SOCIAL_AUTH_GOOGLE_OAUTH2_KEY:  # NOQA
+    warnings.warn("GOOGLE_OAUTH2_KEY is not defined in environment! Login with Google disabled.")
+
+if not SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET:  # NOQA
+    warnings.warn("GOOGLE_OAUTH2_SECRET is not defined in environment! Login with Google disabled.")

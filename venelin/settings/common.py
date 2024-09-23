@@ -151,9 +151,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv("GOOGLE_OAUTH2_KEY")
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv("GOOGLE_OAUTH2_SECRET")
+
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.google_openidconnect.GoogleOpenIdConnect',
+    'django.contrib.auth.backends.ModelBackend',
+) if SOCIAL_AUTH_GOOGLE_OAUTH2_KEY and SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET else (
     'django.contrib.auth.backends.ModelBackend',
 )
 LOGIN_URL = '/admin/login/'
