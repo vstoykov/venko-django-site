@@ -14,7 +14,7 @@
 .idea
 .ropeproject
 .tox
-.github
+.git*
 .vscode
 .eggs
 .env
