@@ -19,7 +19,7 @@ setup(
         'Pillow>=4.3.0',
         'pilkit>=2.0',
         'django-ckeditor>=5.4.0,<7.0',
-        'django-extensions>=3.0.6,<4',
+        'django-extensions>=3.0.6,<5',
         'django-appconf>=1.0.1',
         'django-imagekit>=4.0.1',
         'social-auth-core[openidconnect]>=4.0.3',
