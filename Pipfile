@@ -29,7 +29,7 @@ django-debug-toolbar = "*"
 docutils = "*"
 
 [requires]
-python_version = "3.12"
+python_version = "3.13"
 
 [scripts]
 server = "python manage.py runserver"
@@ -38,4 +38,4 @@ collectstatic = "python manage.py collectstatic --noinput"
 makemessages = "python manage.py makemessages -a"
 compilemessages = "python manage.py compilemessages"
 shell = "python manage.py shell_plus"
-tests = "pytest"
+tests = "python -Wall -m pytest"

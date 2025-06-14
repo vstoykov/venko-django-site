@@ -15,7 +15,7 @@ setup(
     setup_requires=['pytest-runner'] if needs_pytest else [],
     packages=find_packages(include=['venelin']),
     install_requires=[
-        'Django>=4.2,<5',
+        'Django>=4.2,<7',
         'Pillow>=4.3.0',
         'pilkit>=2.0',
         'django-ckeditor>=5.4.0,<7.0',
