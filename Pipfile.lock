@@ -498,12 +498,12 @@
         },
         "social-auth-app-django": {
             "hashes": [
-                "sha256:d1f4286d5ca1e512c9b2f686e7ecb2a0128148f1a33d853b69dc07b58508362e",
-                "sha256:db70b972faeb10ee1ec83d0dc7dbd0558d5f5830417bba317b712b10ff58d031"
+                "sha256:7a6aac52686b9703af57ad1f5935c55fb97404988067e94c4fa32143bc6a02a5",
+                "sha256:a1435c17227d07d690b06cca54ea47d4ed939de4749dac45dd4393c8a98dac17"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.9'",
-            "version": "==5.4.3"
+            "markers": "python_version >= '3.10'",
+            "version": "==5.5.1"
         },
         "social-auth-core": {
             "hashes": [
