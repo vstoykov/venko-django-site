@@ -9,7 +9,11 @@ verify_ssl = true
 name = "piwheels"
 
 [packages]
+<<<<<<< Updated upstream
 Django = ">=4.2,<6"
+=======
+Django = ">=3.2,<6"
+>>>>>>> Stashed changes
 Pillow = ">=4.3.0"
 pilkit = ">=2.0"
 django-ckeditor = ">=5.4.0"
@@ -18,8 +22,8 @@ django-appconf = ">=1.0.1"
 django-imagekit = ">=4.0.1"
 Pygments = "*"
 dj-database-url = ">=0.5.0"
-social-auth-core = {version = ">=4.4.0"}
-social-auth-app-django = ">=5.0.0"
+social-auth-core = {version = ">=2.0.0",extras = ["openidconnect"]}
+social-auth-app-django = ">=3.1.0"
 psycopg2 = "*"
 
 [dev-packages]
@@ -29,7 +33,7 @@ django-debug-toolbar = "*"
 docutils = "*"
 
 [requires]
-python_version = "3.13"
+python_version = "3.12"
 
 [scripts]
 server = "python manage.py runserver"
@@ -38,4 +42,4 @@ collectstatic = "python manage.py collectstatic --noinput"
 makemessages = "python manage.py makemessages -a"
 compilemessages = "python manage.py compilemessages"
 shell = "python manage.py shell_plus"
-tests = "python -Wall -m pytest"
+tests = "python -m pytest"
