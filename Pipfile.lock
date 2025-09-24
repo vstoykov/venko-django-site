@@ -587,12 +587,12 @@
         },
         "docutils": {
             "hashes": [
-                "sha256:4ed966a0e96a0477d852f7af31bdcb3adc049fbb35ccba358c2ea8a03287615e",
-                "sha256:ba9d57750e92331ebe7c08a1bbf7a7f8143b86c476acd51528b042216a6aad0f"
+                "sha256:9fdb771707c8784c8f2728b67cb2c691305933d68137ef95a75db5f4dfbc213d",
+                "sha256:b0e98d679283fc3bb0ead8a5da7f501baa632654e7056e9c5846842213d674d8"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.9'",
-            "version": "==0.22"
+            "version": "==0.22.2"
         },
         "flake8": {
             "hashes": [
