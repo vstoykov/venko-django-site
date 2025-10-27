@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools >= 75.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "venelin-site"
+version = "2.2.0"
+description = "Simple Personal WEB site made with Django"
+readme = "README.rst"
+requires-python = ">=3.11"
+authors = [
+    {name = "Venelin Stoykov", email = "vkstoykov@gmail.com"},
+]
+dependencies = [
+    "dj-database-url>=3.0.1",
+    "django>=4.2",
+    "django-appconf>=1.0.1",
+    "django-extensions>=4.0.0",
+    "django-imagekit>=6.0.0",
+    "django-ckeditor>=5.4.0,<7.0",
+    "pilkit>=3.0",
+    "pillow>=4.3.0",
+    "pygments>=2.19.2",
+    "social-auth-app-django>=5.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "django-debug-toolbar>=6.0.0",
+    "docutils>=0.22.2",
+    "flake8>=7.3.0",
+    "pytest-django>=4.11.1",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["venelin"]
+namespaces = false
