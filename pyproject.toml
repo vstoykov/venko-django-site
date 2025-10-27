@@ -17,11 +17,11 @@ dependencies = [
     "django-appconf>=1.0.1",
     "django-extensions>=4.0.0",
     "django-imagekit>=6.0.0",
-    "django-ckeditor>=5.4.0,<7.0",
     "pilkit>=3.0",
     "pillow>=4.3.0",
     "pygments>=2.19.2",
     "social-auth-app-django>=5.0.0",
+    "django-prose-editor[sanitize]>=0.18.5",
 ]
 
 [dependency-groups]

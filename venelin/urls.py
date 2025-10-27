@@ -14,7 +14,6 @@ urlpatterns = [
     path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
     path('auth/', include('social_django.urls', namespace='social')),
-    path('.ckeditor/', include('ckeditor_uploader.urls')),
 
     path('blog/', include('venelin.blog.urls', namespace='blog')),
     path('links/', include('venelin.links.urls', namespace='links')),

@@ -1,13 +1,15 @@
 from django import forms
 from django.contrib.flatpages.models import FlatPage
-from ckeditor.fields import RichTextFormField
+from django_prose_editor.fields import ProseEditorFormField, AdminProseEditorWidget
 
 from .utils import get_flatpage_template_choices
 
 
 class FlatPageForm(forms.ModelForm):
 
-    content = RichTextFormField()
+    content = ProseEditorFormField(
+        widget=AdminProseEditorWidget
+    )
 
     class Meta:
         model = FlatPage

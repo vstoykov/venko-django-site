@@ -4,8 +4,7 @@ from django.template.defaultfilters import striptags, truncatechars
 from django.urls import reverse
 from django.utils.encoding import force_str
 from django.utils.translation import gettext_lazy as _
-
-from ckeditor.fields import RichTextField
+from django_prose_editor.fields import ProseEditorField
 
 
 class CategoryManager(models.Manager):
@@ -70,7 +69,44 @@ class Entry(models.Model):
     category = models.ForeignKey(Category, verbose_name=_('category'), related_name='entries', on_delete=models.PROTECT)
     title = models.CharField(_('title'), max_length=255)
     slug = models.SlugField(_('slug'), max_length=255, db_index=True)
-    content = RichTextField(_('content'))
+    content = ProseEditorField(_('content'),
+        extensions={
+            # Core text formatting
+            "Bold": True,
+            "Italic": True,
+            "Strike": True,
+            "Underline": True,
+            "HardBreak": True,
+
+            # Structure
+            "Heading": {
+                "levels": [2, 3, 4]  # Only allow h1, h2, h3
+            },
+            "BulletList": True,
+            "OrderedList": True,
+            "ListItem": True, # Used by BulletList and OrderedList
+            "Blockquote": True,
+            "Code": True,
+            "CodeBlock": True,
+            "HorizontalRule": True,
+
+            # Advanced extensions
+            "Link": {
+                "enableTarget": True,  # Enable "open in new window"
+                "protocols": ["http", "https", "mailto"],  # Limit protocols
+            },
+            "Table": True,
+            "TableRow": True,
+            "TableHeader": True,
+            "TableCell": True,
+
+            # Editor capabilities
+            "History": True,       # Enables undo/redo
+            "HTML": True,          # Allows HTML view
+            "Typographic": True,   # Enables typographic chars
+        },
+        sanitize=True,
+    )
 
     seo_keywords = models.CharField(_('keywords'), max_length=128, blank=True, default='')
     seo_description = models.CharField(_('description'), max_length=256, blank=True, default='')

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.db import models, migrations
-import ckeditor.fields
 
 
 class Migration(migrations.Migration):
@@ -29,7 +28,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
                 ('title', models.CharField(max_length=255, verbose_name='title')),
                 ('slug', models.SlugField(max_length=255, verbose_name='slug')),
-                ('content', ckeditor.fields.RichTextField(verbose_name='content')),
+                ('content', models.TextField(verbose_name='content')),
                 ('seo_keywords', models.CharField(blank=True, default='', max_length=128, verbose_name='keywords')),
                 ('seo_description', models.CharField(blank=True, default='', max_length=256, verbose_name='description')),
                 ('created', models.DateTimeField(db_index=True, auto_now_add=True, verbose_name='created at')),
