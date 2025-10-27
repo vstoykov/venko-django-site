@@ -15,5 +15,6 @@ class FlatPageForm(forms.ModelForm):
         model = FlatPage
         fields = '__all__'
         widgets = {
-            'template_name': forms.Select(choices=get_flatpage_template_choices())
+            'template_name': forms.Select(choices=get_flatpage_template_choices()),
+            'sites': forms.CheckboxSelectMultiple,
         }
