@@ -15,10 +15,18 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'site.db'),
+        'ENGINE': f'django.db.backends.{os.getenv('DATABASE_ENGINE') or "postgresql"}',
+        'NAME': os.getenv("DATABASE_NAME"),
+        'USER': os.getenv("DATABASE_USER"),
+        'PASSWORD': os.getenv("DATABASE_PASSWORD"),
+        'HOST': os.getenv("DATABASE_HOST"),
+        'PORT': os.getenv("DATABASE_PORT"),
     },
 }
+if os.getenv("DATABASE_OPTIONS_SSLMODE"):
+    DATABASES['default']['OPTIONS'] = {
+        'sslmode': os.getenv("DATABASE_OPTIONS_SSLMODE"),
+    }
 
 DISQUS_WEBSITE_SHORTNAME = 'venelin'
 

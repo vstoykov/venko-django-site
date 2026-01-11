@@ -29,7 +29,5 @@ services:
       - ./site.db:/app/site.db:rw
       - ./www/media:/app/www/media:rw
       - ./venelin/settings/local.py:/app/venelin/settings/local.py:ro
-    environment:
-      - DJANGO_ENV=staging
-      - DEBUG=false
-      - DJANGO_SECRET_KEY=4*%f8=to$%4^pwi6jtlld0p$=d*&h4+vhye*^!oby*!p00bz3b
+    env_file:
+      - .env

@@ -13,6 +13,13 @@ INTERNAL_IPS = ('127.0.0.1',)
 
 USE_DEBUG_TOOLABR = True
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'site.db'),
+    },
+}
+
 try:
     from .local import *  # NOQA
 except ImportError:
