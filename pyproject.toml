@@ -24,6 +24,14 @@ dependencies = [
     "django-prose-editor[sanitize]>=0.18.5",
 ]
 
+[project.optional-dependencies]
+uwsgi = [
+    "uwsgi>=2.0.31",
+]
+postgres = [
+    "psycopg>=3.3.2",
+]
+
 [dependency-groups]
 dev = [
     "django-debug-toolbar>=6.0.0",

@@ -46,8 +46,11 @@ if not SECRET_KEY:
     warnings.warn("DJANGO_SECRET_KEY is not defined in environment! Generate random one.")
     SECRET_KEY = get_random_secret_key()
 
-if not SOCIAL_AUTH_GOOGLE_OAUTH2_KEY:  # NOQA
+
+# If runing during docekr build we can skip the warnings about missing GOOGLE keys
+
+if not SOCIAL_AUTH_GOOGLE_OAUTH2_KEY and SECRET_KEY != 'management':  # NOQA
     warnings.warn("GOOGLE_OAUTH2_KEY is not defined in environment! Login with Google disabled.")
 
-if not SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET:  # NOQA
+if not SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET and SECRET_KEY != 'management':  # NOQA
     warnings.warn("GOOGLE_OAUTH2_SECRET is not defined in environment! Login with Google disabled.")

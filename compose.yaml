@@ -8,7 +8,7 @@ services:
         - action: rebuild
           path: ./Dockerfile
         - action: rebuild
-          path: ./Pipfile.lock
+          path: ./uv.lock
         - action: sync
           path: ./uwsgi.ini
           target: /app/uwsgi.ini
@@ -18,7 +18,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "1"
+          cpus: "2.0"
           memory: 384M
         reservations:
           cpus: "0.01"
@@ -28,6 +28,7 @@ services:
     volumes:
       - ./site.db:/app/site.db:rw
       - ./www/media:/app/www/media:rw
+      - ./venelin/settings/local.py:/app/venelin/settings/local.py:ro
     environment:
       - DJANGO_ENV=staging
       - DEBUG=false
