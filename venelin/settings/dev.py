@@ -20,6 +20,8 @@ DATABASES = {
     },
 }
 
+SECRET_KEY = 'qi!k%l+n@hs8l8%)t@j2bl6_jj_x2q-g^em=i!6m17(7x1^$9r'
+
 try:
     from .local import *  # NOQA
 except ImportError:

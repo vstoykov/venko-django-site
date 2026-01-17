@@ -29,5 +29,8 @@ services:
       - ./site.db:/app/site.db:rw
       - ./www/media:/app/www/media:rw
       - ./venelin/settings/local.py:/app/venelin/settings/local.py:ro
+      - ./.google-application-credentials.json:/app/.google-auth.json:ro
     env_file:
       - .env
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/.google-auth.json

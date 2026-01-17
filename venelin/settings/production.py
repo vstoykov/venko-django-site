@@ -11,7 +11,17 @@ ADMINS = (
 MANAGERS = ADMINS
 SOCIAL_AUTH_GOOGLE_OAUTH2_WHITELISTED_EMAILS = [ADMINS[0][1]]
 
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+GS_BUCKET_NAME = os.getenv("GS_BUCKET_NAME")
+GS_PROJECT_ID = os.getenv("GS_PROJECT_ID")
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
+    },
+}
+
 
 ALLOWED_HOSTS = [
     '*',
@@ -36,10 +46,10 @@ if not SECRET_KEY:
     SECRET_KEY = get_random_secret_key()
 
 
-# If runing during docekr build we can skip the warnings about missing GOOGLE keys
+# If runing during docker build we can skip the warnings about missing GOOGLE keys
+if SECRET_KEY != 'management':
+    if not SOCIAL_AUTH_GOOGLE_OAUTH2_KEY:  # NOQA
+        warnings.warn("GOOGLE_OAUTH2_KEY is not defined in environment! Login with Google disabled.")
 
-if not SOCIAL_AUTH_GOOGLE_OAUTH2_KEY and SECRET_KEY != 'management':  # NOQA
-    warnings.warn("GOOGLE_OAUTH2_KEY is not defined in environment! Login with Google disabled.")
-
-if not SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET and SECRET_KEY != 'management':  # NOQA
-    warnings.warn("GOOGLE_OAUTH2_SECRET is not defined in environment! Login with Google disabled.")
+    if not SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET:  # NOQA
+        warnings.warn("GOOGLE_OAUTH2_SECRET is not defined in environment! Login with Google disabled.")
