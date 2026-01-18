@@ -230,7 +230,7 @@ CACHE_MIDDLEWARE_ALIAS = 'pages'
 
 # On production LocMem must be changed with Memcached
 # LocMem is fast but is not memory efficient
-# (does not share cached item between threads)
+# (does not share cached item between processes)
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
@@ -238,15 +238,9 @@ CACHES = {
     },
     'pages': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'static',
+        'LOCATION': 'pages',
         'OPTIONS': {'MAX_ENTRIES': 1000},
         'TIMEOUT': CACHE_MIDDLEWARE_SECONDS,
-    },
-    'staticfiles': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'static',
-        'OPTIONS': {'MAX_ENTRIES': 2000},
-        'TIMEOUT': 7 * 24 * 3600,  # One week
     },
 }
 

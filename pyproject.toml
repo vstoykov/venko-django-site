@@ -28,6 +28,8 @@ dependencies = [
 [project.optional-dependencies]
 uwsgi = [
     "uwsgi>=2.0.31",
+    "uwsgitop>=0.12",
+    "django-uwsgi-cache>=1.1.0",
 ]
 postgres = [
     "psycopg>=3.3.2",

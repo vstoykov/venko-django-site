@@ -400,6 +400,19 @@ google = [
 ]
 
 [[package]]
+name = "django-uwsgi-cache"
+version = "1.1.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django", version = "5.2.10", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
+    { name = "django", version = "6.0.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/38/49/08208e712a782c215a886990798e6a3b19dfd6af943ada2d2202c49b9b7a/django_uwsgi_cache-1.1.0.tar.gz", hash = "sha256:2e7236d1df699a65d92cb238172c1078abad38efe9134ca0959eea408673145b", size = 17615, upload-time = "2025-10-01T14:42:07.993Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/18/b8/e81dbc4bf84814f958bf27b41d9deaf1177b3bf2d11cd3307b59f7a94f56/django_uwsgi_cache-1.1.0-py3-none-any.whl", hash = "sha256:2211fa495ae5c841a6fb7f582f5d99a523cd505b7932f09db704caa0ce5cd0a2", size = 4198, upload-time = "2025-10-01T14:42:07.006Z" },
+]
+
+[[package]]
 name = "docutils"
 version = "0.22.4"
 source = { registry = "https://pypi.org/simple" }
@@ -986,6 +999,12 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/9f/49/2f57640e889ba509fd1fae10cccec1b58972a07c2724486efba94c5ea448/uwsgi-2.0.31.tar.gz", hash = "sha256:e8f8b350ccc106ff93a65247b9136f529c14bf96b936ac5b264c6ff9d0c76257", size = 822796, upload-time = "2025-10-11T19:17:28.794Z" }
 
 [[package]]
+name = "uwsgitop"
+version = "0.12"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/5f/3b/02f373bc88978e8f1f33f5afe625ad28def59b6cfbf93424030754dbd5a5/uwsgitop-0.12.tar.gz", hash = "sha256:4f9330951f0fb9633226de36cf0c28c04dcf323efab608834aa81f638b6019b2", size = 6574, upload-time = "2024-04-01T13:43:52.735Z" }
+
+[[package]]
 name = "venelin-site"
 version = "2.2.0"
 source = { editable = "." }
@@ -1009,7 +1028,9 @@ postgres = [
     { name = "psycopg" },
 ]
 uwsgi = [
+    { name = "django-uwsgi-cache" },
     { name = "uwsgi" },
+    { name = "uwsgitop" },
 ]
 
 [package.dev-dependencies]
@@ -1029,12 +1050,14 @@ requires-dist = [
     { name = "django-imagekit", specifier = ">=6.0.0" },
     { name = "django-prose-editor", extras = ["sanitize"], specifier = ">=0.18.5" },
     { name = "django-storages", extras = ["google"], specifier = ">=1.14.6" },
+    { name = "django-uwsgi-cache", marker = "extra == 'uwsgi'", specifier = ">=1.1.0" },
     { name = "pilkit", specifier = ">=3.0" },
     { name = "pillow", specifier = ">=4.3.0" },
     { name = "psycopg", marker = "extra == 'postgres'", specifier = ">=3.3.2" },
     { name = "pygments", specifier = ">=2.19.2" },
     { name = "social-auth-app-django", specifier = ">=5.0.0" },
     { name = "uwsgi", marker = "extra == 'uwsgi'", specifier = ">=2.0.31" },
+    { name = "uwsgitop", marker = "extra == 'uwsgi'", specifier = ">=0.12" },
 ]
 provides-extras = ["uwsgi", "postgres"]
 

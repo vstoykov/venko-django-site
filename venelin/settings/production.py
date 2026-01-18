@@ -22,6 +22,19 @@ STORAGES = {
     },
 }
 
+CACHES = {
+    'default': {
+        'BACKEND': 'uwsgicache.UWSGICache',
+        'LOCATION': 'default',
+    },
+    'pages': {
+        'BACKEND': 'uwsgicache.UWSGICache',
+        'LOCATION': 'pages',
+        'OPTIONS': {'MAX_ENTRIES': 1000},
+        'TIMEOUT': CACHE_MIDDLEWARE_SECONDS,
+    },
+}
+
 
 ALLOWED_HOSTS = [
     '*',
