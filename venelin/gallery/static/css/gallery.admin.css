@@ -2,7 +2,7 @@
     display: inline-block;
     width: 32px;
     height: 32px;
-    background-image: url(../img/lightbox/loading.gif);
+    background-image: url(../img/loading.gif);
     background-repeat: no-repeat;
 }
 .loading-overly {
@@ -12,7 +12,7 @@
     left: 0;
     right: 0;
     background-color: rgba(234, 234, 234, 0.6);
-    background-image: url(../img/lightbox/loading.gif);
+    background-image: url(../img/loading.gif);
     background-repeat: no-repeat;
     background-position: center;
 }

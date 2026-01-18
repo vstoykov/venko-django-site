@@ -4,12 +4,14 @@
 {% block title %}{{ gallery.title }} | {{ block.super }}{% endblock %}
 
 {% block css %}
-	<link rel="stylesheet" type="text/css" href="{% static 'lightgallery/css/lightgallery.min.css' %}" media="all" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.9.0/css/lightgallery-bundle.min.css"
+				integrity="sha384-AUmhf+zg8vrhkZH0O111/sCNYxErcXd/kwycW8/P2Zpo7IGF1+DGfcW/ioM8FEUz" crossorigin="anonymous">
 {% endblock %}
 
 {% block js %}
-	<script type="text/javascript" src="{% static 'lightgallery/js/lightgallery.min.js' %}"></script>
-	<!--script type="text/javascript" src="{% static 'js/gallery.js' %}"></script-->
+  <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.9.0/lightgallery.umd.min.js"
+	        integrity="sha384-51JdG5HSmEa0MvKgatGJz3WSfDPwuhzV0X+ckhZ09t1zYUL7yC8/Pi+iU7fXCtZa"
+					crossorigin="anonymous"></script>
 {% endblock %}
 
 {% block extra_js %}

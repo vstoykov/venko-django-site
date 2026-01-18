@@ -1,22 +1,45 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
+{% block css %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/venobox@2.1.8/dist/venobox.min.css" integrity="sha384-8rRA9ToUd4pxk2f2pfTjDtg7mPz6xBBFJ2dpOdoTOFus0I/6r4rXhpt9XMvUa13O" crossorigin="anonymous" />
+{% endblock %}
 
 {% block js %}
-	<script type="text/javascript" src="/static/js/jquery.lightbox-0.5.min.js"></script>
-	<script type="text/javascript" src="/static/js/gallery.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/venobox@2.1.8/dist/venobox.min.js" integrity="sha384-Lne/cyB5E/fomfpQYzwjLyFj1QDpX9LcsszeGdWhRIBO2M26veiIKnHNRU0CC9Mw" crossorigin="anonymous"></script>
+  <script src="{% static 'js/gallery.js' %}"></script>
+  <script type="text/javascript">
+    $(function () {
+      var galleries = new Galleries({
+        index: '{% url "gallery:index.json" %}',
+        url: 'img/gallery/',
+        element: '#galleries_list',
+        title: '#gallery_title',
+        backButtons: '.backToGalleries',
+        breadcrumb: 'nav[aria-label=breadcrumb]'
+      })
+      galleries.loadData()
+    })
+  </script>
 {% endblock %}
 
 {% block main_content %}
   <div id="gallery">
-	<div class="article">
-	  <h2 class="header">Gallery</h2>
-	  <div class="content">
-		  <a href="javascript:void(0)" onClick="listGalleries();" class="backToGalleries">Назад към галерията</a>
+    <div class="article">
+      <h1 id="gallery_title">Gallery</h1>
+      <div class="content">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#gallery" class="backToGalleries">Gallery</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Library</li>
+          </ol>
+        </nav>
 
-			<dir id="galleries_list" class="gallery"></dir>
-			<dir id="gallery_list" class="gallery"></dir>
+        <div id="galleries_list" class="galleries-list card-columns"></div>
 
-		  <a href="javascript:void(0)" onClick="listGalleries();" class="backToGalleries">Назад към галерията</a>
-	  </div>
-	</div>
+        <a href="#gallery" class="backToGalleries btn btn-primary">Back to Gallery</a>
+      </div>
+    </div>
   </div>
 {% endblock %}
