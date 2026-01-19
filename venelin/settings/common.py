@@ -119,20 +119,20 @@ DISALLOWED_USER_AGENTS = (
 )
 
 MIDDLEWARE = (
+    'django.middleware.security.SecurityMiddleware',
     'django.middleware.http.ConditionalGetMiddleware',
     'django.middleware.cache.UpdateCacheMiddleware',
     'venelin.middleware.MinifyHTMLMiddleware',
+    'venelin.middleware.XUACompatibleMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.security.SecurityMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.contrib.sites.middleware.CurrentSiteMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
     'django.middleware.cache.FetchFromCacheMiddleware',
-    'venelin.middleware.XUACompatibleMiddleware',
+    'django.contrib.sites.middleware.CurrentSiteMiddleware',
+    'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 )
 
 ROOT_URLCONF = 'venelin.urls'
