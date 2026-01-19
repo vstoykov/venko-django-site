@@ -15,18 +15,19 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': f'django.db.backends.{os.getenv('DATABASE_ENGINE') or "postgresql"}',
+        'ENGINE': f'django.db.backends.{os.getenv("DATABASE_ENGINE") or "postgresql"}',
         'NAME': os.getenv("DATABASE_NAME"),
         'USER': os.getenv("DATABASE_USER"),
         'PASSWORD': os.getenv("DATABASE_PASSWORD"),
         'HOST': os.getenv("DATABASE_HOST"),
         'PORT': os.getenv("DATABASE_PORT"),
+        'OPTIONS': {},
     },
 }
 if os.getenv("DATABASE_OPTIONS_SSLMODE"):
-    DATABASES['default']['OPTIONS'] = {
-        'sslmode': os.getenv("DATABASE_OPTIONS_SSLMODE"),
-    }
+    DATABASES['default']['OPTIONS']['sslmode'] = os.getenv("DATABASE_OPTIONS_SSLMODE")
+if os.getenv("DATABASE_OPTIONS_POOL") in ('true', 'True', 'on', '1'):
+    DATABASES['default']['OPTIONS']['pool'] = True
 
 DISQUS_WEBSITE_SHORTNAME = 'venelin'
 

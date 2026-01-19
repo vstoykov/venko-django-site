@@ -32,7 +32,7 @@ uwsgi = [
     "django-uwsgi-cache>=1.1.0",
 ]
 postgres = [
-    "psycopg>=3.3.2",
+    "psycopg[binary,pool]>=3.3.2",
 ]
 
 [dependency-groups]
