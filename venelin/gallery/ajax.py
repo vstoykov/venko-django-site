@@ -1,7 +1,7 @@
 import json
 from functools import wraps
 
-from django.http import HttpResponse, HttpResponseBadRequest, Http404
+from django.http import HttpResponse, HttpResponseBadRequest, Http404, HttpResponseNotAllowed
 from django.conf import settings
 from django.core.serializers.json import DjangoJSONEncoder
 
@@ -17,7 +17,7 @@ class JSONResponseMixin(object):
     INDENT = 1 if settings.DEBUG else None
 
     def __init__(self, content, *args, **kwargs):
-        json_content = json.dumps(content, cls=DjangoJSONEncoder, indent=self.INDENT)
+        json_content = json.dumps(content, cls=DjangoJSONEncoder, indent=self.INDENT, ensure_ascii=False)
         super().__init__(json_content, JSON_CONTENT_TYPE, *args, **kwargs)
 
 
@@ -43,6 +43,16 @@ def json_view(fn):
                     }]
                 },
                 status=404,
+            )
+        if isinstance(response, HttpResponseNotAllowed):
+            response = JSONResponse(
+                {
+                    'errors': [{
+                        'code': 'NOT ALLOWED',
+                        'description': "Request method is not allowed"
+                    }]
+                },
+                status = response.status_code,
             )
         if isinstance(response, HttpResponse):
             return response

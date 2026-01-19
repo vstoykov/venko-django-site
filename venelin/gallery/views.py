@@ -1,14 +1,17 @@
 from django.shortcuts import render, get_object_or_404
+from django.views.decorators.http import require_safe
 
 from .ajax import json_view
 from .models import Gallery
 
 
+@require_safe
 def galleries(request):
     galleries = Gallery.objects.active()
     return render(request, 'galleries.html', {'galleries': galleries})
 
 
+@require_safe
 def gallery(request, slug):
     gallery = get_object_or_404(Gallery.objects.active(), slug=slug)
     return render(request, 'gallery.html', {'gallery': gallery})
@@ -20,6 +23,7 @@ def gallery(request, slug):
 
 
 @json_view
+@require_safe
 def galleries_json(request):
     galleries = Gallery.objects.active()
     response = {
@@ -33,6 +37,7 @@ def galleries_json(request):
 
 
 @json_view
+@require_safe
 def gallery_json(request, slug):
     gallery = get_object_or_404(Gallery.objects.active(), slug=slug)
     response = {
