@@ -24,16 +24,16 @@ services:
           cpus: "0.01"
           memory: 128M
     ulimits:
-        nofile:
-          soft: 1024
-          hard: 1024
+      nofile:
+        soft: 1024
+        hard: 1024
     ports:
       - "127.0.0.1:8000:8000"
     volumes:
-      - ./www/media:/app/www/media:rw
-      - ./uwsgi.ini:/app/uwsgi.ini:ro
-      - ./venelin/settings/local.py:/app/venelin/settings/local.py:ro
-      - ./.google-application-credentials.json:/app/.google-auth.json:ro
+      - ./www/media:/app/www/media:rw,z
+      - ./uwsgi.ini:/app/uwsgi.ini:ro,z
+      - ./venelin/settings/local.py:/app/venelin/settings/local.py:ro,z
+      - ./.google-auth.json:/app/.google-auth.json:ro,z
     env_file:
       - .env
     environment:
