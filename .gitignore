@@ -9,6 +9,7 @@
 *.anjuta*
 *.egg-info
 *.nja
+*.swp
 .project
 .pydevproject
 .idea
@@ -18,7 +19,7 @@
 .eggs
 .env
 .pytest*
-*.swp
+.google-auth.json
 __pycache__
 site.db
 /venelin/settings/local.py

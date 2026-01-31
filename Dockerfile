@@ -1,10 +1,9 @@
-FROM python:3.14
+FROM python:3.14-slim
 
 RUN set -eux; \
     export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
-    apt-get install --no-install-recommends --no-install-suggests --yes \
-        gettext; \
+    apt-get install --no-install-recommends --no-install-suggests --yes gettext; \
     apt-get remove --purge --auto-remove --yes; \
     rm -rf /var/lib/apt/lists/*;
 
