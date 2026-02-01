@@ -1,17 +1,16 @@
-FROM python:3.14-slim
+FROM python:3.14 as build
 
 RUN set -eux; \
     export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
     apt-get install --no-install-recommends --no-install-suggests --yes gettext; \
-    apt-get remove --purge --auto-remove --yes; \
-    rm -rf /var/lib/apt/lists/*;
+    apt-get clean;
 
 COPY pyproject.toml uv.lock /app/
 WORKDIR /app/
 
 RUN --mount=type=cache,target=/root/.cache set -eux; \
-    pip install --root-user-action=ignore --no-cache-dir uv; \
+    pip install --root-user-action=ignore uv; \
     uv sync --frozen --extra=uwsgi --extra=postgres --no-dev --link-mode=copy; \
     pip uninstall --root-user-action=ignore --yes uv;
 
@@ -30,4 +29,16 @@ RUN set -eux; \
     chown www-data:www-data /app/www/media; \
     chmod g+w /app/www/media;
 
-CMD [ ".venv/bin/uwsgi", "--master", "--ini=uwsgi.ini", "--http=0.0.0.0:8000", "--uid=www-data", "--gid=www-data", "--env=HOME=/app"]
+
+FROM python:3.14-slim as production
+
+RUN set -eux; \
+    export DEBIAN_FRONTEND=noninteractive; \
+    apt-get update; \
+    apt-get install --no-install-recommends --no-install-suggests --yes libxml2;
+
+COPY --from=build /app/ /app/
+WORKDIR /app/
+ENV DJANGO_ENV=production
+
+CMD [ "/app/.venv/bin/uwsgi", "--master", "--ini=/app/uwsgi.ini", "--http=0.0.0.0:8000", "--uid=www-data", "--gid=www-data", "--env=HOME=/app"]
