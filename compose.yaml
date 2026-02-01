@@ -1,5 +1,9 @@
+name: venko-django-site
+
 services:
   web:
+    image: ghcr.io/vstoykov/venko-django-site:latest
+    container_name: ${COMPOSE_PROJECT_NAME}
     build:
       context: .
       dockerfile: Dockerfile
