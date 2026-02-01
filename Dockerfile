@@ -41,5 +41,6 @@ RUN set -eux; \
 COPY --from=build /app/ /app/
 WORKDIR /app/
 ENV DJANGO_ENV=production
+ENV PATH=/app/.venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-CMD [ "/app/.venv/bin/uwsgi", "--master", "--ini=/app/uwsgi.ini", "--http=0.0.0.0:8000", "--uid=www-data", "--gid=www-data", "--env=HOME=/app"]
+CMD [ "uwsgi", "--master", "--ini=/app/uwsgi.ini", "--http=0.0.0.0:8000", "--uid=www-data", "--gid=www-data", "--env=HOME=/app"]
