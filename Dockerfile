@@ -35,7 +35,8 @@ FROM python:3.14-slim as production
 RUN set -eux; \
     export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
-    apt-get install --no-install-recommends --no-install-suggests --yes libxml2;
+    apt-get install --no-install-recommends --no-install-suggests --yes libxml2 media-types; \
+    apt-get clean;
 
 COPY --from=build /app/ /app/
 WORKDIR /app/
