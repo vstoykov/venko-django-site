@@ -37,4 +37,4 @@ RUN set -eux; \
     chown www-data:www-data /app/www/media; \
     chmod g+w /app/www/media;
 
-CMD [ "uwsgi", "--master", "--ini=/app/uwsgi.ini", "--http=0.0.0.0:8000", "--uid=www-data", "--gid=www-data", "--env=HOME=/app"]
+CMD [ "/app/runserver" ]
