@@ -16,6 +16,7 @@
 .ropeproject
 .tox
 .vscode
+.zed
 .eggs
 .env
 .pytest*
