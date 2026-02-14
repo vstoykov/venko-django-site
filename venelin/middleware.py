@@ -64,10 +64,7 @@ class MinifyHTMLMiddleware(MiddlewareMixin):
             try:
                 response.content = force_bytes(
                     minify_html(
-                        force_str(
-                            response.content.strip(),
-                            encoding=charset,
-                        )
+                        force_str(response.content, encoding=charset).strip()
                     ),
                     encoding=charset,
                 )
