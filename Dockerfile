@@ -14,7 +14,8 @@ RUN set -eux; \
     export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
     apt-get install --no-install-recommends --no-install-suggests --yes libxml2 media-types gettext; \
-    apt-get clean;
+    apt-get clean; \
+    rm -rf /var/lib/apt/lists;
 
 COPY --from=build /app/.venv /app/.venv
 COPY ./ /app/
