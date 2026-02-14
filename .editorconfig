@@ -10,12 +10,12 @@ insert_final_newline = true
 charset = utf-8
 
 # Python 4 space indentation
-[*.py]
+[*.{py,toml}]
 indent_style = space
 indent_size = 4
 
 # Indentation override for all JS and JSON
-[*.{js,json,css,yml}]
+[*.{js,json,css,yml,yaml}]
 indent_style = space
 indent_size = 2
 
