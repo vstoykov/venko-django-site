@@ -9,16 +9,19 @@ services:
       dockerfile: Dockerfile
     develop:
       watch:
-        - action: rebuild
-          path: ./Dockerfile
-        - action: rebuild
-          path: ./uv.lock
-        - action: sync
-          path: ./uwsgi.ini
+        - path: ./Dockerfile
+          action: rebuild
+        - path: ./uv.lock
+          action: rebuild
+        - path: ./uwsgi.ini
           target: /app/uwsgi.ini
-        - action: sync
-          path: ./venelin
+          action: sync+restart
+        - path: ./runserver
+          target: /app/runserver
+          action: sync+restart
+        - path: ./venelin
           target: /app/venelin
+          action: sync+restart
     deploy:
       resources:
         limits:
@@ -26,7 +29,7 @@ services:
           memory: 512M
         reservations:
           cpus: "0.01"
-          memory: 128M
+          memory: 250M
     ulimits:
       nofile:
         soft: 1024
@@ -35,7 +38,6 @@ services:
       - "127.0.0.1:8000:8000"
     volumes:
       - ./www/media:/app/www/media:rw,z
-      - ./uwsgi.ini:/app/uwsgi.ini:ro,z
       - ./venelin/settings/local.py:/app/venelin/settings/local.py:ro,z
       - ./.google-auth.json:/app/.google-auth.json:ro,z
     env_file:
