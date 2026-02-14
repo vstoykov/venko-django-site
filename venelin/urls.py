@@ -7,6 +7,7 @@ from django.shortcuts import render
 from django.views.static import serve
 
 from .sitemap import sitemaps
+from .api import whoami
 
 admin.autodiscover()
 
@@ -21,6 +22,7 @@ urlpatterns = [
     path('highlighter/', include('venelin.syntaxhighlighter.urls')),
     path('search/', render, {'template_name': 'search.html'}),
 
+    path('api/whoami', whoami),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
     path('robots.txt', render, {'template_name': 'robots.txt', 'content_type': 'text/plain; charset=utf-8'}),
     path('favicon.ico', serve, {'document_root': settings.STATIC_ROOT, 'path': 'favicon.ico'}),
@@ -29,7 +31,6 @@ urlpatterns = [
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + [
 
     path('', include('venelin.pages.urls')),
-
 ]
 
 if 'django_uwsgi' in settings.INSTALLED_APPS:
