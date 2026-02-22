@@ -31,4 +31,4 @@ class HighlightForm(forms.Form):
         lexer = get_lexer_by_name(self.cleaned_data["lexer"], stripall=True)
         formatter = HtmlFormatter(linenos=True, noclasses=True)
         self.highlighted_code = mark_safe(highlight(self.cleaned_data['code'], lexer, formatter))
-        #self.highlight_css = mark_safe(HtmlFormatter().get_style_defs('.source'))
+        # self.highlight_css = mark_safe(HtmlFormatter().get_style_defs('.source'))

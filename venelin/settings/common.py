@@ -47,9 +47,7 @@ DATE_FORMAT = 'j M Y'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'bg'
 
-LOCALE_PATHS = (
-    os.path.join(BASE_DIR, 'venelin', 'locale'),
-)
+LOCALE_PATHS = (os.path.join(BASE_DIR, 'venelin', 'locale'),)
 
 SITE_ID = 1
 
@@ -110,14 +108,12 @@ TEMPLATES = [
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
             ],
-        }
+        },
     },
 ]
 
 
-DISALLOWED_USER_AGENTS = (
-    re.compile(r'^.*(ZmEu|[Ss]cann).*$'),
-)
+DISALLOWED_USER_AGENTS = (re.compile(r'^.*(ZmEu|[Ss]cann).*$'),)
 
 MIDDLEWARE = (
     'django.middleware.security.SecurityMiddleware',
@@ -153,12 +149,10 @@ INSTALLED_APPS = (
     'django.contrib.flatpages',
     'django.contrib.sitemaps',
     'django.contrib.redirects',
-
     'social_django',
     'django_extensions',
     'django_prose_editor',
     'imagekit',
-
     'venelin',
     'venelin.pages',
     'venelin.links',
@@ -175,11 +169,13 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv("GOOGLE_OAUTH2_KEY")
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv("GOOGLE_OAUTH2_SECRET")
 
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.google.GoogleOAuth2',
-    'social_core.backends.google_openidconnect.GoogleOpenIdConnect',
-    'django.contrib.auth.backends.ModelBackend',
-) if SOCIAL_AUTH_GOOGLE_OAUTH2_KEY and SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET else (
-    'django.contrib.auth.backends.ModelBackend',
+    (
+        'social_core.backends.google.GoogleOAuth2',
+        'social_core.backends.google_openidconnect.GoogleOpenIdConnect',
+        'django.contrib.auth.backends.ModelBackend',
+    )
+    if SOCIAL_AUTH_GOOGLE_OAUTH2_KEY and SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET
+    else ('django.contrib.auth.backends.ModelBackend',)
 )
 LOGIN_URL = '/admin/login/'
 LOGIN_REDIRECT_URL = '/admin/'
@@ -201,13 +197,55 @@ CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': [
             {'name': 'styles', 'items': ['Styles', 'Format']},
-            {'name': 'editing', 'groups': ['find', 'selection', 'spellchecker'], 'items': ['Scayt']},
-            {'name': 'clipboard', 'groups': ['clipboard', 'undo'], 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
+            {
+                'name': 'editing',
+                'groups': ['find', 'selection', 'spellchecker'],
+                'items': ['Scayt'],
+            },
+            {
+                'name': 'clipboard',
+                'groups': ['clipboard', 'undo'],
+                'items': [
+                    'Cut',
+                    'Copy',
+                    'Paste',
+                    'PasteText',
+                    'PasteFromWord',
+                    '-',
+                    'Undo',
+                    'Redo',
+                ],
+            },
             {'name': 'tools', 'items': ['Maximize']},
             {'name': 'document', 'groups': ['mode', 'document', 'doctools'], 'items': ['Source']},
             '',
-            {'name': 'basicstyles', 'groups': ['basicstyles', 'cleanup'], 'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
-            {'name': 'paragraph', 'groups': ['list', 'indent', 'blocks', 'align', 'bidi'], 'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote']},
+            {
+                'name': 'basicstyles',
+                'groups': ['basicstyles', 'cleanup'],
+                'items': [
+                    'Bold',
+                    'Italic',
+                    'Underline',
+                    'Strike',
+                    'Subscript',
+                    'Superscript',
+                    '-',
+                    'RemoveFormat',
+                ],
+            },
+            {
+                'name': 'paragraph',
+                'groups': ['list', 'indent', 'blocks', 'align', 'bidi'],
+                'items': [
+                    'NumberedList',
+                    'BulletedList',
+                    '-',
+                    'Outdent',
+                    'Indent',
+                    '-',
+                    'Blockquote',
+                ],
+            },
             {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
             {'name': 'insert', 'items': ['Image', 'Table', 'HorizontalRule', 'SpecialChar']},
         ],
@@ -261,10 +299,7 @@ LOGGING = {
         },
     },
     'loggers': {
-        'django.request': {
-            'handlers': ['stderr'],
-            'propagate': False
-        },
+        'django.request': {'handlers': ['stderr'], 'propagate': False},
     },
 }
 

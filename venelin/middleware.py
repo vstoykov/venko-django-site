@@ -11,20 +11,26 @@ class SQLPrintingMiddleware(MiddlewareMixin):
     Middleware which prints out a list of all SQL queries done
     for each view that is processed. This is only useful for debugging.
     """
+
     def __init__(self, *args, **kwargs):
         if not settings.DEBUG:
             raise MiddlewareNotUsed
         super().__init__(*args, **kwargs)
 
     def process_response(self, request, response):
-        if (len(connection.queries) == 0 or
-                request.path_info.startswith('/favicon.ico') or
-                request.path_info.startswith(settings.STATIC_URL) or
-                request.path_info.startswith(settings.MEDIA_URL)):
+        if (
+            len(connection.queries) == 0
+            or request.path_info.startswith('/favicon.ico')
+            or request.path_info.startswith(settings.STATIC_URL)
+            or request.path_info.startswith(settings.MEDIA_URL)
+        ):
             return response
 
         indentation = 2
-        print("\n\n%s\033[1;35m[SQL Queries for]\033[1;34m %s\033[0m\n" % (" " * indentation, request.path_info))
+        print(
+            "\n\n%s\033[1;35m[SQL Queries for]\033[1;34m %s\033[0m\n"
+            % (" " * indentation, request.path_info)
+        )
         total_time = 0.0
         for query in connection.queries:
             nice_sql = query['sql'].replace('"', '').replace(',', ', ')
@@ -42,6 +48,7 @@ class XUACompatibleMiddleware(MiddlewareMixin):
     This header tells to Internet Explorer to render page with latest
     possible version or to use chrome frame if it is installed.
     """
+
     def process_response(self, request, response):
         response['X-UA-Compatible'] = 'IE=edge,chrome=1'
         return response
@@ -53,6 +60,7 @@ class MinifyHTMLMiddleware(MiddlewareMixin):
 
     Taken from django-pipeline but but modified to not be executed in debug.
     """
+
     def __init__(self, *args, **kwargs):
         if settings.DEBUG:
             raise MiddlewareNotUsed
@@ -63,9 +71,7 @@ class MinifyHTMLMiddleware(MiddlewareMixin):
             charset = response.charset
             try:
                 response.content = force_bytes(
-                    minify_html(
-                        force_str(response.content, encoding=charset).strip()
-                    ),
+                    minify_html(force_str(response.content, encoding=charset).strip()),
                     encoding=charset,
                 )
                 response['Content-Length'] = len(response.content)

@@ -1,12 +1,11 @@
 import json
 from functools import wraps
 
-from django.http import HttpResponse, HttpResponseBadRequest, Http404, HttpResponseNotAllowed
 from django.conf import settings
 from django.core.serializers.json import DjangoJSONEncoder
+from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseNotAllowed
 
-
-JSON_CONTENT_TYPE = 'application/json; charset=%s' % (settings.DEFAULT_CHARSET, )
+JSON_CONTENT_TYPE = 'application/json; charset=%s' % (settings.DEFAULT_CHARSET,)
 
 
 class JSONResponseMixin(object):
@@ -14,10 +13,13 @@ class JSONResponseMixin(object):
     Response that will return JSON serialized value of the content.
 
     """
+
     INDENT = 1 if settings.DEBUG else None
 
     def __init__(self, content, *args, **kwargs):
-        json_content = json.dumps(content, cls=DjangoJSONEncoder, indent=self.INDENT, ensure_ascii=False)
+        json_content = json.dumps(
+            content, cls=DjangoJSONEncoder, indent=self.INDENT, ensure_ascii=False
+        )
         super().__init__(json_content, JSON_CONTENT_TYPE, *args, **kwargs)
 
 
@@ -37,24 +39,29 @@ def json_view(fn):
         except Http404 as e:
             response = JSONResponse(
                 {
-                    'errors': [{
-                        'code': 'NOT FOUND',
-                        'description': str(e),
-                    }]
+                    'errors': [
+                        {
+                            'code': 'NOT FOUND',
+                            'description': str(e),
+                        }
+                    ]
                 },
                 status=404,
             )
         if isinstance(response, HttpResponseNotAllowed):
             response = JSONResponse(
                 {
-                    'errors': [{
-                        'code': 'NOT ALLOWED',
-                        'description': "Request method is not allowed"
-                    }]
+                    'errors': [
+                        {
+                            'code': 'NOT ALLOWED',
+                            'description': "Request method is not allowed",
+                        }
+                    ]
                 },
-                status = response.status_code,
+                status=response.status_code,
             )
         if isinstance(response, HttpResponse):
             return response
         return JSONResponse(response)
+
     return wrapper

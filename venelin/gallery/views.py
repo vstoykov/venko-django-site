@@ -27,11 +27,14 @@ def gallery(request, slug):
 def galleries_json(request):
     galleries = Gallery.objects.active()
     response = {
-        'data': [{
-            'title': gallery.title,
-            'slug': gallery.slug,
-            'cover': gallery.get_thumbnail_url(),
-        } for gallery in galleries]
+        'data': [
+            {
+                'title': gallery.title,
+                'slug': gallery.slug,
+                'cover': gallery.get_thumbnail_url(),
+            }
+            for gallery in galleries
+        ]
     }
     return response
 
@@ -44,11 +47,14 @@ def gallery_json(request, slug):
         'data': {
             'slug': gallery.slug,
             'title': gallery.title,
-            'pictures': [{
-                'title': picture.title,
-                'image': picture.image.url,
-                'thumb': picture.thumb.url,
-            } for picture in gallery.pictures.all()]
+            'pictures': [
+                {
+                    'title': picture.title,
+                    'image': picture.image.url,
+                    'thumb': picture.thumb.url,
+                }
+                for picture in gallery.pictures.all()
+            ],
         }
     }
     return response

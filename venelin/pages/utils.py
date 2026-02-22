@@ -12,18 +12,16 @@ def get_flatpage_templates():
         if os.path.exists(os.path.join(path, "flatpages"))
     )
 
-    return sorted(set(
-        tmp
-        for path in flatpages_dirs for tmp in os.listdir(path)
-        if tmp.endswith('.html')
-    ))
+    return sorted(
+        set(tmp for path in flatpages_dirs for tmp in os.listdir(path) if tmp.endswith('.html'))
+    )
 
 
 def get_flatpage_template_choices():
-    return [(
-            os.path.join("flatpages", tmp),
-            tmp.replace('.html', '')
-            ) for tmp in get_flatpage_templates()]
+    return [
+        (os.path.join("flatpages", tmp), tmp.replace('.html', ''))
+        for tmp in get_flatpage_templates()
+    ]
 
 
 def get_template_dirs():

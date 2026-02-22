@@ -6,10 +6,7 @@ from .utils import get_flatpage_template_choices
 
 
 class FlatPageForm(forms.ModelForm):
-
-    content = ProseEditorFormField(
-        widget=AdminProseEditorWidget
-    )
+    content = ProseEditorFormField(widget=AdminProseEditorWidget)
 
     class Meta:
         model = FlatPage

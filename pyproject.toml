@@ -47,3 +47,10 @@ dev = [
 where = ["."]
 include = ["venelin"]
 namespaces = false
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.format]
+quote-style = "preserve"
+exclude = ["venelin/*/migrations/*.py", "venelin/urls.py"]

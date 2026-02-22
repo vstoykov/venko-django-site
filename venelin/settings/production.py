@@ -5,9 +5,7 @@ from django.core.management.utils import get_random_secret_key
 
 DEBUG = False
 
-ADMINS = (
-    ('Venelin Stoykov', 'v.k.stoykov@gmail.com'),
-)
+ADMINS = (('Venelin Stoykov', 'v.k.stoykov@gmail.com'),)
 MANAGERS = ADMINS
 SOCIAL_AUTH_GOOGLE_OAUTH2_WHITELISTED_EMAILS = [ADMINS[0][1]]
 
@@ -70,7 +68,11 @@ if not SECRET_KEY:
 # If runing during docker build we can skip the warnings about missing GOOGLE keys
 if SECRET_KEY != 'management':
     if not SOCIAL_AUTH_GOOGLE_OAUTH2_KEY:  # NOQA
-        warnings.warn("GOOGLE_OAUTH2_KEY is not defined in environment! Login with Google disabled.")
+        warnings.warn(
+            "GOOGLE_OAUTH2_KEY is not defined in environment! Login with Google disabled."
+        )
 
     if not SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET:  # NOQA
-        warnings.warn("GOOGLE_OAUTH2_SECRET is not defined in environment! Login with Google disabled.")
+        warnings.warn(
+            "GOOGLE_OAUTH2_SECRET is not defined in environment! Login with Google disabled."
+        )

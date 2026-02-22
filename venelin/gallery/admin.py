@@ -1,45 +1,43 @@
 from django.contrib import admin
 from django.core.exceptions import PermissionDenied
+from django.http import Http404
 from django.utils.decorators import method_decorator
 from django.utils.encoding import force_str
 from django.utils.translation import gettext_lazy as _
-from django.http import Http404
 from django.views.decorators.http import require_POST
 
-from .models import Gallery, Picture
-from .forms import UploadPictureForm
 from .ajax import JSONResponse, JSONResponseBadRequest
+from .forms import UploadPictureForm
+from .models import Gallery, Picture
 
 
 class PictureAdmin(admin.ModelAdmin):
-    readonly_fields = ('preview', 'uploaded', 'modified', )
+    readonly_fields = ('preview', 'uploaded', 'modified')
     list_display = ('title', 'preview', 'gallery')
     list_filter = ('gallery',)
     date_hierarchy = 'uploaded'
-    search_fields = ('title', )
+    search_fields = ('title',)
 
 
 class PictureInline(admin.TabularInline):
     model = Picture
     readonly_fields = ('preview',)
-    fields = ('preview', 'is_album_logo', 'title', )
+    fields = ('preview', 'is_album_logo', 'title')
     extra = 0
     show_change_link = True
 
 
 class GalleryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
-    readonly_fields = ('created', 'modified',)
+    readonly_fields = ('created', 'modified')
     inlines = (PictureInline,)
     date_hierarchy = 'created'
     list_display = ('title', 'slug')
-    search_fields = ('title', )
+    search_fields = ('title',)
 
     class Media:
         css = {
-            'screen': (
-                'css/gallery.admin.css',
-            )
+            'screen': ('css/gallery.admin.css',),
         }
         js = (
             'js/jquery.ui.widget.js',
@@ -49,12 +47,15 @@ class GalleryAdmin(admin.ModelAdmin):
 
     def get_urls(self):
         from django.urls import path
+
         info = self.model._meta.app_label, self.model._meta.model_name
 
         urlpatterns = [
-            path('<int:object_id>/upload/',
-                 self.admin_site.admin_view(self.upload_image),
-                 name='%s_%s_upload' % info),
+            path(
+                '<int:object_id>/upload/',
+                self.admin_site.admin_view(self.upload_image),
+                name='%s_%s_upload' % info,
+            ),
         ]
         urlpatterns.extend(super(GalleryAdmin, self).get_urls())
 
@@ -65,10 +66,13 @@ class GalleryAdmin(admin.ModelAdmin):
         gallery = self.get_object(request, str(object_id))
 
         if gallery is None:
-            raise Http404(_('%(name)s object with primary key %(key)r does not exist.') % {
-                'name': force_str(self.model._meta.verbose_name),
-                'key': object_id,
-            })
+            raise Http404(
+                _('%(name)s object with primary key %(key)r does not exist.')
+                % {
+                    'name': force_str(self.model._meta.verbose_name),
+                    'key': object_id,
+                }
+            )
 
         if not self.has_change_permission(request, gallery):
             raise PermissionDenied
@@ -77,10 +81,11 @@ class GalleryAdmin(admin.ModelAdmin):
         if form.is_valid():
             form.instance.gallery = gallery
             instance = form.save()
-            self.log_change(request, gallery, _('Added %(name)s "%(object)s".') % {
+            change_msg = _('Added %(name)s "%(object)s".') % {
                 'name': force_str(instance._meta.verbose_name),
                 'object': force_str(instance),
-            })
+            }
+            self.log_change(request, gallery, change_msg)
             return JSONResponse({'picture': form.instance.as_dict()})
         return JSONResponseBadRequest({'errors': form.errors})
 

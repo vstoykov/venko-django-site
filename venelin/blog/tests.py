@@ -9,7 +9,6 @@ from venelin.blog.models import Entry, Category
 
 
 class BlogTestCase(TestCase):
-
     @classmethod
     def setUpTestData(cls):
         cls.category1 = Category.objects.create(title='Linux', slug='linux')
@@ -23,7 +22,7 @@ class BlogTestCase(TestCase):
             category=cls.category1,
             content="<p>Content about Linux</p>",
             is_published=True,
-            created=timezone.now() - timedelta(days=10)
+            created=timezone.now() - timedelta(days=10),
         )
 
         cls.category1entry2 = Entry.objects.create(
@@ -32,7 +31,7 @@ class BlogTestCase(TestCase):
             category=cls.category1,
             content="<p>Content about Linux</p>",
             is_published=False,
-            created=timezone.now() - timedelta(days=6)
+            created=timezone.now() - timedelta(days=6),
         )
 
         cls.category2entry1 = Entry.objects.create(
@@ -41,7 +40,7 @@ class BlogTestCase(TestCase):
             category=cls.category2,
             content="<p>Content about Django</p>",
             is_published=True,
-            created=timezone.now() - timedelta(days=4)
+            created=timezone.now() - timedelta(days=4),
         )
 
         cls.category2entry2 = Entry.objects.create(
@@ -58,27 +57,30 @@ class BlogTestCase(TestCase):
             category=cls.category3,
             content="<p>Unpublished content</p>",
             is_published=False,
-            created=timezone.now() - timedelta(days=2)
+            created=timezone.now() - timedelta(days=2),
         )
 
     def test_number_of_published_entries(self):
         self.assertEqual(Entry.objects.published().count(), 3)
 
     def test_number_of_active_categories(self):
-        self.assertEqual(list(Category.objects.active().values()), [
-            {
-                'id': 2,
-                'title': 'Django',
-                'slug': 'django',
-                'entries_count': 2,
-            },
-            {
-                'id': 1,
-                'title': 'Linux',
-                'slug': 'linux',
-                'entries_count': 1,
-            },
-        ])
+        self.assertEqual(
+            list(Category.objects.active().values()),
+            [
+                {
+                    'id': 2,
+                    'title': 'Django',
+                    'slug': 'django',
+                    'entries_count': 2,
+                },
+                {
+                    'id': 1,
+                    'title': 'Linux',
+                    'slug': 'linux',
+                    'entries_count': 1,
+                },
+            ],
+        )
 
     def test_blog_index_view(self):
         response = self.client.get(reverse('blog:index'))

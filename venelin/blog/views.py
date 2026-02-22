@@ -10,11 +10,7 @@ def blog_index(request, category=None):
         category = get_object_or_404(Category, slug=category)
         entries = entries.filter(category=category)
 
-    context = {
-        'category': category,
-        'entries': entries,
-        'categories': Category.objects.active()
-    }
+    context = {'category': category, 'entries': entries, 'categories': Category.objects.active()}
     return render(request, 'blog/index.html', context)
 
 

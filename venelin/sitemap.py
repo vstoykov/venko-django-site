@@ -1,4 +1,5 @@
 from django.contrib.sitemaps import GenericSitemap
+
 try:
     from django.contrib.flatpages.sitemaps import FlatPageSitemap
 except ImportError:
@@ -15,20 +16,20 @@ sitemaps = {
             'queryset': Entry.objects.published(),
             'date_field': 'modified',
         },
-        priority=0.9
+        priority=0.9,
     ),
     'blog_categories': GenericSitemap(
         {
             'queryset': Category.objects.with_last_modified(),
             'date_field': 'modified',
         },
-        priority=0.8
+        priority=0.8,
     ),
     'gallery': GenericSitemap(
         {
             'queryset': Gallery.objects.active(),
             'date_field': 'modified',
         },
-        priority=0.6
+        priority=0.6,
     ),
 }

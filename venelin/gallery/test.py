@@ -1,13 +1,13 @@
 import json
 from io import BytesIO
-from PIL import Image
 
-from django.test import TestCase
+from django.contrib.auth import get_user_model
 from django.core.files.base import File
 from django.core.files.storage import default_storage
-from django.contrib.auth import get_user_model
+from django.test import TestCase
 from django.urls import reverse
 from django.utils.encoding import force_str
+from PIL import Image
 
 from venelin.gallery.models import Gallery, Picture
 
@@ -20,14 +20,17 @@ def generate_image():
 
 
 class GalleryAdminTestCase(TestCase):
-
     @classmethod
     def setUpTestData(cls):
-        cls.user_admin_pk = get_user_model().objects.create_superuser(
-            username='admin',
-            email='admin@example.com',
-            password='admin',
-        ).pk
+        cls.user_admin_pk = (
+            get_user_model()
+            .objects.create_superuser(
+                username='admin',
+                email='admin@example.com',
+                password='admin',
+            )
+            .pk
+        )
         cls.gallery_pk = Gallery.objects.create(
             title='Test Gallery',
             slug='test-gallery',
@@ -48,22 +51,25 @@ class GalleryAdminTestCase(TestCase):
             reverse('admin:gallery_gallery_upload', args=[self.gallery.pk]),
             {
                 'image': File(generate_image(), 'test-picture.png'),
-            }
+            },
         )
         self.assertEqual(200, response.status_code)
         self.assertEqual(1, self.gallery.pictures.count())
         picture = self.gallery.pictures.get()
-        self.assertEqual(json.loads(force_str(response.content)), {
-            'picture': {
-                'pk': picture.pk,
-                'gallery': self.gallery.pk,
-                'title': 'test-picture.png',
-                'image': {
-                    'url': picture.image.url,
-                    'thumbnail': picture.thumb.url,
+        self.assertEqual(
+            json.loads(force_str(response.content)),
+            {
+                'picture': {
+                    'pk': picture.pk,
+                    'gallery': self.gallery.pk,
+                    'title': 'test-picture.png',
+                    'image': {
+                        'url': picture.image.url,
+                        'thumbnail': picture.thumb.url,
+                    },
                 }
-            }
-        })
+            },
+        )
 
     def test_ajax_bad_upload(self):
         self.client.force_login(self.user_admin)
@@ -81,7 +87,7 @@ class GalleryAdminTestCase(TestCase):
             reverse('admin:gallery_gallery_upload', args=[404]),
             {
                 'image': File(generate_image(), 'test-picture.png'),
-            }
+            },
         )
         self.assertEqual(404, response.status_code)
 
@@ -98,7 +104,7 @@ class GalleryAdminTestCase(TestCase):
             reverse('admin:gallery_gallery_upload', args=[self.gallery.pk]),
             {
                 'image': File(generate_image(), 'test-picture.png'),
-            }
+            },
         )
         self.assertEqual(403, response.status_code)
 
@@ -145,7 +151,9 @@ class GalleryApiTestCase(TestCase):
             ]
         }
         self.assertEqual(actual, expected)
-        self.assertStartsWith(actual_cover, '/media/CACHE/images/gallery/active-gallery/test-picture/')
+        self.assertStartsWith(
+            actual_cover, '/media/CACHE/images/gallery/active-gallery/test-picture/'
+        )
 
     def test_ajax_get_active_gallery(self):
         response = self.client.get(reverse('gallery:gallery.json', args=['active-gallery']))
@@ -166,14 +174,21 @@ class GalleryApiTestCase(TestCase):
             },
         }
         self.assertEqual(actual, expected)
-        self.assertStartsWith(actual_thumb, '/media/CACHE/images/gallery/active-gallery/test-picture/')
+        self.assertStartsWith(
+            actual_thumb, '/media/CACHE/images/gallery/active-gallery/test-picture/'
+        )
 
     def test_ajax_get_empty_gallery(self):
         response = self.client.get(reverse('gallery:gallery.json', args=['empty-gallery']))
         self.assertEqual(response.status_code, 404)
-        self.assertEqual(response.json(), {
-            'errors': [{
-                'code': 'NOT FOUND',
-                'description': 'No Gallery matches the given query.'
-            }],
-        })
+        self.assertEqual(
+            response.json(),
+            {
+                'errors': [
+                    {
+                        'code': 'NOT FOUND',
+                        'description': 'No Gallery matches the given query.',
+                    }
+                ],
+            },
+        )
