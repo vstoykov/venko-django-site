@@ -1,5 +1,6 @@
 from datetime import timedelta
 
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.utils import timezone
 from django.urls import reverse
@@ -104,4 +105,19 @@ class BlogTestCase(TestCase):
 
     def test_blog_feed(self):
         response = self.client.get(reverse('blog:feed'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_blog_entry_admin_list_view(self):
+        User = get_user_model()
+        User.objects.create_superuser('admin', 'admin@example.com', 'admin')
+        self.client.login(username='admin', password='admin')
+        response = self.client.get(reverse('admin:blog_entry_changelist'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_blog_entry_admin_change_view(self):
+        User = get_user_model()
+        User.objects.create_superuser('admin', 'admin@example.com', 'admin')
+        self.client.login(username='admin', password='admin')
+        entry = Entry.objects.first()
+        response = self.client.get(reverse('admin:blog_entry_change', args=[entry.pk]))
         self.assertEqual(response.status_code, 200)
