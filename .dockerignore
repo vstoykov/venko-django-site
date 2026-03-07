@@ -10,9 +10,11 @@
 !/runserver
 
 !/venelin
+/venelin/settings/local.py
 
 **/__pycache__
 **/*.pyc
 **/*.mo
 **/*.swp
 **/*~
+
