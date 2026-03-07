@@ -44,3 +44,13 @@ services:
       - .env
     environment:
       - GOOGLE_APPLICATION_CREDENTIALS=/app/.google-auth.json
+
+  test:
+    image: ghcr.io/vstoykov/venko-django-site:latest
+    container_name: ${COMPOSE_PROJECT_NAME}-test
+    command: python manage.py test -v3
+    environment:
+      - DJANGO_ENV=dev
+    profiles:
+      - test
+
