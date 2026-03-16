@@ -1,4 +1,4 @@
-FROM python:3.14 as build
+FROM python:3.14 AS build
 
 RUN pip install --root-user-action=ignore --no-cache-dir uv;
 
@@ -8,7 +8,7 @@ WORKDIR /app/
 RUN --mount=type=cache,target=/root/.cache set -eux; \
     uv sync --frozen --extra=uwsgi --extra=postgres --no-dev --link-mode=copy;
 
-FROM python:3.14-slim as production
+FROM python:3.14-slim AS production
 
 RUN set -eux; \
     export DEBIAN_FRONTEND=noninteractive; \
@@ -38,3 +38,4 @@ RUN set -eux; \
     chmod g+w /app/www/media;
 
 CMD [ "/app/runserver" ]
+
