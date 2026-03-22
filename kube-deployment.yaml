@@ -1,0 +1,116 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: venko-django-site-environment
+data:
+  DJANGO_ENV: staging
+  SUPPORT_HTTPS: False
+  DATABASE_ENGINE: sqlite3
+  DATABASE_NAME: /app/data/db.sqlite3
+  GOOGLE_APPLICATION_CREDENTIALS: /run/secrets/google/credentials.json
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: venko-django-site-data
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: venko-django-site-service
+spec:
+  selector:
+    app: venko-django-site
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: venko-django-site
+  labels:
+    app: venko-django-site
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: venko-django-site
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  template:
+    metadata:
+      labels:
+        app: venko-django-site
+    spec:
+      restartPolicy: Always
+      volumes:
+        - name: venko-django-site-data
+          persistentVolumeClaim:
+            claimName: venko-django-site-data
+        - name: venko-django-site-google-app-credentials
+          secret:
+            secretName: venko-django-site-google-app-credentials
+      initContainers:
+        - name: migrations
+          image: ghcr.io/vstoykov/venko-django-site:latest
+          imagePullPolicy: IfNotPresent
+          command: ['bash', '-c']
+          args: 
+            - |
+              chown -R www-data:www-data /app/data;
+              chroot --userspec=www-data:www-data --skip-chdir / python manage.py migrate;
+          volumeMounts:
+            - name: venko-django-site-data
+              mountPath: /app/data
+          envFrom:
+            - configMapRef:
+                name: venko-django-site-environment
+            - secretRef:
+                name: venko-django-site-secret-environment
+      containers:
+        - name: web
+          image: ghcr.io/vstoykov/venko-django-site:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          volumeMounts:
+            - name: venko-django-site-data
+              mountPath: /app/data
+            - name: venko-django-site-google-app-credentials
+              mountPath: /run/secrets/google
+          envFrom:
+            - configMapRef:
+                name: venko-django-site-environment
+            - secretRef:
+                name: venko-django-site-secret-environment
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "500Mi"
+              cpu: "1000m"
+          livenessProbe:
+            httpGet:
+              path: /admin/login/
+              port: 8000
+              httpHeaders:
+                - name: X-Forwarded-Proto
+                  value: https
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          securityContext:
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false

@@ -13,7 +13,7 @@ FROM python:3.14-slim AS production
 RUN set -eux; \
     export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
-    apt-get install --no-install-recommends --no-install-suggests --yes libxml2 media-types gettext; \
+    apt-get install --no-install-recommends --no-install-suggests --yes libxml2 media-types gettext curl; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists;
 

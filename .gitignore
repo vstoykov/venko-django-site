@@ -22,6 +22,7 @@
 .env
 .pytest*
 .google-auth.json
+kube-secrets.yaml
 __pycache__
 site.db
 /venelin/settings/local.py
