@@ -21,7 +21,7 @@
 .eggs
 .env
 .pytest*
-.google-auth.json
+.google-credentials.json
 kube-secrets.yaml
 __pycache__
 site.db

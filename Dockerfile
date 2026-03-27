@@ -21,9 +21,10 @@ COPY --from=build /app/.venv /app/.venv
 COPY ./ /app/
 
 WORKDIR /app/
-ENV DJANGO_ENV=production
-ENV PYTHONDONTWRITEBYTECODE=1
 ENV PATH=/app/.venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV DJANGO_ENV=production
+ENV DJANGO_DATA_DIR=/var/www
 
 RUN set -eux; \
     # Set secret key in order to execute collectstatic and compilemessages
@@ -33,9 +34,11 @@ RUN set -eux; \
     export DJANGO_SECRET_KEY=management; \
     .venv/bin/python manage.py collectstatic --no-input; \
     .venv/bin/python manage.py compilemessages --ignore=.venv; \
-    mkdir -p /app/www/media; \
-    chown www-data:www-data /app/www/media; \
-    chmod g+w /app/www/media;
+    mkdir -p /var/www/media; \
+    chown -R www-data:www-data /var/www/; \
+    chmod g+w /var/www/media;
+
+USER www-data:www-data
 
 CMD [ "/app/runserver" ]
 

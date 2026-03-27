@@ -1,5 +1,12 @@
 name: venko-django-site
 
+secrets:
+  google-credentials:
+    file: ./.google-credentials.json
+
+volumes:
+  data:
+
 services:
   web:
     image: ghcr.io/vstoykov/venko-django-site:latest
@@ -19,9 +26,24 @@ services:
         - path: ./runserver
           target: /app/runserver
           action: sync+restart
+        - path: ./venelin/settings/local.py
+          action: restart
         - path: ./venelin
           target: /app/venelin
+          ignore:
+            - "**/static/**"
+            - "./venelin/settings/local.py"
           action: sync+restart
+          initial_sync: true
+        - path: ./venelin
+          target: /app/venelin
+          include:
+            - "**/static/**"
+          action: sync+exec
+          initial_sync: true
+          exec:
+            command: python manage.py collectstatic --noinput
+    cpu_count: 2
     deploy:
       resources:
         limits:
@@ -35,15 +57,17 @@ services:
         soft: 1024
         hard: 1024
     ports:
-      - "127.0.0.1:8000:8000"
+      - "127.0.0.1:8000:8000/tcp"
     volumes:
-      - ./www/media:/app/www/media:rw,z
+      - data:/var/www
       - ./venelin/settings/local.py:/app/venelin/settings/local.py:ro,z
-      - ./.google-auth.json:/app/.google-auth.json:ro,z
+    secrets:
+      - source: google-credentials
+        target: /run/secrets/google/credentials.json
     env_file:
       - .env
     environment:
-      - GOOGLE_APPLICATION_CREDENTIALS=/app/.google-auth.json
+      - GOOGLE_APPLICATION_CREDENTIALS=/run/secrets/google/credentials.json
 
   test:
     image: ghcr.io/vstoykov/venko-django-site:latest

@@ -4,6 +4,7 @@ import os
 import posixpath
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+DATA_DIR = os.getenv('DJANGO_DATA_DIR') or os.path.join(BASE_DIR, 'data')
 
 DEBUG = False
 
@@ -63,8 +64,8 @@ USE_TZ = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-STATIC_ROOT = os.path.join(BASE_DIR, 'www', 'static')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'www', 'media')
+STATIC_ROOT = os.getenv('DJANGO_STATIC_ROOT') or os.path.join(DATA_DIR, 'static')
+MEDIA_ROOT = os.getenv('DJANGO_MEDIA_ROOT') or os.path.join(DATA_DIR, 'media')
 
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a

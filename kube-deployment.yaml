@@ -7,7 +7,7 @@ data:
   DJANGO_ENV: staging
   SUPPORT_HTTPS: False
   DATABASE_ENGINE: sqlite3
-  DATABASE_NAME: /app/data/db.sqlite3
+  DATABASE_NAME: /var/www/db.sqlite3
   GOOGLE_APPLICATION_CREDENTIALS: /run/secrets/google/credentials.json
 ---
 apiVersion: v1
@@ -16,7 +16,7 @@ metadata:
   name: venko-django-site-data
 spec:
   accessModes:
-  - ReadWriteMany
+  - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
@@ -69,16 +69,23 @@ spec:
           command: ['bash', '-c']
           args: 
             - |
-              chown -R www-data:www-data /app/data;
+              set -eux;
+              # Ensure proper ownership of the mounted volume
+              chown -R www-data:www-data /var/www;
               chroot --userspec=www-data:www-data --skip-chdir / python manage.py migrate;
+              chroot --userspec=www-data:www-data --skip-chdir / python manage.py collectstatic --noinput;
           volumeMounts:
             - name: venko-django-site-data
-              mountPath: /app/data
+              mountPath: /var/www
           envFrom:
             - configMapRef:
                 name: venko-django-site-environment
             - secretRef:
                 name: venko-django-site-secret-environment
+          securityContext:
+            runAsUser: 0
+            runAsNonRoot: false
+            allowPrivilegeEscalation: true
       containers:
         - name: web
           image: ghcr.io/vstoykov/venko-django-site:latest
@@ -87,7 +94,7 @@ spec:
             - containerPort: 8000
           volumeMounts:
             - name: venko-django-site-data
-              mountPath: /app/data
+              mountPath: /var/www
             - name: venko-django-site-google-app-credentials
               mountPath: /run/secrets/google
           envFrom:

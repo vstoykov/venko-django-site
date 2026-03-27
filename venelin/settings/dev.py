@@ -1,4 +1,5 @@
 from .common import *  # NOQA
+import socket
 
 DEBUG = True
 
@@ -9,14 +10,17 @@ ALLOWED_HOSTS = ['*']
 DEFAULT_FROM_EMAIL = 'webmaster@stoykov.tk'
 EMAIL_PORT = 1025
 
-INTERNAL_IPS = ('127.0.0.1',)
+INTERNAL_IPS = (
+    '127.0.0.1',
+    socket.gethostbyname(socket.gethostname())
+)
 
 USE_DEBUG_TOOLABR = True
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'site.db'),
+        'NAME': os.path.join(DATA_DIR, 'site.db'),  # NOQA
     },
 }
 
@@ -34,9 +38,9 @@ except ImportError:
 
 
 if USE_DEBUG_TOOLABR:
-    INSTALLED_APPS += ('debug_toolbar',)
-    MIDDLEWARE = ('debug_toolbar.middleware.DebugToolbarMiddleware',) + MIDDLEWARE
-
+    INSTALLED_APPS += ('debug_toolbar',)  # NOQA
+    MIDDLEWARE = ('debug_toolbar.middleware.DebugToolbarMiddleware',) + MIDDLEWARE  # NOQA
+    CACHE_MIDDLEWARE_SECONDS = 0
     DEBUG_TOOLBAR_PATCH_SETTINGS = False
     DEBUG_TOOLBAR_PANELS = [
         'debug_toolbar.panels.versions.VersionsPanel',
@@ -60,5 +64,7 @@ if USE_DEBUG_TOOLABR:
         DEBUG_TOOLBAR_PANELS.insert(
             8, 'template_timings_panel.panels.TemplateTimings.TemplateTimings'
         )
+    print("Debug toolbar is enabled")
+    print("Internal IPs: ", ", ".join(INTERNAL_IPS))
 else:
     MIDDLEWARE = ('venelin.middleware.SQLPrintingMiddleware',) + MIDDLEWARE
