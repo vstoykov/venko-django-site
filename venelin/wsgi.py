@@ -15,3 +15,9 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "venelin.settings.%s" % ENV)
 from django.core.wsgi import get_wsgi_application  # NOQA
 
 application = get_wsgi_application()
+
+from django.conf import settings  # NOQA
+
+if settings.USE_DEBUG_TOOLABR:
+    print("Debug toolbar is enabled")
+    print("Internal IPs: ", ", ".join(settings.INTERNAL_IPS))

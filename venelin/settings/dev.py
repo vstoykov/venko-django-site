@@ -64,7 +64,5 @@ if USE_DEBUG_TOOLABR:
         DEBUG_TOOLBAR_PANELS.insert(
             8, 'template_timings_panel.panels.TemplateTimings.TemplateTimings'
         )
-    print("Debug toolbar is enabled")
-    print("Internal IPs: ", ", ".join(INTERNAL_IPS))
 else:
     MIDDLEWARE = ('venelin.middleware.SQLPrintingMiddleware',) + MIDDLEWARE
