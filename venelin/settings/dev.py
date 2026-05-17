@@ -1,7 +1,9 @@
 from .common import *  # NOQA
 import socket
+import os
 
 DEBUG = True
+os.environ["DJANGO_RUNSERVER_HIDE_WARNING"] = "true"
 
 CACHE_MIDDLEWARE_SECONDS = 10
 
