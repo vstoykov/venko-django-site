@@ -18,6 +18,7 @@ application = get_wsgi_application()
 
 from django.conf import settings  # NOQA
 
-if settings.USE_DEBUG_TOOLABR:
+if getattr(settings, 'USE_DEBUG_TOOLABR', False):
     print("Debug toolbar is enabled")
     print("Internal IPs: ", ", ".join(settings.INTERNAL_IPS))
+
