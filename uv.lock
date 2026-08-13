@@ -1010,7 +1010,7 @@ sdist = { url = "https://files.pythonhosted.org/packages/5f/3b/02f373bc88978e8f1
 
 [[package]]
 name = "venelin-site"
-version = "2.2.1"
+version = "2.3.0"
 source = { editable = "." }
 dependencies = [
     { name = "dj-database-url" },
