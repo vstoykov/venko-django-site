@@ -7,7 +7,7 @@ name = "venelin-site"
 version = "2.2.1"
 description = "Simple Personal WEB site made with Django"
 readme = "README.rst"
-requires-python = ">= 3.11"
+requires-python = ">= 3.13"
 authors = [
     {name = "Venelin Stoykov", email = "vkstoykov@gmail.com"},
 ]

@@ -27,7 +27,13 @@
 </p>
 {% endif %}
 
-{% if not backends.backends %}
+{% if backends.backends %}
+	<form action="{% url 'social:begin' backends.backends.0 %}?next={{ next }}" method="post" id="login-form">{% csrf_token %}
+		<p class="submit-row">
+			<button type="submit" class="button">{% trans 'Log in' %}</button>
+		</p>
+	</form>
+{% else %}
 	<form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
 		<div class="form-row">
 			{{ form.username.errors }}
@@ -50,12 +56,5 @@
 	</form>
 {% endif %}
 
-{% if backends.backends %}
-	<p class="submit-row">
-		<a href="{% url 'social:begin' backends.backends.0 %}?next={{ next }}" class="button">
-			{% trans 'Log in' %}
-		</a>
-	</p>
-{% endif %}
 </div>
-{% endblock %}
+{% endblock content %}
